@@ -1,43 +1,56 @@
 {
-	"name": "create-react-app-typescript-redux",
-	"version": "2.0.0",
-	"dependencies": {
-		"@material-ui/core": "4.3.0",
-		"@material-ui/icons": "4.2.1",
-		"@material-ui/styles": "4.3.0",
-		"localforage": "1.7.3",
-		"react": "16.8.6",
-		"react-dom": "16.8.6",
-		"react-redux": "7.1.0",
-		"react-router-dom": "5.0.1",
-		"react-scripts": "3.0.1",
-		"redux-persist": "5.10.0",
-		"redux-thunk": "2.3.0",
-		"typescript": "3.5.3",
-		"redux-devtools-extension": "2.13.8",
-		"redux-logger": "3.0.6"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"browserslist": [
-		">0.2%",
-		"not dead",
-		"not ie <= 11",
-		"not op_mini all"
-	],
-	"devDependencies": {
-		"eslint-plugin-react": "7.14.3",
-		"@types/jest": "24.0.15",
-		"@types/node": "12.6.8",
-		"@types/react": "16.8.23",
-		"@types/react-dom": "16.8.5",
-		"@types/react-router-dom": "4.3.4",
-		"@types/redux-logger": "3.0.7",
-		"@types/webpack-env": "1.14.0",
-		"@types/react-redux": "7.1.1"
-	}
+  "name": "create-react-app-typescript-redux",
+  "version": "2.0.0",
+  "dependencies": {
+    "@material-ui/core": "4.3.0",
+    "@material-ui/icons": "4.2.1",
+    "@material-ui/styles": "4.3.0",
+    "axios": "^0.19.0",
+    "chart.js": "^2.8.0",
+    "clsx": "^1.0.4",
+    "date-fns": "^2.1.0",
+    "localforage": "1.7.3",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.6",
+    "react-chartjs-2": "^2.7.6",
+    "react-dom": "16.8.6",
+    "react-perfect-scrollbar": "^1.5.3",
+    "react-redux": "7.1.0",
+    "react-router-dom": "5.0.1",
+    "react-scripts": "3.0.1",
+    "recompose": "^0.30.0",
+    "redux-devtools-extension": "2.13.8",
+    "redux-logger": "3.0.6",
+    "redux-persist": "5.10.0",
+    "redux-thunk": "2.3.0",
+    "typescript": "3.5.3",
+    "underscore": "^1.9.1",
+    "uuid": "^3.3.3",
+    "validate.js": "^0.13.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "eslint-plugin-react": "7.14.3",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.6.8",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.5",
+    "@types/react-router-dom": "4.3.4",
+    "@types/redux-logger": "3.0.7",
+    "@types/webpack-env": "1.14.0",
+    "@types/react-redux": "7.1.1"
+  }
 }
