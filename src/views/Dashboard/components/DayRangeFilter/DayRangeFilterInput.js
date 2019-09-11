@@ -1,6 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import React, { useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -10,25 +10,22 @@ const useStyles = makeStyles(theme =>
     },
     textField: {
       width: '100%'
-    },
-    dense: {
-      marginTop: theme.spacing(2)
-    },
-    menu: {
-      width: 200
     }
   })
 )
 
-const DayRangeFilterInput = props => {
+const DayRangeFilterInput = (props, ref) => {
   const [value, setValue] = useState('')
   const classes = useStyles()
+  const inputRef = useRef(null)
+  useImperativeHandle(ref, () => inputRef.current)
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
+        inputRef={inputRef}
         value={value}
-        //onChange={e => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         className={classes.textField}
         margin="normal"
         variant="outlined"
@@ -38,4 +35,4 @@ const DayRangeFilterInput = props => {
   )
 }
 
-export default DayRangeFilterInput
+export default forwardRef(DayRangeFilterInput)

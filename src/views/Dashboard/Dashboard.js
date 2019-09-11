@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={4} justify="flex-start">
-        <Grid item lg={3} sm={6} xl={3} xs={12}>
+        <Grid item lg={3} sm={3} xl={3} xs={12}>
           <VenuesDropdown></VenuesDropdown>
         </Grid>
         <DayRangeFilter></DayRangeFilter>

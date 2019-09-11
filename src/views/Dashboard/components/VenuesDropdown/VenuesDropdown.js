@@ -42,6 +42,7 @@ export const VenuesDropdown = () => {
   const classes = useStyles()
   return (
     <TextField
+      style={{ width: '100%' }}
       id="outlined-select"
       select
       label="Select"

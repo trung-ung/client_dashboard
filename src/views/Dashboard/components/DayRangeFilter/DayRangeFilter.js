@@ -1,116 +1,109 @@
 import { Grid } from '@material-ui/core'
-import { createStyles, withStyles } from '@material-ui/styles'
 import moment from 'moment'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import DayRangeFilterInput from './DayRangeFilterInput'
 
-const style = createStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  },
-  dense: {
-    marginTop: theme.spacing(2)
-  },
-  menu: {
-    width: 200
-  }
-}))
+// const style = createStyles(theme => ({
+//   container: {
+//     display: 'flex',
+//     flexWrap: 'wrap'
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1)
+//   },
+//   dense: {
+//     marginTop: theme.spacing(2)
+//   },
+//   menu: {
+//     width: 200
+//   }
+// }))
 
 // export default
-class Example extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleFromChange = this.handleFromChange.bind(this)
-    this.handleToChange = this.handleToChange.bind(this)
-    this.state = {
-      from: undefined,
-      to: undefined
-    }
-  }
+export const DayRangeFilter = props => {
+  const [to, setTo] = useState(undefined)
+  const [from, setFrom] = useState(undefined)
+  const toInputEl = useRef(null)
 
-  showFromMonth() {
-    const { from, to } = this.state
-    if (!from) {
-      return
+  useEffect(() => {
+    const showFromMonth = () => {
+      if (!from) {
+        return
+      }
+      if (moment(to).diff(moment(from), 'months') < 2) {
+        toInputEl.current.getDayPicker().showMonth(from)
+      }
     }
-    if (moment(to).diff(moment(from), 'months') < 2) {
-      this.to.getDayPicker().showMonth(from)
-    }
-  }
+    showFromMonth()
+  }, [from, to, toInputEl])
 
-  handleFromChange(from) {
+  const handleFromChange = from => {
     // Change the from date and focus the "to" input field
-    this.setState({ from })
+    setFrom(from)
   }
 
-  handleToChange(to) {
-    this.setState({ to }, this.showFromMonth)
+  const handleToChange = to => {
+    setTo(to)
   }
 
-  render() {
-    const { classes } = this.props
-    const { from, to } = this.state
-    const modifiers = { start: from, end: to }
-    return (
-      // <div className={classes.container}>
-      <>
-        <Grid item lg={3} sm={3} xl={3} xs={12}>
-          <DayPickerInput
-            style={{ width: '100%' }}
-            component={DayRangeFilterInput}
-            inputProps={{ helperText: 'From' }}
-            value={from}
-            placeholder="From"
-            format="LL"
-            formatDate={formatDate}
-            parseDate={parseDate}
-            dayPickerProps={{
-              selectedDays: [from, { from, to }],
-              disabledDays: { after: to },
-              toMonth: to,
-              modifiers,
-              numberOfMonths: 2,
-              onDayClick: () => this.to.getInput().focus()
-            }}
-            onDayChange={this.handleFromChange}
-          />{' '}
-        </Grid>
+  const modifiers = { start: from, end: to }
 
-        {/* <span className="InputFromTo-to"> */}
-        <Grid item lg={3} sm={3} xl={3} xs={12}>
-          <DayPickerInput
-            style={{ width: '100%' }}
-            component={DayRangeFilterInput}
-            inputProps={{ helperText: 'To' }}
-            ref={el => (this.to = el)}
-            value={to}
-            placeholder="To"
-            format="LL"
-            formatDate={formatDate}
-            parseDate={parseDate}
-            dayPickerProps={{
-              selectedDays: [from, { from, to }],
-              disabledDays: { before: from },
-              modifiers,
-              month: from,
-              fromMonth: from,
-              numberOfMonths: 2
-            }}
-            onDayChange={this.handleToChange}
-          />
-        </Grid>
-        {/* </span> */}
-      </>
-    )
-  }
+  return (
+    <>
+      <Grid item lg={3} sm={3} xl={3} xs={12}>
+        <DayPickerInput
+          style={{ width: '100%' }}
+          component={DayRangeFilterInput}
+          inputProps={{ helperText: 'From' }}
+          value={from}
+          placeholder="From"
+          format="LL"
+          formatDate={formatDate}
+          parseDate={parseDate}
+          dayPickerProps={{
+            selectedDays: [from, { from, to }],
+            disabledDays: { after: to },
+            toMonth: to,
+            modifiers,
+            numberOfMonths: 2,
+            onDayClick: () => {
+              toInputEl.current.getInput().focus()
+            }
+          }}
+          onDayChange={handleFromChange}
+        />
+      </Grid>
+
+      <Grid item lg={3} sm={3} xl={3} xs={12}>
+        <DayPickerInput
+          style={{ width: '100%' }}
+          component={DayRangeFilterInput}
+          inputProps={{ helperText: 'To' }}
+          ref={el => (toInputEl.current = el)}
+          value={to}
+          placeholder="To"
+          format="LL"
+          formatDate={formatDate}
+          parseDate={parseDate}
+          dayPickerProps={{
+            selectedDays: [from, { from, to }],
+            disabledDays: { before: from },
+            modifiers,
+            month: from,
+            fromMonth: from,
+            numberOfMonths: 2
+          }}
+          onDayChange={handleToChange}
+        />
+      </Grid>
+    </>
+  )
 }
 
-export default withStyles(style)(Example)
+export default DayRangeFilter
+
+//export default withStyles(style)(DayRangeFilter)
