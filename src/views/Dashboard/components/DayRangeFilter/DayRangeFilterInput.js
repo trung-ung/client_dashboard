@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme =>
       flexWrap: 'wrap'
     },
     textField: {
-      width: '100%'
+      //width: '100%',
     }
   })
 )
@@ -30,6 +30,7 @@ const DayRangeFilterInput = (props, ref) => {
         margin="normal"
         variant="outlined"
         {...props}
+        fullWidth
       />
     </form>
   )

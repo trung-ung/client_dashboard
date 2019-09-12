@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
+import { AppBar, Badge, Hidden, IconButton, Toolbar } from '@material-ui/core'
+import InputIcon from '@material-ui/icons/Input'
+import MenuIcon from '@material-ui/icons/Menu'
+import NotificationsIcon from '@material-ui/icons/NotificationsOutlined'
+import { makeStyles } from '@material-ui/styles'
+import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import Logo from '../../../../images/logos/logo-mp.png'
+import Menu from './components/Menu'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,61 +20,69 @@ const useStyles = makeStyles(theme => ({
   signOutButton: {
     marginLeft: theme.spacing(1)
   }
-}));
+}))
 
 const Topbar = props => {
-  const { className, onSidebarOpen, ...rest } = props;
+  const { className, onSidebarOpen, ...rest } = props
 
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [notifications] = useState([]);
+  const [notifications] = useState([])
 
   return (
-    <AppBar
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <AppBar {...rest} className={clsx(classes.root, className)}>
       <Toolbar>
         <RouterLink to="/">
-          <img
-            alt="Logo"
-            src="/images/logos/logo--white.svg"
-          />
+          <Hidden xsDown>
+            <img alt="Logo" src={Logo} height="46" width="240.2" />
+          </Hidden>
+          <Hidden smUp>
+            <img alt="Logo" src={Logo} height="30" width="156.65" />
+          </Hidden>
+
+          {/* <LogoComponent /> */}
         </RouterLink>
+
         <div className={classes.flexGrow} />
+        <Menu />
+        {/* <Hidden xsDown>
+          <Typography variant="h4" color="inherit">
+            Trung Ung
+          </Typography>
+        </Hidden>
+
+        <Hidden smUp>
+          <Typography variant="h5" color="inherit">
+            Trung Ung
+          </Typography>
+        </Hidden> */}
+
         <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
               color="primary"
-              variant="dot"
-            >
+              variant="dot">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            className={classes.signOutButton}
-            color="inherit"
-          >
+          <IconButton className={classes.signOutButton} color="inherit">
             <InputIcon />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onSidebarOpen}
-          >
+          <IconButton color="inherit" onClick={onSidebarOpen}>
             <MenuIcon />
           </IconButton>
         </Hidden>
       </Toolbar>
     </AppBar>
-  );
-};
+  )
+}
 
 Topbar.propTypes = {
   className: PropTypes.string,
   onSidebarOpen: PropTypes.func
-};
+}
 
-export default Topbar;
+export default Topbar
