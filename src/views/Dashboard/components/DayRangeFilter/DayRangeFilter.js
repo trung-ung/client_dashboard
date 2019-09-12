@@ -6,7 +6,9 @@ import 'react-day-picker/lib/style.css'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 import Helmet from 'react-helmet'
 import DayRangeFilterInput from './DayRangeFilterInput'
-
+import { useSelector } from 'react-redux'
+import * as FilterActions from '../../../../actions/filter'
+import { useActions } from '../../../../actions'
 // const style = createStyles(theme => ({
 //   container: {
 //     display: 'flex',
@@ -26,12 +28,18 @@ import DayRangeFilterInput from './DayRangeFilterInput'
 
 // export default
 export const DayRangeFilter = props => {
-  const [to, setTo] = useState(new Date())
-  const [from, setFrom] = useState(
-    moment(new Date())
-      .subtract('1', 'month')
-      .toDate()
-  )
+  // const from = new Date(useSelector(state => state.filter.from))
+  // const to = new Date(useSelector(state => state.filter.to))
+  const from = useSelector(state => state.filter.from)
+  const to = useSelector(state => state.filter.to)
+  const filterActions = useActions(FilterActions)
+
+  // const [to, setTo] = useState(new Date())
+  // const [from, setFrom] = useState(
+  //   moment(new Date())
+  //     .subtract('1', 'month')
+  //     .toDate()
+  // )
   const toInputEl = useRef(null)
 
   useEffect(() => {
@@ -50,23 +58,25 @@ export const DayRangeFilter = props => {
 
   const handleFromChange = from => {
     // Change the from date and focus the "to" input field
-    setFrom(from)
+    filterActions.setFromFilter(from)
+    // setFrom(from)
   }
 
   const handleToChange = to => {
-    setTo(to)
+    filterActions.setToFilter(to)
+    // setTo(to)
   }
 
   const modifiers = { start: from, end: to }
 
   return (
     <>
-      <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
+      <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
         <div className="InputFromTo">
           <DayPickerInput
             style={{ width: '100%' }}
             component={DayRangeFilterInput}
-            inputProps={{ helperText: 'From' }}
+            inputProps={{ label: 'From' }}
             value={from}
             placeholder="From"
             format="LL"
@@ -87,13 +97,13 @@ export const DayRangeFilter = props => {
         </div>
       </Grid>
       {/* <span className="InputFromTo-to"> */}
-      <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
+      <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
         <div className="InputFromTo">
           <span className="InputFromTo-to">
             <DayPickerInput
               style={{ width: '100%' }}
               component={DayRangeFilterInput}
-              inputProps={{ helperText: 'To' }}
+              inputProps={{ label: 'To' }}
               ref={el => (toInputEl.current = el)}
               value={to}
               placeholder="To"

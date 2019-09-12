@@ -2,6 +2,9 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import * as FilterActions from '../../../../actions/filter'
+import { useActions } from '../../../../actions'
 
 const venuesMock = [
   {
@@ -38,7 +41,10 @@ const useStyles = makeStyles(theme => ({
 
 export const VenuesDropdown = () => {
   const [venues, setVenues] = useState(venuesMock)
-  const [venue, setVenue] = useState('')
+  // const [venue, setVenue] = useState('')
+  const venue = useSelector(state => state.filter.selectedVenue)
+  const filterActions = useActions(FilterActions)
+
   const classes = useStyles()
   return (
     <TextField
@@ -48,13 +54,13 @@ export const VenuesDropdown = () => {
       label="Select"
       className={classes.textField}
       value={venue}
-      onChange={e => setVenue(e.target.value)}
+      onChange={e => filterActions.setSelectedVenue(e.target.value)}
       SelectProps={{
         MenuProps: {
           className: classes.menu
         }
       }}
-      helperText="Please select your venue"
+      label="Venue"
       margin="normal"
       variant="outlined">
       {venues.map(option => (

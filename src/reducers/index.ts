@@ -2,6 +2,7 @@ import { History } from 'history'
 import { combineReducers } from 'redux'
 import { Todo } from '../model/model'
 import * as bookingInfoReducer from './bookingInfo'
+import * as filterReducer from './filter'
 import * as todoReducer from './todo'
 
 export interface RootState {
@@ -11,5 +12,6 @@ export interface RootState {
 export default (history: History) =>
   combineReducers({
     ...todoReducer,
-    ...bookingInfoReducer
+    ...bookingInfoReducer,
+    ...filterReducer
   })

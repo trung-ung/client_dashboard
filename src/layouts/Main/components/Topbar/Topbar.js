@@ -1,5 +1,6 @@
 import { AppBar, Badge, Hidden, IconButton, Toolbar } from '@material-ui/core'
 import InputIcon from '@material-ui/icons/Input'
+import VerifiedUser from '@material-ui/icons/VerifiedUser'
 import MenuIcon from '@material-ui/icons/Menu'
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined'
 import { makeStyles } from '@material-ui/styles'
@@ -57,7 +58,7 @@ const Topbar = props => {
           </Typography>
         </Hidden> */}
 
-        <Hidden mdDown>
+        {/* <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
@@ -69,7 +70,7 @@ const Topbar = props => {
           <IconButton className={classes.signOutButton} color="inherit">
             <InputIcon />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
         <Hidden lgUp>
           <IconButton color="inherit" onClick={onSidebarOpen}>
             <MenuIcon />

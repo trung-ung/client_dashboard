@@ -1,16 +1,19 @@
 import Button from '@material-ui/core/Button'
-import Hidden from '@material-ui/core/Hidden'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import { Hidden, IconButton } from '@material-ui/core'
+
+import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
+
 import React, { useState } from 'react'
 
 const useStyles = makeStyles(theme =>
   createStyles({
     typography: {
-    //   color: '#FFFFFF'
-    color: theme.palette.primary.contrastText
+      //   color: '#FFFFFF'
+      color: theme.palette.primary.contrastText
     }
   })
 )
@@ -31,6 +34,7 @@ const SomeMenu = props => {
 
   return (
     <>
+      <SupervisedUserCircle></SupervisedUserCircle>
       <Button onClick={recordButtonPosition}>
         <Hidden xsDown>
           <Typography variant="h4" className={classes.typography}>

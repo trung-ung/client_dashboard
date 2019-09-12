@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={4} justify="flex-start">
-        <Grid item lg={4} sm={12} md={4} xl={4} xs={12}>
+        <Grid item lg={3} sm={12} md={4} xl={3} xs={12}>
           <VenuesDropdown></VenuesDropdown>
         </Grid>
         {/* <Hidden only={['xs', 'md', 'lg', 'xl']}>
