@@ -10,11 +10,12 @@ import validators from './common/validators'
 import { chartjs } from './helpers'
 import Routes from './Routes'
 import theme from './theme'
+import 'chartjs-plugin-datalabels'
 
 const browserHistory = createBrowserHistory()
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
-  draw: chartjs.draw
+  // draw: chartjs.draw
 })
 
 validate.validators = {

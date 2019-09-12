@@ -1,9 +1,9 @@
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import React from 'react'
+import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/styles'
+import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,36 +28,26 @@ const useStyles = makeStyles(theme => ({
     height: 32,
     width: 32
   }
-}));
+}))
 
 const TotalProfit = props => {
-  const { className, ...rest } = props;
+  const { className, ...rest } = props
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
+    <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
-        <Grid
-          container
-          justify="space-between"
-        >
+        <Grid container justify="space-between">
           <Grid item>
             <Typography
               className={classes.title}
               color="inherit"
               gutterBottom
-              variant="body2"
-            >
-              TOTAL PROFIT
+              variant="body2">
+              REVENUE EARNED
             </Typography>
-            <Typography
-              color="inherit"
-              variant="h3"
-            >
+            <Typography color="inherit" variant="h3">
               $23,200
             </Typography>
           </Grid>
@@ -69,11 +59,11 @@ const TotalProfit = props => {
         </Grid>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
 TotalProfit.propTypes = {
   className: PropTypes.string
-};
+}
 
-export default TotalProfit;
+export default TotalProfit

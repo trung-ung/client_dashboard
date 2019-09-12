@@ -1,4 +1,4 @@
-import uuid from 'uuid/v1';
+import uuid from 'uuid/v1'
 
 export default [
   {
@@ -60,5 +60,25 @@ export default [
     },
     createdAt: 1554670800000,
     status: 'delivered'
+  },
+  {
+    id: uuid(),
+    ref: 'CDD1045',
+    amount: 16.76,
+    customer: {
+      name: 'Trung Ung'
+    },
+    createdAt: 1554670800000,
+    status: 'pending'
   }
-];
+  // {
+  //   id: uuid(),
+  //   ref: 'CDD1045',
+  //   amount: 16.76,
+  //   customer: {
+  //     name: 'Harden Ung'
+  //   },
+  //   createdAt: 1554670800000,
+  //   status: 'delivered'
+  // }
+]

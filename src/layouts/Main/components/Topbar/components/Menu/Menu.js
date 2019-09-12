@@ -5,7 +5,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Hidden, IconButton } from '@material-ui/core'
 
-import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
+import { Person } from '@material-ui/icons/'
 
 import React, { useState } from 'react'
 
@@ -34,7 +34,7 @@ const SomeMenu = props => {
 
   return (
     <>
-      <SupervisedUserCircle></SupervisedUserCircle>
+      <Person></Person>
       <Button onClick={recordButtonPosition}>
         <Hidden xsDown>
           <Typography variant="h4" className={classes.typography}>
