@@ -5,27 +5,24 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
 import { useActions } from '../../../../actions'
+import moment from 'moment'
 
-const venuesMock = [
+const durations = [
   {
-    value: 'All venues',
-    label: 'All venues'
+    value: '1 month',
+    label: '1 month'
   },
   {
-    value: 'The greatest show',
-    label: 'TGS'
+    value: '3 month',
+    label: '3 months'
   },
   {
-    value: 'Spiderman: Homing coming',
-    label: 'SPI'
+    value: '6 month',
+    label: '6 months'
   },
   {
-    value: 'London Clock',
-    label: 'LC'
-  },
-  {
-    value: 'Kamppi Mangoo',
-    label: 'KM'
+    value: '1 year',
+    label: '1 year'
   }
 ]
 
@@ -43,11 +40,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const VenuesDropdown = () => {
-  const [venues, setVenues] = useState(venuesMock)
-  // const [venue, setVenue] = useState('')
-  const venue = useSelector(state => state.filter.selectedVenue)
+export const DurationDropdown = () => {
+  const [duration, setDuration] = useState('1 month')
   const filterActions = useActions(FilterActions)
+  const to = useSelector(state => state.filter.to)
 
   const classes = useStyles()
   return (
@@ -57,17 +53,27 @@ export const VenuesDropdown = () => {
       select
       label="Select"
       className={classes.textField}
-      value={venue}
-      onChange={e => filterActions.setSelectedVenue(e.target.value)}
+      value={duration}
+      onChange={e => {
+        setDuration(e.target.value)
+        const [number, messure] = e.target.value.split(' ')
+        // console.log('number', number)
+        // console.log('messure', messure)
+        filterActions.setFromFilter(
+          moment(to)
+            .subtract(number, messure)
+            .toDate()
+        )
+      }}
       SelectProps={{
         MenuProps: {
           className: classes.menu
         }
       }}
-      label="Venue"
+      label="Duration"
       margin="normal"
       variant="outlined">
-      {venues.map(option => (
+      {durations.map(option => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
         </MenuItem>
@@ -76,4 +82,4 @@ export const VenuesDropdown = () => {
   )
 }
 
-export default VenuesDropdown
+export default DurationDropdown

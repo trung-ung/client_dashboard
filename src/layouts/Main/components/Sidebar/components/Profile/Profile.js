@@ -27,20 +27,20 @@ const Profile = props => {
   const classes = useStyles()
 
   const user = {
-    name: 'Shen Zhi',
-    avatar: '/images/avatars/avatar_11.png',
+    name: 'Trung Ung',
+    // avatar: '/images/avatars/avatar_11.png',
     bio: 'Brain Director'
   }
 
   return (
     <div {...rest} className={clsx(classes.root, className)}>
-      <Avatar
+      {/* <Avatar
         alt="Person"
         className={classes.avatar}
         component={RouterLink}
         src={user.avatar}
         to="/settings"
-      />
+      /> */}
       <Typography className={classes.name} variant="h4">
         {user.name}
       </Typography>

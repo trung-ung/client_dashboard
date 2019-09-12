@@ -50,7 +50,7 @@ const UsersByDevice = props => {
   const data = {
     datasets: [
       {
-        data: [68, 12, 20],
+        data: [17, 3, 5],
         backgroundColor: [
           theme.palette.success.main,
           theme.palette.warning.main,
@@ -88,10 +88,7 @@ const UsersByDevice = props => {
       datalabels: {
         color: '#FFFFFF',
         font: {
-          size: '18'
-        },
-        formatter: function(value, context) {
-          return `${value}%`
+          size: '25'
         },
         clamp: true
       }
@@ -112,7 +109,7 @@ const UsersByDevice = props => {
       color: theme.palette.warning.main
     },
     {
-      title: 'Company pending',
+      title: 'Hotel pending',
       value: '20',
       icon: <Business />,
       color: theme.palette.info.main

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core'
+import { Grid, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import {
@@ -12,7 +12,8 @@ import {
   TotalUsers,
   UsersByDevice,
   VenuesDropdown,
-  CancelBooking
+  CancelBooking,
+  DurationDropdown
 } from './components'
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +28,7 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={4} justify="flex-start">
-        <Grid item lg={3} sm={12} md={4} xl={3} xs={12}>
+        <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
           <VenuesDropdown></VenuesDropdown>
         </Grid>
         {/* <Hidden only={['xs', 'md', 'lg', 'xl']}>
@@ -35,6 +36,15 @@ const Dashboard = () => {
         </Hidden> */}
 
         <DayRangeFilter></DayRangeFilter>
+        <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
+          <DurationDropdown></DurationDropdown>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <Divider varient="middle" style={{}}></Divider>
+        </Grid>
       </Grid>
 
       <Grid container spacing={4} justify="center">
@@ -62,9 +72,9 @@ const Dashboard = () => {
         <Grid item lg={5} md={12} xl={9} xs={12}>
           <LatestOrders />
         </Grid>
-        <Grid item lg={4} md={6} xl={3} xs={12}>
+        {/* <Grid item lg={4} md={6} xl={3} xs={12}>
           <LatestProducts />
-        </Grid>
+        </Grid> */}
         {/* <Grid item lg={8} md={12} xl={9} xs={12}>
           <LatestOrders />
         </Grid> */}

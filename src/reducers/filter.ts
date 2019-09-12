@@ -3,11 +3,12 @@ import { Action, ActionType, Filter } from '../model/model'
 import moment from 'moment'
 import createReducer from './createReducer'
 const initialState = {
-  selectedVenue: '',
+  selectedVenue: 'All venues',
   to: new Date(),
   from: moment(new Date())
     .subtract('1', 'month')
-    .toDate()
+    .toDate(),
+  duration: '1m'
 }
 
 export const filter = createReducer(initialState, {

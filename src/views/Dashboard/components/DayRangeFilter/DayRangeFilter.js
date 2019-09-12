@@ -71,7 +71,7 @@ export const DayRangeFilter = props => {
 
   return (
     <>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+      <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
         <div className="InputFromTo">
           <DayPickerInput
             style={{ width: '100%' }}
@@ -97,7 +97,7 @@ export const DayRangeFilter = props => {
         </div>
       </Grid>
       {/* <span className="InputFromTo-to"> */}
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+      <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
         <div className="InputFromTo">
           <span className="InputFromTo-to">
             <DayPickerInput
@@ -128,7 +128,7 @@ export const DayRangeFilter = props => {
         <style>{`
   .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
     background-color: #f0f8ff !important;
-    color: #4a90e2;
+    color: #0072e5;
   }
   .InputFromTo .DayPicker-Day {
     border-radius: 0 !important;
