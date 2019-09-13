@@ -2,9 +2,9 @@ import createReducer from './createReducer'
 import { Action, ActionType, BookingInfo } from '../model/model'
 
 const initialState = {
-  confirms: null,
-  customerPending: null,
-  hotelPending: null,
+  confirms: 0,
+  customerPending: 0,
+  hotelPending: 0,
   venues: [],
   confirmedBookingValue: null,
   confirmedBookingValueSupport: null,

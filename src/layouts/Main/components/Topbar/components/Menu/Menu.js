@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme =>
   createStyles({
     typography: {
       //   color: '#FFFFFF'
-      color: theme.palette.primary.contrastText
+      color: theme.palette.primary.main
     }
   })
 )
