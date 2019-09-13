@@ -1,7 +1,7 @@
 import { Action, ActionType, Filter } from '../model/model'
-
 import moment from 'moment'
 import createReducer from './createReducer'
+
 const initialState = {
   selectedVenue: 'All venues',
   to: new Date(),

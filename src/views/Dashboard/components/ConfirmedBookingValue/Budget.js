@@ -4,8 +4,9 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
-import TrendingDown from '@material-ui/icons/TrendingDown'
+import MoneyIcon from '@material-ui/icons/Money'
 import { useSelector } from 'react-redux'
+import formatMoney from '../../../../helpers/formatMoney'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,24 +34,21 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   differenceIcon: {
-    color: theme.palette.success.dark
+    color: theme.palette.error.dark
   },
   differenceValue: {
-    color: theme.palette.success.dark,
+    color: theme.palette.error.dark,
     marginRight: theme.spacing(1)
   }
 }))
 
 const Budget = props => {
   const { className, ...rest } = props
-  const canceledBookings = useSelector(
-    state => state.bookingInfo.canceledBookings
-  )
-  const canceledBookingsSupport = useSelector(
-    state => state.bookingInfo.canceledBookingsSupport
-  )
 
   const classes = useStyles()
+  const confirmedBookingValue = useSelector(
+    state => state.bookingInfo.confirmedBookingValue
+  )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -62,20 +60,22 @@ const Budget = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              CANCEL BOOKINGS
+              CONFIRM BOOKING VALUE
             </Typography>
-            <Typography variant="h3">{canceledBookings}</Typography>
+            <Typography variant="h3">
+              ${formatMoney(confirmedBookingValue)}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <TrendingDown className={classes.icon} />
+              <MoneyIcon className={classes.icon} />
             </Avatar>
           </Grid>
         </Grid>
         <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
           <Typography className={classes.differenceValue} variant="body2">
-            {canceledBookingsSupport}%
+            12%
           </Typography>
           <Typography className={classes.caption} variant="caption">
             Since last month

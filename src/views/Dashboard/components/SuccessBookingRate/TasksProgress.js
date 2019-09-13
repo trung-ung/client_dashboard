@@ -11,6 +11,7 @@ import {
   LinearProgress
 } from '@material-ui/core'
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +41,9 @@ const useStyles = makeStyles(theme => ({
 
 const TasksProgress = props => {
   const { className, ...rest } = props
-
+  const successBookingRate = useSelector(
+    state => state.bookingInfo.successBookingRate
+  )
   const classes = useStyles()
 
   return (
@@ -55,7 +58,7 @@ const TasksProgress = props => {
               variant="body2">
               SUCCESS BOOKING RATE
             </Typography>
-            <Typography variant="h3">75.5%</Typography>
+            <Typography variant="h3">{successBookingRate}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -65,7 +68,7 @@ const TasksProgress = props => {
         </Grid>
         <LinearProgress
           className={classes.progress}
-          value={75.5}
+          value={successBookingRate}
           variant="determinate"
         />
       </CardContent>

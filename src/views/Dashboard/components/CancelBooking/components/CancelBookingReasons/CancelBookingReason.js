@@ -27,6 +27,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import mockData from './data'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,12 +54,13 @@ const LatestProducts = props => {
 
   const classes = useStyles()
 
-  const [products] = useState(mockData)
+  // const [products] = useState(mockData)
+  const reasons = useSelector(state => state.bookingInfo.canceledReasons)
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
-        subtitle={`${products.length} in total`}
+        subtitle={`${reasons.length} in total`}
         title="Top Cancel Reasons"
         // action={
         //   <IconButton size="small">
@@ -84,10 +86,10 @@ const LatestProducts = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map(product => (
-              <TableRow hover key={product.id}>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>{product.number}</TableCell>
+            {reasons.map(reason => (
+              <TableRow hover key={reason.id}>
+                <TableCell>{reason.name}</TableCell>
+                <TableCell>{reason.number}</TableCell>
               </TableRow>
             ))}
           </TableBody>

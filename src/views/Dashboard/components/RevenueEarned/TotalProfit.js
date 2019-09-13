@@ -3,12 +3,15 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import PeopleIcon from '@material-ui/icons/PeopleOutlined'
+import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
+import formatMoney from '../../../../helpers/formatMoney'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+    height: '100%',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   },
   content: {
     alignItems: 'center',
@@ -18,31 +21,20 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.white,
+    color: theme.palette.primary.main,
     height: 56,
     width: 56
   },
   icon: {
     height: 32,
     width: 32
-  },
-  difference: {
-    marginTop: theme.spacing(2),
-    display: 'flex',
-    alignItems: 'center'
-  },
-  differenceIcon: {
-    color: theme.palette.success.dark
-  },
-  differenceValue: {
-    color: theme.palette.success.dark,
-    marginRight: theme.spacing(1)
   }
 }))
 
-const TotalUsers = props => {
+const TotalProfit = props => {
   const { className, ...rest } = props
-
+  const revenueEarned = useSelector(state => state.bookingInfo.revenueEarned)
   const classes = useStyles()
 
   return (
@@ -52,35 +44,28 @@ const TotalUsers = props => {
           <Grid item>
             <Typography
               className={classes.title}
-              color="textSecondary"
+              color="inherit"
               gutterBottom
               variant="body2">
-              TOTAL BOOKINGS
+              REVENUE EARNED
             </Typography>
-            <Typography variant="h3">33</Typography>
+            <Typography color="inherit" variant="h3">
+              €{formatMoney(revenueEarned)}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <PeopleIcon className={classes.icon} />
+              <EuroSymbolIcon className={classes.icon} />
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2">
-            16%
-          </Typography>
-          <Typography className={classes.caption} variant="caption">
-            Since last month
-          </Typography>
-        </div>
       </CardContent>
     </Card>
   )
 }
 
-TotalUsers.propTypes = {
+TotalProfit.propTypes = {
   className: PropTypes.string
 }
 
-export default TotalUsers
+export default TotalProfit

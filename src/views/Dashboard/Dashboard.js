@@ -1,6 +1,6 @@
 import { Grid, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Budget,
   DayRangeFilter,
@@ -16,6 +16,9 @@ import {
   DurationDropdown
 } from './components'
 
+import * as BookingInfoActions from '../../actions/bookingInfo'
+import { useActions } from '../../actions'
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -24,6 +27,11 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles()
+  const bookingInfoActions = useActions(BookingInfoActions)
+
+  useEffect(() => {
+    bookingInfoActions.fetchBookingInfo()
+  }, [bookingInfoActions])
 
   return (
     <div className={classes.root}>

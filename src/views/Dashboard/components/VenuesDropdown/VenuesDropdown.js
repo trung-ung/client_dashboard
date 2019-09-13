@@ -6,28 +6,28 @@ import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
 import { useActions } from '../../../../actions'
 
-const venuesMock = [
-  {
-    value: 'All venues',
-    label: 'All venues'
-  },
-  {
-    value: 'The greatest show',
-    label: 'TGS'
-  },
-  {
-    value: 'Spiderman: Homing coming',
-    label: 'SPI'
-  },
-  {
-    value: 'London Clock',
-    label: 'LC'
-  },
-  {
-    value: 'Kamppi Mangoo',
-    label: 'KM'
-  }
-]
+// const venuesMock = [
+//   {
+//     value: 'All venues',
+//     label: 'All venues'
+//   },
+//   {
+//     value: 'The greatest show',
+//     label: 'TGS'
+//   },
+//   {
+//     value: 'Spiderman: Homing coming',
+//     label: 'SPI'
+//   },
+//   {
+//     value: 'London Clock',
+//     label: 'LC'
+//   },
+//   {
+//     value: 'Kamppi Mangoo',
+//     label: 'KM'
+//   }
+// ]
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -44,7 +44,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const VenuesDropdown = () => {
-  const [venues, setVenues] = useState(venuesMock)
+  // const [venues, setVenues] = useState(venuesMock)
+  const venues = useSelector(state => state.bookingInfo.venues)
+  const showedVenues = ['All venues', ...venues]
   // const [venue, setVenue] = useState('')
   const venue = useSelector(state => state.filter.selectedVenue)
   const filterActions = useActions(FilterActions)
@@ -67,9 +69,9 @@ export const VenuesDropdown = () => {
       label="Venue"
       margin="normal"
       variant="outlined">
-      {venues.map(option => (
-        <MenuItem key={option.value} value={option.value}>
-          {option.label}
+      {showedVenues.map(option => (
+        <MenuItem key={option} value={option}>
+          {option}
         </MenuItem>
       ))}
     </TextField>

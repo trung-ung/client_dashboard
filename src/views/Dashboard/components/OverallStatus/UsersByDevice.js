@@ -18,6 +18,8 @@ import CloseIcon from '@material-ui/icons/Close'
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
+import { useSelector } from 'react-redux'
+import toPercent from '../../../../helpers/toPercent'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,13 +46,20 @@ const useStyles = makeStyles(theme => ({
 const UsersByDevice = props => {
   const { className, ...rest } = props
 
+  const confirms = useSelector(state => state.bookingInfo.confirms)
+  const customerPending = useSelector(
+    state => state.bookingInfo.customerPending
+  )
+  const hotelPending = useSelector(state => state.bookingInfo.hotelPending)
+  const total = confirms + customerPending + hotelPending
+
   const classes = useStyles()
   const theme = useTheme()
 
   const data = {
     datasets: [
       {
-        data: [17, 3, 5],
+        data: [confirms, customerPending, hotelPending],
         backgroundColor: [
           theme.palette.success.main,
           theme.palette.warning.main,
@@ -98,19 +107,19 @@ const UsersByDevice = props => {
   const devices = [
     {
       title: 'Confirms',
-      value: '68',
+      value: toPercent(confirms / total, 1),
       icon: <DoneIcon />,
       color: theme.palette.success.main
     },
     {
-      title: 'Customer pendind',
-      value: '12',
+      title: 'Customer pending',
+      value: toPercent(customerPending / total, 1),
       icon: <SupervisedUserCircle />,
       color: theme.palette.warning.main
     },
     {
       title: 'Hotel pending',
-      value: '20',
+      value: toPercent(hotelPending / total, 1),
       icon: <Business />,
       color: theme.palette.info.main
     }

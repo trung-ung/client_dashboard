@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default instance = axios.create({ baseURL: 'localhost:3001' })
-
+const instance = axios.create({ baseURL: 'http://localhost:3001' })
+export default instance
 // add auth token via
 //instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
