@@ -50,6 +50,10 @@ const Budget = props => {
     state => state.bookingInfo.confirmedBookingValue
   )
 
+  const confirmedBookingValueSupport = useSelector(
+    state => state.bookingInfo.confirmedBookingValueSupport
+  )
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>
@@ -75,7 +79,7 @@ const Budget = props => {
         <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
           <Typography className={classes.differenceValue} variant="body2">
-            12%
+            {confirmedBookingValueSupport}%
           </Typography>
           <Typography className={classes.caption} variant="caption">
             Since last month

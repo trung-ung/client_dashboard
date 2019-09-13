@@ -18,7 +18,6 @@
       { "id": 3, "name": "Not enough space", "number": "3" }
     ],
     "orders": [],
-    "sourceOfWebsite": [],
-    "someProps": null
+    "sourceOfWebsite": []
   }
 }
