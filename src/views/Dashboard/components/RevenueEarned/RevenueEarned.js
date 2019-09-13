@@ -2,7 +2,14 @@ import React from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  Avatar,
+  IconButton
+} from '@material-ui/core'
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
 import formatMoney from '../../../../helpers/formatMoney'
 import { useSelector } from 'react-redux'
@@ -29,7 +36,8 @@ const useStyles = makeStyles(theme => ({
   icon: {
     height: 32,
     width: 32
-  }
+  },
+  iconButton: { color: theme.palette.primary.main }
 }))
 
 const TotalProfit = props => {
@@ -55,7 +63,9 @@ const TotalProfit = props => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <EuroSymbolIcon className={classes.icon} />
+              <IconButton className={classes.iconButton}>
+                <EuroSymbolIcon className={classes.icon} />
+              </IconButton>
             </Avatar>
           </Grid>
         </Grid>

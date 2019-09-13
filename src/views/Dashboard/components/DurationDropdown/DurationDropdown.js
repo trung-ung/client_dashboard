@@ -23,6 +23,10 @@ const durations = [
   {
     value: '1 year',
     label: '1 year'
+  },
+  {
+    value: 'Custom',
+    label: 'Custom'
   }
 ]
 
@@ -41,7 +45,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const DurationDropdown = () => {
-  const [duration, setDuration] = useState('1 month')
+  //const [duration, setDuration] = useState('1 month')
+
+  const duration = useSelector(state => state.filter.duration)
+
   const filterActions = useActions(FilterActions)
   const to = useSelector(state => state.filter.to)
 
@@ -51,11 +58,11 @@ export const DurationDropdown = () => {
       style={{ width: '100%' }}
       id="outlined-select"
       select
-      label="Select"
       className={classes.textField}
       value={duration}
       onChange={e => {
-        setDuration(e.target.value)
+        // setDuration(e.target.value)
+        filterActions.setDurationFilter(e.target.value)
         const [number, messure] = e.target.value.split(' ')
         // console.log('number', number)
         // console.log('messure', messure)

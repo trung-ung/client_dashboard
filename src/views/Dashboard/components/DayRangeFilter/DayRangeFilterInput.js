@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme =>
 )
 
 const DayRangeFilterInput = (props, ref) => {
-  const [value, setValue] = useState('')
   const classes = useStyles()
   const inputRef = useRef(null)
   useImperativeHandle(ref, () => inputRef.current)
@@ -24,8 +23,6 @@ const DayRangeFilterInput = (props, ref) => {
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         inputRef={inputRef}
-        value={value}
-        onChange={e => setValue(e.target.value)}
         className={classes.textField}
         margin="normal"
         variant="outlined"

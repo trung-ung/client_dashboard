@@ -2,7 +2,14 @@ import React from 'react'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  Avatar,
+  IconButton
+} from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import TrendingDown from '@material-ui/icons/TrendingDown'
 import { useSelector } from 'react-redux'
@@ -38,6 +45,9 @@ const useStyles = makeStyles(theme => ({
   differenceValue: {
     color: theme.palette.success.dark,
     marginRight: theme.spacing(1)
+  },
+  iconButton: {
+    color: 'white'
   }
 }))
 
@@ -49,6 +59,8 @@ const Budget = props => {
   const canceledBookingsSupport = useSelector(
     state => state.bookingInfo.canceledBookingsSupport
   )
+
+  const duration = useSelector(state => state.filter.duration)
 
   const classes = useStyles()
 
@@ -68,11 +80,31 @@ const Budget = props => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <TrendingDown className={classes.icon} />
+              <IconButton className={classes.iconButton}>
+                <TrendingDown className={classes.icon} />
+              </IconButton>
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
+
+        {duration !== 'Custom' ? (
+          <div className={classes.difference}>
+            <ArrowDownwardIcon className={classes.differenceIcon} />
+            <Typography className={classes.differenceValue} variant="body2">
+              {canceledBookingsSupport}%
+            </Typography>
+            <Typography className={classes.caption} variant="caption">
+              Since last month
+            </Typography>
+          </div>
+        ) : (
+          <div className={classes.difference}>
+            {/* <Typography className={classes.caption} variant="caption">
+              Choose fixed duration to show more analytics
+            </Typography> */}
+          </div>
+        )}
+        {/* <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
           <Typography className={classes.differenceValue} variant="body2">
             {canceledBookingsSupport}%
@@ -81,6 +113,11 @@ const Budget = props => {
             Since last month
           </Typography>
         </div>
+        <div className={classes.difference}>
+          <Typography className={classes.caption} variant="caption">
+            Choose fixed duration to show more analytics
+          </Typography>
+        </div> */}
       </CardContent>
     </Card>
   )

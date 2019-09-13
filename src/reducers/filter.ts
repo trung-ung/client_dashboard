@@ -8,7 +8,7 @@ const initialState = {
   from: moment(new Date())
     .subtract('1', 'month')
     .toDate(),
-  duration: '1m'
+  duration: '1 month'
 }
 
 export const filter = createReducer(initialState, {
@@ -20,5 +20,8 @@ export const filter = createReducer(initialState, {
   },
   [ActionType.SET_SELECTED_VENUE](state: Filter, action: Action<String>) {
     return { ...state, selectedVenue: action.payload }
+  },
+  [ActionType.SET_DURATION_FILTER](state: Filter, action: Action<String>) {
+    return { ...state, duration: action.payload }
   }
 })

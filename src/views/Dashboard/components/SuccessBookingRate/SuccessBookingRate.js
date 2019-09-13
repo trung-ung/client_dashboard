@@ -8,7 +8,8 @@ import {
   Grid,
   Typography,
   Avatar,
-  LinearProgress
+  LinearProgress,
+  IconButton
 } from '@material-ui/core'
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined'
 import { useSelector } from 'react-redux'
@@ -36,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   },
   progress: {
     marginTop: theme.spacing(3)
+  },
+  iconButton: {
+    color: 'white'
   }
 }))
 
@@ -62,7 +66,9 @@ const TasksProgress = props => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <InsertChartIcon className={classes.icon} />
+              <IconButton className={classes.iconButton}>
+                <InsertChartIcon className={classes.icon} />
+              </IconButton>
             </Avatar>
           </Grid>
         </Grid>

@@ -11,3 +11,7 @@ export function setToFilter(to: Date): Action<Date> {
 export function setSelectedVenue(venue: string): Action<string> {
   return { type: ActionType.SET_SELECTED_VENUE, payload: venue }
 }
+
+export function setDurationFilter(duration: string): Action<string> {
+  return { type: ActionType.SET_DURATION_FILTER, payload: duration }
+}

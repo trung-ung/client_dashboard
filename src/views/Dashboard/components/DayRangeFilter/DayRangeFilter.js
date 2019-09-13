@@ -9,6 +9,9 @@ import DayRangeFilterInput from './DayRangeFilterInput'
 import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
 import { useActions } from '../../../../actions'
+
+import subMonths from 'date-fns/subMonths'
+
 // const style = createStyles(theme => ({
 //   container: {
 //     display: 'flex',
@@ -32,7 +35,18 @@ export const DayRangeFilter = props => {
   // const to = new Date(useSelector(state => state.filter.to))
   const from = useSelector(state => state.filter.from)
   const to = useSelector(state => state.filter.to)
+  // const newTo = { ...to }
+  // const oneMonthBeforeTo = moment(newTo)
+  //   .subtract(1, 'month')
+  //   .toDate()
+
+  const oneMonthBeforeTo = subMonths(to, 1)
+
   const filterActions = useActions(FilterActions)
+
+  // console.log('from', from)
+  // console.log('to', to)
+  // console.log('oneMonthBeforeTo', oneMonthBeforeTo)
 
   // const [to, setTo] = useState(new Date())
   // const [from, setFrom] = useState(
@@ -40,6 +54,14 @@ export const DayRangeFilter = props => {
   //     .subtract('1', 'month')
   //     .toDate()
   // )
+
+  console.log(
+    'watching meeeeee',
+    moment({ ...to })
+      .subtract(1, 'month')
+      .toDate()
+  )
+
   const toInputEl = useRef(null)
 
   useEffect(() => {
@@ -47,11 +69,11 @@ export const DayRangeFilter = props => {
       if (!from) {
         return
       }
-      if (moment(to).diff(moment(from), 'months') < 2) {
-        if (toInputEl.current.getDayPicker()) {
-          toInputEl.current.getDayPicker().showMonth(from)
-        }
+      //if (moment(to).diff(moment(from), 'months') < 2) {
+      if (toInputEl.current.getDayPicker()) {
+        toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
       }
+      //}
     }
     showFromMonth()
   }, [from, to, toInputEl])
@@ -92,7 +114,10 @@ export const DayRangeFilter = props => {
                 toInputEl.current.getInput().focus()
               }
             }}
-            onDayChange={handleFromChange}
+            onDayChange={e => {
+              handleFromChange(e)
+              filterActions.setDurationFilter('Custom')
+            }}
           />
         </div>
       </Grid>
@@ -112,13 +137,19 @@ export const DayRangeFilter = props => {
               parseDate={parseDate}
               dayPickerProps={{
                 selectedDays: [from, { from, to }],
-                disabledDays: { before: from },
+                disabledDays: { before: from, after: new Date() },
                 modifiers,
                 month: from,
                 fromMonth: from,
                 numberOfMonths: 2
               }}
-              onDayChange={handleToChange}
+              onDayChange={e => {
+                handleToChange(e)
+                filterActions.setDurationFilter('Custom')
+              }}
+              onDayPickerShow={() => {
+                toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
+              }}
             />
           </span>
         </div>
