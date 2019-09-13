@@ -15,7 +15,7 @@ import 'chartjs-plugin-datalabels'
 const browserHistory = createBrowserHistory()
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
-  // draw: chartjs.draw
+  draw: chartjs.draw
 })
 
 validate.validators = {
