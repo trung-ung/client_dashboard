@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core'
-import moment from 'moment'
+//import moment from 'moment'
 import React, { useEffect, useRef, useState } from 'react'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
@@ -11,6 +11,7 @@ import * as FilterActions from '../../../../actions/filter'
 import { useActions } from '../../../../actions'
 
 import subMonths from 'date-fns/subMonths'
+import { isDate, isToday } from 'date-fns'
 
 // const style = createStyles(theme => ({
 //   container: {
@@ -55,28 +56,21 @@ export const DayRangeFilter = props => {
   //     .toDate()
   // )
 
-  console.log(
-    'watching meeeeee',
-    moment({ ...to })
-      .subtract(1, 'month')
-      .toDate()
-  )
-
   const toInputEl = useRef(null)
 
-  useEffect(() => {
-    const showFromMonth = () => {
-      if (!from) {
-        return
-      }
-      //if (moment(to).diff(moment(from), 'months') < 2) {
-      if (toInputEl.current.getDayPicker()) {
-        toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
-      }
-      //}
-    }
-    showFromMonth()
-  }, [from, to, toInputEl])
+  // useEffect(() => {
+  //   const showFromMonth = () => {
+  //     if (!from) {
+  //       return
+  //     }
+  //     //if (moment(to).diff(moment(from), 'months') < 2) {
+  //     if (toInputEl.current.getDayPicker()) {
+  //       toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
+  //     }
+  //     //}
+  //   }
+  //   showFromMonth()
+  // }, [from, to, toInputEl,oneMonthBeforeTo])
 
   const handleFromChange = from => {
     // Change the from date and focus the "to" input field
@@ -128,7 +122,10 @@ export const DayRangeFilter = props => {
             <DayPickerInput
               style={{ width: '100%' }}
               component={DayRangeFilterInput}
-              inputProps={{ label: 'To' }}
+              inputProps={{
+                label: 'To',
+                helperText: isToday(to) ? 'Today' : ''
+              }}
               ref={el => (toInputEl.current = el)}
               value={to}
               placeholder="To"
@@ -139,7 +136,7 @@ export const DayRangeFilter = props => {
                 selectedDays: [from, { from, to }],
                 disabledDays: { before: from, after: new Date() },
                 modifiers,
-                month: from,
+                month: oneMonthBeforeTo,
                 fromMonth: from,
                 numberOfMonths: 2
               }}

@@ -107,19 +107,25 @@ const UsersByDevice = props => {
   const devices = [
     {
       title: 'Confirms',
-      value: toPercent(confirms / total, 1),
+      value: isNaN(toPercent(confirms / total, 1))
+        ? 0
+        : toPercent(confirms / total, 1),
       icon: <DoneIcon />,
       color: theme.palette.success.main
     },
     {
       title: 'Customer pending',
-      value: toPercent(customerPending / total, 1),
+      value: isNaN(toPercent(customerPending / total, 1))
+        ? 0
+        : toPercent(customerPending / total, 1),
       icon: <SupervisedUserCircle />,
       color: theme.palette.warning.main
     },
     {
       title: 'Hotel pending',
-      value: toPercent(hotelPending / total, 1),
+      value: isNaN(toPercent(hotelPending / total, 1))
+        ? 0
+        : toPercent(hotelPending / total, 1),
       icon: <Business />,
       color: theme.palette.info.main
     }
