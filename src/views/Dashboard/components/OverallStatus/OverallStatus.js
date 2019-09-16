@@ -80,8 +80,7 @@ const UsersByDevice = props => {
     },
     responsive: true,
     maintainAspectRatio: false,
-    animation: false,
-
+    animation: { animateRotate: true, animateScale: true },
     layout: { padding: 0 },
     tooltips: {
       enabled: true,
@@ -143,6 +142,7 @@ const UsersByDevice = props => {
         title="Overall Status"
       />
       <Divider />
+
       <CardContent>
         <div className={classes.chartContainer}>
           <Pie data={data} options={options} />
