@@ -28,7 +28,7 @@ const AverageConfirmedBooking = () => {
   return (
     <AverageCard
       title="AVERAGE CONFIRMED BOOKING VALUE"
-      number={`€${formatMoney(2237)}`}
+      number={`€${formatMoney(2239)}`}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>
