@@ -8,7 +8,8 @@ import {
   Grid,
   Typography,
   Avatar,
-  IconButton
+  IconButton,
+  Zoom
 } from '@material-ui/core'
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
 import formatMoney from '../../../../helpers/formatMoney'
@@ -46,31 +47,33 @@ const TotalProfit = props => {
   const classes = useStyles()
 
   return (
-    <Card {...rest} className={clsx(classes.root, className)}>
-      <CardContent>
-        <Grid container justify="space-between">
-          <Grid item>
-            <Typography
-              className={classes.title}
-              color="inherit"
-              gutterBottom
-              variant="body2">
-              REVENUE EARNED
-            </Typography>
-            <Typography color="inherit" variant="h3">
-              €{formatMoney(revenueEarned)}
-            </Typography>
+    <Zoom in style={{ transitionDelay: '300ms' }}>
+      <Card {...rest} className={clsx(classes.root, className)}>
+        <CardContent>
+          <Grid container justify="space-between">
+            <Grid item>
+              <Typography
+                className={classes.title}
+                color="inherit"
+                gutterBottom
+                variant="body2">
+                REVENUE EARNED
+              </Typography>
+              <Typography color="inherit" variant="h3">
+                €{formatMoney(revenueEarned)}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Avatar className={classes.avatar}>
+                <IconButton className={classes.iconButton}>
+                  <EuroSymbolIcon className={classes.icon} />
+                </IconButton>
+              </Avatar>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <IconButton className={classes.iconButton}>
-                <EuroSymbolIcon className={classes.icon} />
-              </IconButton>
-            </Avatar>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Zoom>
   )
 }
 

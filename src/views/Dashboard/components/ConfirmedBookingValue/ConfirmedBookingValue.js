@@ -8,7 +8,8 @@ import {
   Grid,
   Typography,
   Avatar,
-  IconButton
+  IconButton,
+  Fade
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
@@ -74,50 +75,52 @@ const Budget = props => {
   }
 
   return (
-    <Card {...rest} className={clsx(classes.root, className)}>
-      <CardContent>
-        <Grid container justify="space-between">
-          <Grid item>
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-              variant="body2">
-              CONFIRM BOOKING VALUE
-            </Typography>
-            <Typography variant="h3">
-              €{formatMoney(confirmedBookingValue)}
-            </Typography>
+    <Fade in>
+      <Card {...rest} className={clsx(classes.root, className)}>
+        <CardContent>
+          <Grid container justify="space-between">
+            <Grid item>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
+                variant="body2">
+                CONFIRM BOOKING VALUE
+              </Typography>
+              <Typography variant="h3">
+                €{formatMoney(confirmedBookingValue)}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Avatar className={classes.avatar}>
+                <IconButton className={classes.iconButton}>
+                  <MoneyIcon className={classes.icon} />
+                </IconButton>
+              </Avatar>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <IconButton className={classes.iconButton}>
-                <MoneyIcon className={classes.icon} />
-              </IconButton>
-            </Avatar>
-          </Grid>
-        </Grid>
-        {
-          //   duration !== 'Custom' ? (
-          //   <div className={classes.difference}>
-          //     <ArrowDownwardIcon className={classes.differenceIcon} />
-          //     <Typography className={classes.differenceValue} variant="body2">
-          //       {confirmedBookingValueSupport}%
-          //     </Typography>
-          //     <Typography className={classes.caption} variant="caption">
-          //       Since last month
-          //     </Typography>
-          //   </div>
-          // ) : (
-          //   <div className={classes.difference}>
-          //     {/* <Typography className={classes.caption} variant="caption">
-          //     Choose fixed duration to show more analytics
-          //   </Typography> */}
-          //   </div>
-          // )
-        }
-      </CardContent>
-    </Card>
+          {
+            //   duration !== 'Custom' ? (
+            //   <div className={classes.difference}>
+            //     <ArrowDownwardIcon className={classes.differenceIcon} />
+            //     <Typography className={classes.differenceValue} variant="body2">
+            //       {confirmedBookingValueSupport}%
+            //     </Typography>
+            //     <Typography className={classes.caption} variant="caption">
+            //       Since last month
+            //     </Typography>
+            //   </div>
+            // ) : (
+            //   <div className={classes.difference}>
+            //     {/* <Typography className={classes.caption} variant="caption">
+            //     Choose fixed duration to show more analytics
+            //   </Typography> */}
+            //   </div>
+            // )
+          }
+        </CardContent>
+      </Card>
+    </Fade>
   )
 }
 

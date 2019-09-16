@@ -1,4 +1,4 @@
-import { Grid, Divider, Typography } from '@material-ui/core'
+import { Grid, Divider, Typography, Fade } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React, { useEffect } from 'react'
 import {
@@ -53,95 +53,97 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
   }, [fetchBookingInfo])
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={4} justify="flex-start">
-        <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
-          <VenuesDropdown></VenuesDropdown>
-        </Grid>
-        {/* <Hidden only={['xs', 'md', 'lg', 'xl']}>
+    <Fade in>
+      <div className={classes.root}>
+        <Grid container spacing={4} justify="flex-start">
+          <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
+            <VenuesDropdown></VenuesDropdown>
+          </Grid>
+          {/* <Hidden only={['xs', 'md', 'lg', 'xl']}>
           <Grid item sm={6}></Grid>
         </Hidden> */}
 
-        <DayRangeFilter></DayRangeFilter>
-        {/* <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
+          <DayRangeFilter></DayRangeFilter>
+          {/* <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
           <DurationDropdown></DurationDropdown>
         </Grid> */}
-      </Grid>
-
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Divider varient="middle" style={{}}></Divider>
         </Grid>
-      </Grid>
 
-      {isLoading ? (
-        <Grid container spacing={4} justify="center">
-          <Grid item>
-            <Loader
-              type="Puff"
-              color={palette.primary.main}
-              height={370}
-              width={370}
-              //timeout={3000} //3 secs
-            />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Divider varient="middle" style={{}}></Divider>
           </Grid>
         </Grid>
-      ) : (
-        <>
-          <Typography variant="h4" className={classes.title}>
-            Future Figure
-          </Typography>
-          <Grid container spacing={4} justify="flex-start">
-            <Grid item lg={6} sm={6} xl={6} xs={12}>
-              <ConfirmedBookingValue></ConfirmedBookingValue>
-            </Grid>
-            <Grid item lg={6} sm={6} xl={6} xs={12}>
-              <UnconfirmedBookingValue></UnconfirmedBookingValue>
+
+        {isLoading ? (
+          <Grid container spacing={4} justify="center">
+            <Grid item>
+              <Loader
+                type="Puff"
+                color={palette.primary.main}
+                height={370}
+                width={370}
+                //timeout={3000} //3 secs
+              />
             </Grid>
           </Grid>
+        ) : (
+          <>
+            <Typography variant="h4" className={classes.title}>
+              Future Figure
+            </Typography>
+            <Grid container spacing={4} justify="flex-start">
+              <Grid item lg={6} sm={6} xl={6} xs={12}>
+                <ConfirmedBookingValue></ConfirmedBookingValue>
+              </Grid>
+              <Grid item lg={6} sm={6} xl={6} xs={12}>
+                <UnconfirmedBookingValue></UnconfirmedBookingValue>
+              </Grid>
+            </Grid>
 
-          <Typography variant="h4" className={classes.title}>
-            Selected Duration
-          </Typography>
+            <Typography variant="h4" className={classes.title}>
+              Selected Duration
+            </Typography>
 
-          <Grid container spacing={4} justify="flex-start">
-            <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <EventHeld />
-            </Grid>
-            <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <TotalBookings />
-            </Grid>
-            <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <SuccessBookingRate />
-            </Grid>
-            <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <RevenueEarned />
-            </Grid>
-            <Grid item lg={4} md={6} xl={3} xs={12}>
-              <OverallStatus />
-            </Grid>
-            {/* <Grid item lg={8} md={12} xl={9} xs={12}>
+            <Grid container spacing={4} justify="flex-start">
+              <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <EventHeld />
+              </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <TotalBookings />
+              </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <SuccessBookingRate />
+              </Grid>
+              <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <RevenueEarned />
+              </Grid>
+              <Grid item lg={4} md={6} xl={3} xs={12}>
+                <OverallStatus />
+              </Grid>
+              {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestSales />
 </Grid> */}
-            <Grid item lg={4} sm={6} xl={3} xs={12}>
-              <CancelBooking></CancelBooking>
-            </Grid>
-            <Grid item lg={4} sm={6} xl={3} xs={12}>
-              <AverageCount></AverageCount>
-            </Grid>
-            <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
-              <LatestOrders />
-            </Grid>
-            {/* <Grid item lg={4} md={6} xl={3} xs={12}>
+              <Grid item lg={4} sm={6} xl={3} xs={12}>
+                <CancelBooking></CancelBooking>
+              </Grid>
+              <Grid item lg={4} sm={6} xl={3} xs={12}>
+                <AverageCount></AverageCount>
+              </Grid>
+              <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
+                <LatestOrders />
+              </Grid>
+              {/* <Grid item lg={4} md={6} xl={3} xs={12}>
 <LatestProducts />
 </Grid> */}
-            {/* <Grid item lg={8} md={12} xl={9} xs={12}>
+              {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestOrders />
 </Grid> */}
-          </Grid>
-        </>
-      )}
-    </div>
+            </Grid>
+          </>
+        )}
+      </div>
+    </Fade>
   )
 }
 

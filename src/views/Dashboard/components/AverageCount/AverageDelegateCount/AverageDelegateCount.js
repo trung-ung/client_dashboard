@@ -2,7 +2,7 @@ import React from 'react'
 import AverageCard from '../AverageCard'
 import GroupIcon from '@material-ui/icons/Group'
 import { makeStyles } from '@material-ui/styles'
-import { Avatar, IconButton } from '@material-ui/core'
+import { Avatar, IconButton, Fade } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   avatar: {

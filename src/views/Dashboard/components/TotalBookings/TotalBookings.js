@@ -8,7 +8,8 @@ import {
   Grid,
   Typography,
   Avatar,
-  IconButton
+  IconButton,
+  Zoom
 } from '@material-ui/core'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import PeopleIcon from '@material-ui/icons/PeopleOutlined'
