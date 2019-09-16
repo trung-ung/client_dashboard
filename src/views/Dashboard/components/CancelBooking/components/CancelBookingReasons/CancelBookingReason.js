@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 const LatestProducts = props => {
   const { className, ...rest } = props
-
+  const [isDesc, setIsDesc] = useState(true)
   const classes = useStyles()
 
   // const [products] = useState(mockData)
@@ -76,9 +76,14 @@ const LatestProducts = props => {
             <TableRow>
               <TableCell>Reasons</TableCell>
 
-              <TableCell sortDirection="desc">
+              <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                 <Tooltip enterDelay={300} title="Sort">
-                  <TableSortLabel active direction="desc">
+                  <TableSortLabel
+                    active
+                    direction={isDesc ? 'desc' : 'asc'}
+                    onClick={() => {
+                      setIsDesc(!isDesc)
+                    }}>
                     Times
                   </TableSortLabel>
                 </Tooltip>
@@ -86,12 +91,19 @@ const LatestProducts = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {reasons.map(reason => (
-              <TableRow hover key={reason.id}>
-                <TableCell>{reason.name}</TableCell>
-                <TableCell>{reason.number}</TableCell>
-              </TableRow>
-            ))}
+            {reasons
+              .sort((a, b) => {
+                if (isDesc) {
+                  return b.number - a.number
+                }
+                return a.number - b.number
+              })
+              .map(reason => (
+                <TableRow hover key={reason.id}>
+                  <TableCell>{reason.name}</TableCell>
+                  <TableCell>{reason.number}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </CardContent>

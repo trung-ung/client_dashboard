@@ -22,6 +22,7 @@ import React, { useState } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { StatusBullet } from '../../../../components'
 import mockData from './data'
+import { isBefore } from 'date-fns'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -54,6 +55,8 @@ const LatestOrders = props => {
 
   const classes = useStyles()
 
+  const [isDesc, setIsDesc] = useState(true)
+
   const [orders] = useState(mockData)
 
   return (
@@ -75,9 +78,14 @@ const LatestOrders = props => {
                 <TableRow>
                   <TableCell>Order Ref</TableCell>
                   <TableCell>Customer</TableCell>
-                  <TableCell sortDirection="desc">
+                  <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                     <Tooltip enterDelay={300} title="Sort">
-                      <TableSortLabel active direction="desc">
+                      <TableSortLabel
+                        active
+                        direction={isDesc ? 'desc' : 'asc'}
+                        onClick={() => {
+                          setIsDesc(!isDesc)
+                        }}>
                         Date
                       </TableSortLabel>
                     </Tooltip>
@@ -86,25 +94,32 @@ const LatestOrders = props => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders.map(order => (
-                  <TableRow hover key={order.id}>
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
-                    <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
-                    <TableCell>
-                      <div className={classes.statusContainer}>
-                        <StatusBullet
-                          className={classes.status}
-                          color={statusColors[order.status]}
-                          size="sm"
-                        />
-                        {order.status}
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {orders
+                  .sort((a, b) => {
+                    if (isDesc) {
+                      return isBefore(a.createdAt, b.createdAt) ? 1 : -1
+                    }
+                    return isBefore(a.createdAt, b.createdAt) ? -1 : 1
+                  })
+                  .map(order => (
+                    <TableRow hover key={order.id}>
+                      <TableCell>{order.ref}</TableCell>
+                      <TableCell>{order.customer.name}</TableCell>
+                      <TableCell>
+                        {moment(order.createdAt).format('DD/MM/YYYY')}
+                      </TableCell>
+                      <TableCell>
+                        <div className={classes.statusContainer}>
+                          <StatusBullet
+                            className={classes.status}
+                            color={statusColors[order.status]}
+                            size="sm"
+                          />
+                          {order.status}
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </div>
