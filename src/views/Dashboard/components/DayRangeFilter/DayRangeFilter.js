@@ -11,7 +11,7 @@ import * as FilterActions from '../../../../actions/filter'
 import { useActions } from '../../../../actions'
 
 import subMonths from 'date-fns/subMonths'
-import { isDate, isToday } from 'date-fns'
+import { isToday } from 'date-fns'
 
 // const style = createStyles(theme => ({
 //   container: {
@@ -134,7 +134,7 @@ export const DayRangeFilter = props => {
               parseDate={parseDate}
               dayPickerProps={{
                 selectedDays: [from, { from, to }],
-                disabledDays: { before: from, after: new Date() },
+                disabledDays: { after: new Date() },
                 modifiers,
                 month: oneMonthBeforeTo,
                 fromMonth: from,

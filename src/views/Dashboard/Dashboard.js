@@ -13,7 +13,8 @@ import {
   UsersByDevice,
   VenuesDropdown,
   CancelBooking,
-  DurationDropdown
+  DurationDropdown,
+  AverageCount
 } from './components'
 
 import * as BookingInfoActions from '../../actions/bookingInfo'
@@ -44,9 +45,9 @@ const Dashboard = () => {
         </Hidden> */}
 
         <DayRangeFilter></DayRangeFilter>
-        <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
+        {/* <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
           <DurationDropdown></DurationDropdown>
-        </Grid>
+        </Grid> */}
       </Grid>
 
       <Grid container spacing={4}>
@@ -77,7 +78,10 @@ const Dashboard = () => {
         <Grid item lg={3} sm={6} xl={3} xs={12}>
           <CancelBooking></CancelBooking>
         </Grid>
-        <Grid item lg={8} md={12} xl={9} xs={12}>
+        <Grid item lg={5} sm={6} xl={3} xs={12}>
+          <AverageCount></AverageCount>
+        </Grid>
+        <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
           <LatestOrders />
         </Grid>
         {/* <Grid item lg={4} md={6} xl={3} xs={12}>
