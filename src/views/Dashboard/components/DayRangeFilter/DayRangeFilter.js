@@ -11,11 +11,6 @@ import * as FilterActions from '../../../../actions/filter'
 import * as BookingActions from '../../../../actions/bookingInfo'
 import { useActions } from '../../../../actions'
 
-import ScrollableAnchor, {
-  goToAnchor,
-  configureAnchors
-} from 'react-scrollable-anchor'
-
 import subMonths from 'date-fns/subMonths'
 import { isToday } from 'date-fns'
 
@@ -90,7 +85,7 @@ export const DayRangeFilter = props => {
     filterActions.setToFilter(to)
     filterActions.setDurationFilter('Custom')
     bookingActions.fetchBookingInfo()
-    goToAnchor('section1')
+
     // setTo(to)
   }
 
