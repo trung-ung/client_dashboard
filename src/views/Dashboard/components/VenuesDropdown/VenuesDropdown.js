@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
+import * as BookingActions from '../../../../actions/bookingInfo'
 import { useActions } from '../../../../actions'
 
 // const venuesMock = [
@@ -50,6 +51,7 @@ export const VenuesDropdown = () => {
   // const [venue, setVenue] = useState('')
   const venue = useSelector(state => state.filter.selectedVenue)
   const filterActions = useActions(FilterActions)
+  const bookingActions = useActions(BookingActions)
 
   const classes = useStyles()
   return (
@@ -57,10 +59,12 @@ export const VenuesDropdown = () => {
       style={{ width: '100%' }}
       id="outlined-select"
       select
-      label="Select"
       className={classes.textField}
       value={venue}
-      onChange={e => filterActions.setSelectedVenue(e.target.value)}
+      onChange={e => {
+        filterActions.setSelectedVenue(e.target.value)
+        bookingActions.fetchBookingInfo()
+      }}
       SelectProps={{
         MenuProps: {
           className: classes.menu
