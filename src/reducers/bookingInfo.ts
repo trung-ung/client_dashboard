@@ -8,6 +8,8 @@ const initialState = {
   venues: [],
   confirmedBookingValue: null,
   confirmedBookingValueSupport: null,
+  unconfirmedBookingValue: null,
+  unconfirmedBookingValueSupport: null,
   totalBookings: null,
   totalBookingsSupport: null,
   successBookingRate: null,
@@ -17,6 +19,7 @@ const initialState = {
   canceledReasons: [],
   orders: [],
   sourceOfWebsite: [],
+  numberOfEvents: 0,
   isLoading: false,
   error: null
 }

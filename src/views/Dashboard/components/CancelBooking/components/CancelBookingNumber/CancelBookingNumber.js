@@ -87,23 +87,25 @@ const Budget = props => {
           </Grid>
         </Grid>
 
-        {duration !== 'Custom' ? (
-          <div className={classes.difference}>
-            <ArrowDownwardIcon className={classes.differenceIcon} />
-            <Typography className={classes.differenceValue} variant="body2">
-              {canceledBookingsSupport}%
-            </Typography>
-            <Typography className={classes.caption} variant="caption">
-              Since last month
-            </Typography>
-          </div>
-        ) : (
-          <div className={classes.difference}>
-            {/* <Typography className={classes.caption} variant="caption">
-              Choose fixed duration to show more analytics
-            </Typography> */}
-          </div>
-        )}
+        {
+          //   duration !== 'Custom' ? (
+          //   <div className={classes.difference}>
+          //     <ArrowDownwardIcon className={classes.differenceIcon} />
+          //     <Typography className={classes.differenceValue} variant="body2">
+          //       {canceledBookingsSupport}%
+          //     </Typography>
+          //     <Typography className={classes.caption} variant="caption">
+          //       Since last month
+          //     </Typography>
+          //   </div>
+          // ) : (
+          //   <div className={classes.difference}>
+          //     {/* <Typography className={classes.caption} variant="caption">
+          //       Choose fixed duration to show more analytics
+          //     </Typography> */}
+          //   </div>
+          // )
+        }
         {/* <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
           <Typography className={classes.differenceValue} variant="body2">

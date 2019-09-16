@@ -6,6 +6,8 @@
     "venues": ["Cool Spider Web", "Burning Tiger Wing", "Simple Village"],
     "confirmedBookingValue": 16700,
     "confirmedBookingValueSupport": -14,
+    "unconfirmedBookingValue": 4700,
+    "unconfirmedBookingValueSupport": -19,
     "totalBookings": 31,
     "totalBookingsSupport": 14,
     "successBookingRate": 75.9,
@@ -13,10 +15,15 @@
     "canceledBookings": 5,
     "canceledBookingsSupport": 14,
     "canceledReasons": [
-      { "id": 1, "name": "Too noisy", "number": "7" },
-      { "id": 2, "name": "Bad food", "number": "5" },
-      { "id": 3, "name": "Not enough space", "number": "3" }
+      { "id": 1, "name": "No availability.", "number": "7" },
+      {
+        "id": 2,
+        "name": "The venue offer is exceeding our budget.",
+        "number": "5"
+      },
+      { "id": 3, "name": "The reply from the venue was slow.", "number": "3" }
     ],
+    "numberOfEvents": 17,
     "orders": [],
     "sourceOfWebsite": []
   }

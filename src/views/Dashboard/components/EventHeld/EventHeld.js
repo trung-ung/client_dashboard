@@ -10,9 +10,12 @@ import {
   Avatar,
   IconButton
 } from '@material-ui/core'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import PeopleIcon from '@material-ui/icons/PeopleOutlined'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import MoneyIcon from '@material-ui/icons/Money'
 import { useSelector } from 'react-redux'
+import formatMoney from '../../../../helpers/formatMoney'
+
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: theme.palette.error.main,
     height: 56,
     width: 56
   },
@@ -40,10 +43,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   differenceIcon: {
-    color: theme.palette.success.dark
+    color: theme.palette.error.dark
   },
   differenceValue: {
-    color: theme.palette.success.dark,
+    color: theme.palette.error.dark,
     marginRight: theme.spacing(1)
   },
   iconButton: {
@@ -51,15 +54,26 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const TotalUsers = props => {
+const Budget = props => {
   const { className, ...rest } = props
-  const totalBookings = useSelector(state => state.bookingInfo.totalBookings)
-  const totalBookingsSupport = useSelector(
-    state => state.bookingInfo.totalBookingsSupport
-  )
-  const duration = useSelector(state => state.filter.duration)
 
   const classes = useStyles()
+  const confirmedBookingValue = useSelector(
+    state => state.bookingInfo.confirmedBookingValue
+  )
+
+  const confirmedBookingValueSupport = useSelector(
+    state => state.bookingInfo.confirmedBookingValueSupport
+  )
+
+  const numberOfEvents = useSelector(state => state.bookingInfo.numberOfEvents)
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+
+  const duration = useSelector(state => state.filter.duration)
+
+  if (isLoading) {
+    return <Skeleton variant="rect" height={136}></Skeleton>
+  }
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -71,24 +85,27 @@ const TotalUsers = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              TOTAL BOOKINGS
+              Events Held
             </Typography>
-            <Typography variant="h3">{totalBookings}</Typography>
+            <Typography variant="h3">
+              {/* ${formatMoney(confirmedBookingValue)} */}
+              {numberOfEvents}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                <PeopleIcon className={classes.icon} />
+                <MoneyIcon className={classes.icon} />
               </IconButton>
             </Avatar>
           </Grid>
         </Grid>
         {
-          //   duration !== 'Custom' ? (
+          //     duration !== 'Custom' ? (
           //   <div className={classes.difference}>
-          //     <ArrowUpwardIcon className={classes.differenceIcon} />
+          //     <ArrowDownwardIcon className={classes.differenceIcon} />
           //     <Typography className={classes.differenceValue} variant="body2">
-          //       {totalBookingsSupport}%
+          //       {confirmedBookingValueSupport}%
           //     </Typography>
           //     <Typography className={classes.caption} variant="caption">
           //       Since last month
@@ -97,8 +114,8 @@ const TotalUsers = props => {
           // ) : (
           //   <div className={classes.difference}>
           //     {/* <Typography className={classes.caption} variant="caption">
-          //       Choose fixed duration to show more analytics
-          //     </Typography> */}
+          //     Choose fixed duration to show more analytics
+          //   </Typography> */}
           //   </div>
           // )
         }
@@ -107,8 +124,8 @@ const TotalUsers = props => {
   )
 }
 
-TotalUsers.propTypes = {
+Budget.propTypes = {
   className: PropTypes.string
 }
 
-export default TotalUsers
+export default Budget

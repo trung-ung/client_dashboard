@@ -15,6 +15,8 @@ import MoneyIcon from '@material-ui/icons/Money'
 import { useSelector } from 'react-redux'
 import formatMoney from '../../../../helpers/formatMoney'
 
+import Skeleton from '@material-ui/lab/Skeleton'
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%'
@@ -63,8 +65,13 @@ const Budget = props => {
   const confirmedBookingValueSupport = useSelector(
     state => state.bookingInfo.confirmedBookingValueSupport
   )
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
 
   const duration = useSelector(state => state.filter.duration)
+
+  if (isLoading) {
+    return <Skeleton variant="rect" height={136}></Skeleton>
+  }
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -90,23 +97,25 @@ const Budget = props => {
             </Avatar>
           </Grid>
         </Grid>
-        {duration !== 'Custom' ? (
-          <div className={classes.difference}>
-            <ArrowDownwardIcon className={classes.differenceIcon} />
-            <Typography className={classes.differenceValue} variant="body2">
-              {confirmedBookingValueSupport}%
-            </Typography>
-            <Typography className={classes.caption} variant="caption">
-              Since last month
-            </Typography>
-          </div>
-        ) : (
-          <div className={classes.difference}>
-            {/* <Typography className={classes.caption} variant="caption">
-            Choose fixed duration to show more analytics
-          </Typography> */}
-          </div>
-        )}
+        {
+          //   duration !== 'Custom' ? (
+          //   <div className={classes.difference}>
+          //     <ArrowDownwardIcon className={classes.differenceIcon} />
+          //     <Typography className={classes.differenceValue} variant="body2">
+          //       {confirmedBookingValueSupport}%
+          //     </Typography>
+          //     <Typography className={classes.caption} variant="caption">
+          //       Since last month
+          //     </Typography>
+          //   </div>
+          // ) : (
+          //   <div className={classes.difference}>
+          //     {/* <Typography className={classes.caption} variant="caption">
+          //     Choose fixed duration to show more analytics
+          //   </Typography> */}
+          //   </div>
+          // )
+        }
       </CardContent>
     </Card>
   )

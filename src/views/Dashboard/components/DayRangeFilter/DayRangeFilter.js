@@ -8,6 +8,7 @@ import Helmet from 'react-helmet'
 import DayRangeFilterInput from './DayRangeFilterInput'
 import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
+import * as BookingActions from '../../../../actions/bookingInfo'
 import { useActions } from '../../../../actions'
 
 import subMonths from 'date-fns/subMonths'
@@ -44,6 +45,7 @@ export const DayRangeFilter = props => {
   const oneMonthBeforeTo = subMonths(to, 1)
 
   const filterActions = useActions(FilterActions)
+  const bookingActions = useActions(BookingActions)
 
   // console.log('from', from)
   // console.log('to', to)
@@ -75,11 +77,14 @@ export const DayRangeFilter = props => {
   const handleFromChange = from => {
     // Change the from date and focus the "to" input field
     filterActions.setFromFilter(from)
+    filterActions.setDurationFilter('Custom')
     // setFrom(from)
   }
 
   const handleToChange = to => {
     filterActions.setToFilter(to)
+    filterActions.setDurationFilter('Custom')
+    bookingActions.fetchBookingInfo()
     // setTo(to)
   }
 
@@ -110,7 +115,6 @@ export const DayRangeFilter = props => {
             }}
             onDayChange={e => {
               handleFromChange(e)
-              filterActions.setDurationFilter('Custom')
             }}
           />
         </div>
@@ -142,7 +146,6 @@ export const DayRangeFilter = props => {
               }}
               onDayChange={e => {
                 handleToChange(e)
-                filterActions.setDurationFilter('Custom')
               }}
               onDayPickerShow={() => {
                 toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)

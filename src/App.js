@@ -11,6 +11,7 @@ import { chartjs } from './helpers'
 import Routes from './Routes'
 import theme from './theme'
 import 'chartjs-plugin-datalabels'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 const browserHistory = createBrowserHistory()
 
