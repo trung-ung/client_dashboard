@@ -99,7 +99,7 @@ const AverageCard = props => {
 
 AverageCard.propTypes = {
   className: PropTypes.string,
-  number: PropTypes.number,
+  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.string,
   icon: PropTypes.element
 }
