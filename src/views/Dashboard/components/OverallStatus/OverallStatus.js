@@ -36,7 +36,8 @@ const useStyles = makeStyles(theme => ({
   },
   device: {
     textAlign: 'center',
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    paddingBottom: 0
   },
   deviceIcon: {
     color: theme.palette.icon
