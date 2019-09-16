@@ -22,18 +22,11 @@ import PropTypes from 'prop-types'
 
 import palette from '../../theme/palette'
 
-import ScrollableAnchor, {
-  goToAnchor,
-  configureAnchors
-} from 'react-scrollable-anchor'
-
 import * as BookingInfoActions from '../../actions/bookingInfo'
 import { useActions } from '../../actions'
 import { useSelector, connect } from 'react-redux'
 import { fetchBookingInfo } from '../../actions/bookingInfo'
 import Loader from 'react-loader-spinner'
-
-configureAnchors({ offset: -100, scrollDuration: 350 })
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,10 +47,6 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
   // useEffect(() => {
   //   bookingInfoActions.fetchBookingInfo()
   // }, [bookingInfoActions])
-
-  useEffect(() => {
-    goToAnchor('section1')
-  }, [])
 
   useEffect(() => {
     fetchBookingInfo()
@@ -110,49 +99,46 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
               <UnconfirmedBookingValue></UnconfirmedBookingValue>
             </Grid>
           </Grid>
-          <ScrollableAnchor id="section1">
-            <Typography variant="h4" className={classes.title}>
-              Selected Duration
-            </Typography>
-          </ScrollableAnchor>
 
-          <ScrollableAnchor id={'section1'}>
-            <Grid container spacing={4} justify="flex-start">
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
-                <EventHeld />
-              </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
-                <TotalBookings />
-              </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
-                <SuccessBookingRate />
-              </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
-                <RevenueEarned />
-              </Grid>
-              <Grid item lg={4} md={6} xl={3} xs={12}>
-                <OverallStatus />
-              </Grid>
-              {/* <Grid item lg={8} md={12} xl={9} xs={12}>
+          <Typography variant="h4" className={classes.title}>
+            Selected Duration
+          </Typography>
+
+          <Grid container spacing={4} justify="flex-start">
+            <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <EventHeld />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <TotalBookings />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <SuccessBookingRate />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <RevenueEarned />
+            </Grid>
+            <Grid item lg={4} md={6} xl={3} xs={12}>
+              <OverallStatus />
+            </Grid>
+            {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestSales />
 </Grid> */}
-              <Grid item lg={4} sm={6} xl={3} xs={12}>
-                <CancelBooking></CancelBooking>
-              </Grid>
-              <Grid item lg={4} sm={6} xl={3} xs={12}>
-                <AverageCount></AverageCount>
-              </Grid>
-              <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
-                <LatestOrders />
-              </Grid>
-              {/* <Grid item lg={4} md={6} xl={3} xs={12}>
+            <Grid item lg={4} sm={6} xl={3} xs={12}>
+              <CancelBooking></CancelBooking>
+            </Grid>
+            <Grid item lg={4} sm={6} xl={3} xs={12}>
+              <AverageCount></AverageCount>
+            </Grid>
+            <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
+              <LatestOrders />
+            </Grid>
+            {/* <Grid item lg={4} md={6} xl={3} xs={12}>
 <LatestProducts />
 </Grid> */}
-              {/* <Grid item lg={8} md={12} xl={9} xs={12}>
+            {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestOrders />
 </Grid> */}
-            </Grid>
-          </ScrollableAnchor>
+          </Grid>
         </>
       )}
     </div>
