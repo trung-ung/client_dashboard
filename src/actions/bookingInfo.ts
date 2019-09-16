@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 
 export const fetchBookingInfo = () => async (dispatch: Function) => {
   dispatch({ type: ActionType.FETCHING_BOOKINGINFO })
-  await new Promise(resolve => setTimeout(resolve, 3000))
+  //await new Promise(resolve => setTimeout(resolve, 3000))
   try {
     const { data } = await bookingInfoApi.get('/bookingInfo')
     dispatch({ type: ActionType.FETCH_BOOKINGINFO_SUCCESS, payload: data })
