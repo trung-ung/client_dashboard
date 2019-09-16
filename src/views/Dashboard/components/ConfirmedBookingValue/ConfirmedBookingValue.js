@@ -86,7 +86,7 @@ const Budget = props => {
               CONFIRM BOOKING VALUE
             </Typography>
             <Typography variant="h3">
-              ${formatMoney(confirmedBookingValue)}
+              €{formatMoney(confirmedBookingValue)}
             </Typography>
           </Grid>
           <Grid item>

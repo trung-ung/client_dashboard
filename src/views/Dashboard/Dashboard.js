@@ -2,16 +2,16 @@ import { Grid, Divider, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React, { useEffect } from 'react'
 import {
-  Budget,
+  ConfirmedBookingValue,
   EventHeld,
   DayRangeFilter,
   LatestOrders,
   LatestProducts,
   LatestSales,
-  TasksProgress,
-  TotalProfit,
-  TotalUsers,
-  UsersByDevice,
+  SuccessBookingRate,
+  RevenueEarned,
+  TotalBookings,
+  OverallStatus,
   VenuesDropdown,
   CancelBooking,
   DurationDropdown,
@@ -93,7 +93,7 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
           </Typography>
           <Grid container spacing={4} justify="flex-start">
             <Grid item lg={6} sm={6} xl={6} xs={12}>
-              <Budget></Budget>
+              <ConfirmedBookingValue></ConfirmedBookingValue>
             </Grid>
             <Grid item lg={6} sm={6} xl={6} xs={12}>
               <UnconfirmedBookingValue></UnconfirmedBookingValue>
@@ -107,16 +107,16 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
               <EventHeld />
             </Grid>
             <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <TotalUsers />
+              <TotalBookings />
             </Grid>
             <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <TasksProgress />
+              <SuccessBookingRate />
             </Grid>
             <Grid item lg={3} sm={6} xl={3} xs={12}>
-              <TotalProfit />
+              <RevenueEarned />
             </Grid>
             <Grid item lg={4} md={6} xl={3} xs={12}>
-              <UsersByDevice />
+              <OverallStatus />
             </Grid>
             {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestSales />

@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
+import ErrorIcon from '@material-ui/icons/Error'
 import { useSelector } from 'react-redux'
 import formatMoney from '../../../../helpers/formatMoney'
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor: theme.palette.warning.main,
     height: 56,
     width: 56
   },
@@ -86,13 +87,13 @@ const UnconfirmedBookingValue = props => {
               UNCONFIRM BOOKING VALUE
             </Typography>
             <Typography variant="h3">
-              ${formatMoney(confirmedBookingValue)}
+              €{formatMoney(confirmedBookingValue)}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                <MoneyIcon className={classes.icon} />
+                <ErrorIcon className={classes.icon} />
               </IconButton>
             </Avatar>
           </Grid>

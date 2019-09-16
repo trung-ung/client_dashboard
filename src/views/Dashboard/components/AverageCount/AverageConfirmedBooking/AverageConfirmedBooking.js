@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Avatar, IconButton } from '@material-ui/core'
 import TimelapseIcon from '@material-ui/icons/Timelapse'
 import WorkIcon from '@material-ui/icons/Work'
+import formatMoney from '../../../../../helpers/formatMoney'
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -26,8 +27,8 @@ const AverageConfirmedBooking = () => {
 
   return (
     <AverageCard
-      title="AVERAGE CONFIRMED BOOKINGS"
-      number={16}
+      title="AVERAGE CONFIRMED BOOKING VALUE"
+      number={formatMoney(2237)}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>

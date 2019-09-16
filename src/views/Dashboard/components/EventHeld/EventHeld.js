@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
+import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 import { useSelector } from 'react-redux'
 import formatMoney from '../../../../helpers/formatMoney'
 
@@ -95,7 +96,7 @@ const Budget = props => {
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                <MoneyIcon className={classes.icon} />
+                <EventAvailableIcon className={classes.icon} />
               </IconButton>
             </Avatar>
           </Grid>
