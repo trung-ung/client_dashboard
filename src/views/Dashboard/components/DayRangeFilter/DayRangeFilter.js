@@ -37,6 +37,7 @@ export const DayRangeFilter = props => {
   // const to = new Date(useSelector(state => state.filter.to))
   const from = useSelector(state => state.filter.from)
   const to = useSelector(state => state.filter.to)
+  const [step, setStep] = useState(1)
   // const newTo = { ...to }
   // const oneMonthBeforeTo = moment(newTo)
   //   .subtract(1, 'month')
@@ -59,32 +60,42 @@ export const DayRangeFilter = props => {
   // )
 
   const toInputEl = useRef(null)
+  const fromInputEl = useRef(null)
 
-  // useEffect(() => {
-  //   const showFromMonth = () => {
-  //     if (!from) {
-  //       return
-  //     }
-  //     //if (moment(to).diff(moment(from), 'months') < 2) {
-  //     if (toInputEl.current.getDayPicker()) {
-  //       toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
-  //     }
-  //     //}
-  //   }
-  //   showFromMonth()
-  // }, [from, to, toInputEl,oneMonthBeforeTo])
+  useEffect(() => {
+    const showFromMonth = () => {
+      if (!from) {
+        return
+      }
+      //if (moment(to).diff(moment(from), 'months') < 2) {
+      if (toInputEl.current.getDayPicker()) {
+        toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
+      }
+      //}
+    }
+    showFromMonth()
+  }, [from, to, toInputEl, oneMonthBeforeTo])
 
   const handleFromChange = from => {
     // Change the from date and focus the "to" input field
     filterActions.setFromFilter(from)
     filterActions.setDurationFilter('Custom')
     // setFrom(from)
+
+    if (step === 2) {
+      bookingActions.fetchBookingInfo()
+      setStep(1)
+    }
   }
 
   const handleToChange = to => {
     filterActions.setToFilter(to)
     filterActions.setDurationFilter('Custom')
-    bookingActions.fetchBookingInfo()
+
+    if (step === 2) {
+      bookingActions.fetchBookingInfo()
+      setStep(1)
+    }
 
     // setTo(to)
   }
@@ -99,6 +110,7 @@ export const DayRangeFilter = props => {
             style={{ width: '100%' }}
             component={DayRangeFilterInput}
             inputProps={{ label: 'From' }}
+            ref={el => (fromInputEl.current = el)}
             value={from}
             placeholder="From"
             format="LL"
@@ -111,7 +123,10 @@ export const DayRangeFilter = props => {
               modifiers,
               numberOfMonths: 2,
               onDayClick: () => {
-                toInputEl.current.getInput().focus()
+                if (step < 2) {
+                  toInputEl.current.getInput().focus()
+                  setStep(step => step + 1)
+                }
               }
             }}
             onDayChange={e => {
@@ -143,13 +158,21 @@ export const DayRangeFilter = props => {
                 modifiers,
                 month: oneMonthBeforeTo,
                 fromMonth: from,
-                numberOfMonths: 2
+                numberOfMonths: 2,
+                onDayClick: () => {
+                  if (step < 2) {
+                    fromInputEl.current.getInput().focus()
+                    setStep(step => step + 1)
+                  }
+                }
               }}
               onDayChange={e => {
                 handleToChange(e)
               }}
               onDayPickerShow={() => {
-                toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
+                if (toInputEl.current) {
+                  toInputEl.current.getDayPicker().showMonth(oneMonthBeforeTo)
+                }
               }}
             />
           </span>
