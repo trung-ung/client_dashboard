@@ -86,7 +86,7 @@ const Budget = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              Events Held
+              EVENT HELD
             </Typography>
             <Typography variant="h3">
               {/* ${formatMoney(confirmedBookingValue)} */}

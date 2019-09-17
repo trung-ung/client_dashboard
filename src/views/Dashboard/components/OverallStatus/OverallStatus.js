@@ -71,7 +71,7 @@ const UsersByDevice = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: ['confirms', 'customer pending', 'company pending']
+    labels: ['confirms', 'customer pending', 'hotel pending']
   }
 
   const options = {
@@ -104,15 +104,16 @@ const UsersByDevice = props => {
     }
   }
 
-  const devices = [
+  const status = [
     {
-      title: 'Confirms',
-      value: isNaN(toPercent(confirms / total, 1))
+      title: 'Hotel pending',
+      value: isNaN(toPercent(hotelPending / total, 1))
         ? 0
-        : toPercent(confirms / total, 1),
-      icon: <DoneIcon />,
-      color: theme.palette.success.main
+        : toPercent(hotelPending / total, 1),
+      icon: <Business />,
+      color: theme.palette.info.main
     },
+
     {
       title: 'Customer pending',
       value: isNaN(toPercent(customerPending / total, 1))
@@ -122,12 +123,12 @@ const UsersByDevice = props => {
       color: theme.palette.warning.main
     },
     {
-      title: 'Hotel pending',
-      value: isNaN(toPercent(hotelPending / total, 1))
+      title: 'Confirms',
+      value: isNaN(toPercent(confirms / total, 1))
         ? 0
-        : toPercent(hotelPending / total, 1),
-      icon: <Business />,
-      color: theme.palette.info.main
+        : toPercent(confirms / total, 1),
+      icon: <DoneIcon />,
+      color: theme.palette.success.main
     }
   ]
 
@@ -148,7 +149,7 @@ const UsersByDevice = props => {
           <Pie data={data} options={options} />
         </div>
         <div className={classes.stats}>
-          {devices.map(device => (
+          {status.map(device => (
             <div className={classes.device} key={device.title}>
               <span className={classes.deviceIcon}>{device.icon}</span>
               <Typography variant="body1">{device.title}</Typography>

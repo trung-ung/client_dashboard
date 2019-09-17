@@ -17,6 +17,7 @@ const initialState = {
   canceledBookings: null,
   canceledBookingsSupport: null,
   canceledReasons: [],
+  bookingSources: [],
   orders: [],
   sourceOfWebsite: [],
   numberOfEvents: 0,

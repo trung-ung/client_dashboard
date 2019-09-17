@@ -14,6 +14,15 @@
     "revenueEarned": 17500,
     "canceledBookings": 5,
     "canceledBookingsSupport": 14,
+    "bookingSources": [
+      { "id": 1, "name": "Source A.", "number": "7" },
+      {
+        "id": 2,
+        "name": "Source B.",
+        "number": "5"
+      },
+      { "id": 3, "name": "Source C.", "number": "3" }
+    ],
     "canceledReasons": [
       { "id": 1, "name": "No availability.", "number": "7" },
       {

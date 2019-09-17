@@ -16,7 +16,8 @@ import {
   CancelBooking,
   DurationDropdown,
   AverageCount,
-  UnconfirmedBookingValue
+  UnconfirmedBookingValue,
+  BookingSources
 } from './components'
 import PropTypes from 'prop-types'
 
@@ -133,6 +134,13 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
               <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
                 <LatestOrders />
               </Grid>
+
+              <Grid item xl={3} lg={4} md={4} sm={6} xs={12}>
+                <Grid item xs={12}>
+                  <BookingSources></BookingSources>
+                </Grid>
+              </Grid>
+
               {/* <Grid item lg={4} md={6} xl={3} xs={12}>
 <LatestProducts />
 </Grid> */}

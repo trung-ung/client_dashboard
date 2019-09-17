@@ -85,7 +85,7 @@ const Budget = props => {
                 color="textSecondary"
                 gutterBottom
                 variant="body2">
-                CONFIRM BOOKING VALUE
+                DEFINITE BOOKING VALUE
               </Typography>
               <Typography variant="h3">
                 €{formatMoney(confirmedBookingValue)}

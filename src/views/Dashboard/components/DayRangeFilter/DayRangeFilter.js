@@ -13,51 +13,17 @@ import { useActions } from '../../../../actions'
 
 import subMonths from 'date-fns/subMonths'
 import { isToday } from 'date-fns'
+import YearMonthForm from './YearMonthForm'
 
-// const style = createStyles(theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap'
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1)
-//   },
-//   dense: {
-//     marginTop: theme.spacing(2)
-//   },
-//   menu: {
-//     width: 200
-//   }
-// }))
-
-// export default
 export const DayRangeFilter = props => {
-  // const from = new Date(useSelector(state => state.filter.from))
-  // const to = new Date(useSelector(state => state.filter.to))
   const from = useSelector(state => state.filter.from)
   const to = useSelector(state => state.filter.to)
   const [step, setStep] = useState(1)
-  // const newTo = { ...to }
-  // const oneMonthBeforeTo = moment(newTo)
-  //   .subtract(1, 'month')
-  //   .toDate()
 
   const oneMonthBeforeTo = subMonths(to, 1)
 
   const filterActions = useActions(FilterActions)
   const bookingActions = useActions(BookingActions)
-
-  // console.log('from', from)
-  // console.log('to', to)
-  // console.log('oneMonthBeforeTo', oneMonthBeforeTo)
-
-  // const [to, setTo] = useState(new Date())
-  // const [from, setFrom] = useState(
-  //   moment(new Date())
-  //     .subtract('1', 'month')
-  //     .toDate()
-  // )
 
   const toInputEl = useRef(null)
   const fromInputEl = useRef(null)
@@ -118,10 +84,23 @@ export const DayRangeFilter = props => {
             parseDate={parseDate}
             dayPickerProps={{
               selectedDays: [from, { from, to }],
+              month: from,
               disabledDays: { after: to },
               toMonth: to,
               modifiers,
               numberOfMonths: 2,
+
+              // eslint-disable-next-line react/display-name
+              // captionElement: ({ date, localeUtils }) => (
+              //   <YearMonthForm
+              //     date={date}
+              //     localeUtils={localeUtils}
+              //     onChange={month => {
+              //       filterActions.setFromFilter(month)
+              //     }}
+              //   />
+              // ),
+
               onDayClick: () => {
                 if (step < 2) {
                   toInputEl.current.getInput().focus()
@@ -159,6 +138,16 @@ export const DayRangeFilter = props => {
                 month: oneMonthBeforeTo,
                 fromMonth: from,
                 numberOfMonths: 2,
+                // eslint-disable-next-line react/display-name
+                // captionElement: ({ date, localeUtils }) => (
+                //   <YearMonthForm
+                //     date={date}
+                //     localeUtils={localeUtils}
+                //     onChange={month => {
+                //       filterActions.setToFilter(month)
+                //     }}
+                //   />
+                // ),
                 onDayClick: () => {
                   if (step < 2) {
                     fromInputEl.current.getInput().focus()
@@ -208,7 +197,4 @@ export const DayRangeFilter = props => {
     </>
   )
 }
-
 export default DayRangeFilter
-
-//export default withStyles(style)(DayRangeFilter)

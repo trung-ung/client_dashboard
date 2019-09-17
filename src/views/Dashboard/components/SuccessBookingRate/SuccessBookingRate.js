@@ -60,14 +60,15 @@ const TasksProgress = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              SUCCESS BOOKING RATE
+              DEFINITE BOOKING PERCENT
             </Typography>
             <Typography variant="h3">{successBookingRate}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                <InsertChartIcon className={classes.icon} />
+                {/* <InsertChartIcon className={classes.icon} /> */}
+                <sup>31</sup>&frasl;<sup>47</sup>
               </IconButton>
             </Avatar>
           </Grid>
