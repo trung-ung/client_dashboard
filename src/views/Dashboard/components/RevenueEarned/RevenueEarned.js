@@ -46,6 +46,10 @@ const TotalProfit = props => {
   const revenueEarned = useSelector(state => state.bookingInfo.revenueEarned)
   const classes = useStyles()
 
+  const revenueEarnedText = useSelector(
+    state => state.language.text.revenueEarned
+  )
+
   return (
     <Zoom in style={{ transitionDelay: '300ms' }}>
       <Card {...rest} className={clsx(classes.root, className)}>
@@ -57,7 +61,7 @@ const TotalProfit = props => {
                 color="inherit"
                 gutterBottom
                 variant="body2">
-                REVENUE EARNED
+                {revenueEarnedText}
               </Typography>
               <Typography color="inherit" variant="h3">
                 €{formatMoney(revenueEarned)}

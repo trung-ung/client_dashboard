@@ -57,11 +57,17 @@ const LatestProducts = props => {
   // const [products] = useState(mockData)
   const reasons = useSelector(state => state.bookingInfo.canceledReasons)
 
+  const topCancelReasonsText = useSelector(
+    state => state.language.text.topCancelReasons
+  )
+  const reasonsText = useSelector(state => state.language.text.reasons)
+  const timesText = useSelector(state => state.language.text.times)
+  const viewAllText = useSelector(state => state.language.text.viewAll)
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         subtitle={`${reasons.length} in total`}
-        title="Top Cancel Reasons"
+        title={topCancelReasonsText}
         // action={
         //   <IconButton size="small">
         //     <CancelIcon />
@@ -74,7 +80,7 @@ const LatestProducts = props => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Reasons</TableCell>
+              <TableCell>{reasonsText}</TableCell>
 
               <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                 <Tooltip enterDelay={300} title="Sort">
@@ -84,7 +90,7 @@ const LatestProducts = props => {
                     onClick={() => {
                       setIsDesc(!isDesc)
                     }}>
-                    Times
+                    {timesText}
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
@@ -110,7 +116,7 @@ const LatestProducts = props => {
       <Divider />
       <CardActions className={classes.actions}>
         <Button color="primary" size="small" variant="text">
-          View all <ArrowRightIcon />
+          {viewAllText} <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>

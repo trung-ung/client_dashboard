@@ -60,6 +60,10 @@ const TotalUsers = props => {
   )
   const duration = useSelector(state => state.filter.duration)
 
+  const totalBookingsText = useSelector(
+    state => state.language.text.totalBookings
+  )
+
   const classes = useStyles()
 
   return (
@@ -72,7 +76,7 @@ const TotalUsers = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              TOTAL BOOKINGS
+              {totalBookingsText}
             </Typography>
             <Typography variant="h3">{totalBookings}</Typography>
           </Grid>

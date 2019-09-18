@@ -57,6 +57,10 @@ const LatestProducts = props => {
   // const [products] = useState(mockData)
   const sources = useSelector(state => state.bookingInfo.bookingSources)
 
+  const sourceText = useSelector(state => state.language.text.source)
+  const viewAllText = useSelector(state => state.language.text.viewAll)
+  const timesText = useSelector(state => state.language.text.times)
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
@@ -74,7 +78,7 @@ const LatestProducts = props => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Source</TableCell>
+              <TableCell>{sourceText}</TableCell>
 
               <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                 <Tooltip enterDelay={300} title="Sort">
@@ -84,7 +88,7 @@ const LatestProducts = props => {
                     onClick={() => {
                       setIsDesc(!isDesc)
                     }}>
-                    Times
+                    {timesText}
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
@@ -110,7 +114,7 @@ const LatestProducts = props => {
       <Divider />
       <CardActions className={classes.actions}>
         <Button color="primary" size="small" variant="text">
-          View all <ArrowRightIcon />
+          {viewAllText} <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>

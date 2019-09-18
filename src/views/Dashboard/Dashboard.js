@@ -17,7 +17,8 @@ import {
   DurationDropdown,
   AverageCount,
   UnconfirmedBookingValue,
-  BookingSources
+  BookingSources,
+  DayRangeFilterMobile
 } from './components'
 import PropTypes from 'prop-types'
 
@@ -39,7 +40,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Dashboard = ({ fetchBookingInfo, isLoading }) => {
+const Dashboard = ({
+  fetchBookingInfo,
+  isLoading,
+  confirmedBookingAmount,
+  selectedDuration
+}) => {
   const classes = useStyles()
   // const bookingInfoActions = useActions(BookingInfoActions)
 
@@ -91,54 +97,53 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
         ) : (
           <>
             <Typography variant="h4" className={classes.title}>
-              Future Figure
+              {confirmedBookingAmount}
             </Typography>
             <Grid container spacing={4} justify="flex-start">
-              <Grid item lg={6} sm={6} xl={6} xs={12}>
+              <Grid item xl={6} lg={6} sm={6} xs={12}>
                 <ConfirmedBookingValue></ConfirmedBookingValue>
               </Grid>
-              <Grid item lg={6} sm={6} xl={6} xs={12}>
+              <Grid item xl={6} lg={6} sm={6} xs={12}>
                 <UnconfirmedBookingValue></UnconfirmedBookingValue>
               </Grid>
             </Grid>
 
             <Typography variant="h4" className={classes.title}>
-              Selected Duration
+              {selectedDuration}
             </Typography>
 
             <Grid container spacing={4} justify="flex-start">
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={3} sm={6} xs={12}>
                 <EventHeld />
               </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={3} sm={6} xs={12}>
                 <TotalBookings />
               </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={3} sm={6} xs={12}>
                 <SuccessBookingRate />
               </Grid>
-              <Grid item lg={3} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={3} sm={6} xs={12}>
                 <RevenueEarned />
               </Grid>
-              <Grid item lg={4} md={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={4} md={6} xs={12}>
                 <OverallStatus />
               </Grid>
               {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestSales />
 </Grid> */}
-              <Grid item lg={4} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={4} sm={6} xs={12}>
                 <CancelBooking></CancelBooking>
               </Grid>
-              <Grid item lg={4} sm={6} xl={3} xs={12}>
+              <Grid item xl={3} lg={4} sm={6} xs={12}>
                 <AverageCount></AverageCount>
               </Grid>
-              <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
-                <LatestOrders />
-              </Grid>
-
               <Grid item xl={3} lg={4} md={4} sm={6} xs={12}>
                 <Grid item xs={12}>
                   <BookingSources></BookingSources>
                 </Grid>
+              </Grid>
+              <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
+                <LatestOrders />
               </Grid>
 
               {/* <Grid item lg={4} md={6} xl={3} xs={12}>
@@ -157,11 +162,15 @@ const Dashboard = ({ fetchBookingInfo, isLoading }) => {
 
 Dashboard.propTypes = {
   fetchBookingInfo: PropTypes.func,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  confirmedBookingAmount: PropTypes.string,
+  selectedDuration: PropTypes.string
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.bookingInfo.isLoading
+  isLoading: state.bookingInfo.isLoading,
+  selectedDuration: state.language.text.selectedDuration,
+  confirmedBookingAmount: state.language.text.confirmedBookingAmount
 })
 
 export default connect(

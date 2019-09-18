@@ -6,6 +6,7 @@ import { Avatar, IconButton, Fade } from '@material-ui/core'
 import TimelapseIcon from '@material-ui/icons/Timelapse'
 import WorkIcon from '@material-ui/icons/Work'
 import formatMoney from '../../../../../helpers/formatMoney'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -24,10 +25,12 @@ const useStyles = makeStyles(theme => ({
 
 const AverageConfirmedBooking = () => {
   const classes = useStyles()
-
+  const averageDefiniteBookingValueText = useSelector(
+    state => state.language.text.averageDefiniteBookingValue
+  )
   return (
     <AverageCard
-      title="AVERAGE DEFINITE BOOKING VALUE"
+      title={averageDefiniteBookingValueText}
       number={`€${formatMoney(2239)}`}
       icon={
         <Avatar className={classes.avatar}>

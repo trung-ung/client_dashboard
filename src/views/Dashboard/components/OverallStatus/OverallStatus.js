@@ -57,6 +57,17 @@ const UsersByDevice = props => {
   const classes = useStyles()
   const theme = useTheme()
 
+  const confirmsText = useSelector(state => state.language.text.confirms)
+  const customerPendingText = useSelector(
+    state => state.language.text.customerPending
+  )
+  const hotelPendingText = useSelector(
+    state => state.language.text.hotelPending
+  )
+  const overallStatusText = useSelector(
+    state => state.language.text.overallStatus
+  )
+
   const data = {
     datasets: [
       {
@@ -71,7 +82,7 @@ const UsersByDevice = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: ['confirms', 'customer pending', 'hotel pending']
+    labels: [confirmsText, customerPendingText, hotelPendingText]
   }
 
   const options = {
@@ -106,7 +117,7 @@ const UsersByDevice = props => {
 
   const status = [
     {
-      title: 'Hotel pending',
+      title: hotelPendingText,
       value: isNaN(toPercent(hotelPending / total, 1))
         ? 0
         : toPercent(hotelPending / total, 1),
@@ -115,7 +126,7 @@ const UsersByDevice = props => {
     },
 
     {
-      title: 'Customer pending',
+      title: customerPendingText,
       value: isNaN(toPercent(customerPending / total, 1))
         ? 0
         : toPercent(customerPending / total, 1),
@@ -123,7 +134,7 @@ const UsersByDevice = props => {
       color: theme.palette.warning.main
     },
     {
-      title: 'Confirms',
+      title: confirmsText,
       value: isNaN(toPercent(confirms / total, 1))
         ? 0
         : toPercent(confirms / total, 1),
@@ -140,7 +151,7 @@ const UsersByDevice = props => {
             <RefreshIcon />
           </IconButton>
         }
-        title="Overall Status"
+        title={overallStatusText}
       />
       <Divider />
 

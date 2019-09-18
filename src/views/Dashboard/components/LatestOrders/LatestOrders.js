@@ -23,6 +23,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import { StatusBullet } from '../../../../components'
 import mockData from './data'
 import { isBefore } from 'date-fns'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -59,6 +60,15 @@ const LatestOrders = props => {
 
   const [orders] = useState(mockData)
 
+  const latestUpdatedOrdersText = useSelector(
+    state => state.language.text.latestUpdatedOrders
+  )
+  const orderRefText = useSelector(state => state.language.text.orderRef)
+  const customerText = useSelector(state => state.language.text.customer)
+  const dateText = useSelector(state => state.language.text.date)
+  const statusText = useSelector(state => state.language.text.status)
+  const viewAllText = useSelector(state => state.language.text.viewAll)
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
@@ -67,7 +77,7 @@ const LatestOrders = props => {
         //     New entry
         //   </Button>
         // }
-        title="Latest Updated Orders"
+        title={latestUpdatedOrdersText}
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -76,8 +86,8 @@ const LatestOrders = props => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Customer</TableCell>
+                  <TableCell>{orderRefText}</TableCell>
+                  <TableCell>{customerText}</TableCell>
                   <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                     <Tooltip enterDelay={300} title="Sort">
                       <TableSortLabel
@@ -86,11 +96,11 @@ const LatestOrders = props => {
                         onClick={() => {
                           setIsDesc(!isDesc)
                         }}>
-                        Date
+                        {dateText}
                       </TableSortLabel>
                     </Tooltip>
                   </TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell>{statusText}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -128,7 +138,7 @@ const LatestOrders = props => {
       <Divider />
       <CardActions className={classes.actions}>
         <Button color="primary" size="small" variant="text">
-          View all <ArrowRightIcon />
+          {viewAllText} <ArrowRightIcon />
         </Button>
       </CardActions>
     </Card>

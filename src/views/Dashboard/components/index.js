@@ -1,5 +1,6 @@
 export { default as ConfirmedBookingValue } from './ConfirmedBookingValue'
-export { default as DayRangeFilter } from './DayRangeFilter'
+export { DayRangeFilter } from './DayRangeFilter'
+export { DayRangeFilterMobile } from './DayRangeFilter'
 export { default as LatestOrders } from './LatestOrders'
 export { default as LatestProducts } from './LatestProducts'
 export { default as LatestSales } from './LatestSales'

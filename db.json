@@ -35,5 +35,46 @@
     "numberOfEvents": 17,
     "orders": [],
     "sourceOfWebsite": []
+  },
+
+  "language": {
+    "langcode": "en",
+    "text": {
+      "dashboard": "Dashboard",
+      "venue": "Venue",
+      "from": "From",
+      "to": "To",
+      "today": "Today",
+      "ok": "OK",
+      "definiteBookingValue": "DEFINITE BOOKING VALUE",
+
+      "confirmedBookingAmount": "Confirmed Booking Amount",
+      "selectedDuration": "Selected Duration",
+
+      "unconfirmedBookingValue": "UNCONFIRMED BOOKING VALUE",
+      "eventHeld": "EVENT HELD",
+      "totalBookings": "TOTAL BOOKINGS",
+      "definiteBookingPercent": "DEFINITE BOOKING PERCENT",
+      "revenueEarned": "REVENUE EARNED",
+      "overallStatus": "Overall Status",
+      "hotelPending": "Hotel pending",
+      "customerPending": "Customer pending",
+      "confirms": "Confirms",
+      "cancelBookings": "CANCEL BOOKINGS",
+      "topCancelReasons": "Top Cancel Reasons",
+      "reasons": "Reasons",
+      "times": "Times",
+      "viewAll": "VIEW ALL",
+      "averageDefiniteBookingValue": "AVERAGE DEFINITE BOOKING VALUE",
+      "averageDelegateCount": "AVERAGE DELEGATE COUNT",
+      "averageLeadTime": "AVERAGE LEAD TIME",
+      "bookingSources": "Booking Sources",
+      "source": "Source",
+      "latestUpdatedOrders": "Latest Updated Orders",
+      "orderRef": "Order Ref",
+      "customer": "Customer",
+      "date": "Date",
+      "status": "Status"
+    }
   }
 }

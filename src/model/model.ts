@@ -30,6 +30,11 @@ export interface BookingInfo {
   error: Object
 }
 
+export interface Language {
+  langcode: String
+  text: Object
+}
+
 export enum ActionType {
   ADD_TODO,
   DELETE_TODO,
@@ -43,7 +48,11 @@ export enum ActionType {
 
   FETCH_BOOKINGINFO_SUCCESS,
   FETCH_BOOKINGINFO_FAIL,
-  FETCHING_BOOKINGINFO
+  FETCHING_BOOKINGINFO,
+
+  FETCH_LANGUAGE_SUCCESS,
+  FETCH_LANGUAGE_FAIL,
+  FETCHING_LANGUAGE
 }
 
 export interface Action<T> {

@@ -49,6 +49,9 @@ const TasksProgress = props => {
     state => state.bookingInfo.successBookingRate
   )
   const classes = useStyles()
+  const definiteBookingPercentText = useSelector(
+    state => state.language.text.definiteBookingPercent
+  )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
@@ -60,7 +63,7 @@ const TasksProgress = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              DEFINITE BOOKING PERCENT
+              {definiteBookingPercentText}
             </Typography>
             <Typography variant="h3">{successBookingRate}%</Typography>
           </Grid>

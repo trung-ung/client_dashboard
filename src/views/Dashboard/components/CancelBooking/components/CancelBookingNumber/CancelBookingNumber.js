@@ -56,6 +56,11 @@ const Budget = props => {
   const canceledBookings = useSelector(
     state => state.bookingInfo.canceledBookings
   )
+
+  const canceledBookingText = useSelector(
+    state => state.language.text.cancelBookings
+  )
+
   const canceledBookingsSupport = useSelector(
     state => state.bookingInfo.canceledBookingsSupport
   )
@@ -74,7 +79,7 @@ const Budget = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              CANCEL BOOKINGS
+              {canceledBookingText}
             </Typography>
             <Typography variant="h3">{canceledBookings}</Typography>
           </Grid>

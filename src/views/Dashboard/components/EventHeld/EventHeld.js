@@ -72,6 +72,8 @@ const Budget = props => {
 
   const duration = useSelector(state => state.filter.duration)
 
+  const eventHeldText = useSelector(state => state.language.text.eventHeld)
+
   if (isLoading) {
     return <Skeleton variant="rect" height={136}></Skeleton>
   }
@@ -86,7 +88,7 @@ const Budget = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              EVENT HELD
+              {eventHeldText}
             </Typography>
             <Typography variant="h3">
               {/* ${formatMoney(confirmedBookingValue)} */}

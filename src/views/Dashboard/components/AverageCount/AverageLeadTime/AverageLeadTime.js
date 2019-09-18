@@ -4,6 +4,7 @@ import GroupIcon from '@material-ui/icons/Group'
 import { makeStyles } from '@material-ui/styles'
 import { Avatar, IconButton, Fade } from '@material-ui/core'
 import TimelapseIcon from '@material-ui/icons/Timelapse'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -22,9 +23,14 @@ const useStyles = makeStyles(theme => ({
 
 const AverageLeadTime = () => {
   const classes = useStyles()
+
+  const averageLeadTimeText = useSelector(
+    state => state.language.text.averageLeadTime
+  )
+
   return (
     <AverageCard
-      title="AVERAGE LEAD TIME"
+      title={averageLeadTimeText}
       number={32}
       icon={
         <Avatar className={classes.avatar}>

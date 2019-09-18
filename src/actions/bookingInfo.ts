@@ -1,6 +1,5 @@
 import { Action, ActionType, BookingInfo } from '../model/model'
 import bookingInfoApi from '../services/bookingInfoApi'
-import { useCallback } from 'react'
 
 export const fetchBookingInfo = () => async (dispatch: Function) => {
   dispatch({ type: ActionType.FETCHING_BOOKINGINFO })

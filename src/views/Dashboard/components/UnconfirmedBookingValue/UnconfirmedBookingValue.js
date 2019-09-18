@@ -60,7 +60,7 @@ const UnconfirmedBookingValue = props => {
   const { className, ...rest } = props
 
   const classes = useStyles()
-  const confirmedBookingValue = useSelector(
+  const unconfirmedBookingValue = useSelector(
     state => state.bookingInfo.unconfirmedBookingValue
   )
 
@@ -70,6 +70,10 @@ const UnconfirmedBookingValue = props => {
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
 
   const duration = useSelector(state => state.filter.duration)
+
+  const unconfirmedBookingValueText = useSelector(
+    state => state.language.text.unconfirmedBookingValue
+  )
 
   if (isLoading) {
     return <Skeleton variant="rect" height={136}></Skeleton>
@@ -86,10 +90,10 @@ const UnconfirmedBookingValue = props => {
                 color="textSecondary"
                 gutterBottom
                 variant="body2">
-                UNCONFIRM BOOKING VALUE
+                {unconfirmedBookingValueText}
               </Typography>
               <Typography variant="h3">
-                €{formatMoney(confirmedBookingValue)}
+                €{formatMoney(unconfirmedBookingValue)}
               </Typography>
             </Grid>
             <Grid item>

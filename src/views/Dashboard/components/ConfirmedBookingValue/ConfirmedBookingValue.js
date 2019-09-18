@@ -70,6 +70,10 @@ const Budget = props => {
 
   const duration = useSelector(state => state.filter.duration)
 
+  const definiteBookingValueText = useSelector(
+    state => state.language.text.definiteBookingValue
+  )
+
   if (isLoading) {
     return <Skeleton variant="rect" height={136}></Skeleton>
   }
@@ -77,48 +81,50 @@ const Budget = props => {
   return (
     <Fade in>
       <Card {...rest} className={clsx(classes.root, className)}>
-        <CardContent>
-          <Grid container justify="space-between">
-            <Grid item>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-                variant="body2">
-                DEFINITE BOOKING VALUE
-              </Typography>
-              <Typography variant="h3">
-                €{formatMoney(confirmedBookingValue)}
-              </Typography>
+        {
+          <CardContent>
+            <Grid container justify="space-between">
+              <Grid item>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                  variant="body2">
+                  {definiteBookingValueText}
+                </Typography>
+                <Typography variant="h3">
+                  €{formatMoney(confirmedBookingValue)}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Avatar className={classes.avatar}>
+                  <IconButton className={classes.iconButton}>
+                    <MoneyIcon className={classes.icon} />
+                  </IconButton>
+                </Avatar>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Avatar className={classes.avatar}>
-                <IconButton className={classes.iconButton}>
-                  <MoneyIcon className={classes.icon} />
-                </IconButton>
-              </Avatar>
-            </Grid>
-          </Grid>
-          {
-            //   duration !== 'Custom' ? (
-            //   <div className={classes.difference}>
-            //     <ArrowDownwardIcon className={classes.differenceIcon} />
-            //     <Typography className={classes.differenceValue} variant="body2">
-            //       {confirmedBookingValueSupport}%
-            //     </Typography>
-            //     <Typography className={classes.caption} variant="caption">
-            //       Since last month
-            //     </Typography>
-            //   </div>
-            // ) : (
-            //   <div className={classes.difference}>
-            //     {/* <Typography className={classes.caption} variant="caption">
-            //     Choose fixed duration to show more analytics
-            //   </Typography> */}
-            //   </div>
-            // )
-          }
-        </CardContent>
+            {
+              //   duration !== 'Custom' ? (
+              //   <div className={classes.difference}>
+              //     <ArrowDownwardIcon className={classes.differenceIcon} />
+              //     <Typography className={classes.differenceValue} variant="body2">
+              //       {confirmedBookingValueSupport}%
+              //     </Typography>
+              //     <Typography className={classes.caption} variant="caption">
+              //       Since last month
+              //     </Typography>
+              //   </div>
+              // ) : (
+              //   <div className={classes.difference}>
+              //     {/* <Typography className={classes.caption} variant="caption">
+              //     Choose fixed duration to show more analytics
+              //   </Typography> */}
+              //   </div>
+              // )
+            }
+          </CardContent>
+        }
       </Card>
     </Fade>
   )

@@ -3,6 +3,7 @@ import AverageCard from '../AverageCard'
 import GroupIcon from '@material-ui/icons/Group'
 import { makeStyles } from '@material-ui/styles'
 import { Avatar, IconButton, Fade } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -22,9 +23,13 @@ const useStyles = makeStyles(theme => ({
 const AverageDelegateCount = () => {
   const classes = useStyles()
 
+  const averageDelegateCountText = useSelector(
+    state => state.language.text.averageDelegateCount
+  )
+
   return (
     <AverageCard
-      title="AVERAGE DELEGATE COUNT"
+      title={averageDelegateCountText}
       number={7}
       icon={
         <Avatar className={classes.avatar}>
