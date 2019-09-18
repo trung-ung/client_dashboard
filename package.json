@@ -21,6 +21,7 @@
     "react-chartjs-2": "^2.7.6",
     "react-day-picker": "^7.3.2",
     "react-dom": "16.8.6",
+    "react-flags-select": "^1.1.10",
     "react-helmet": "^5.2.1",
     "react-loader-spinner": "^3.1.4",
     "react-perfect-scrollbar": "^1.5.3",

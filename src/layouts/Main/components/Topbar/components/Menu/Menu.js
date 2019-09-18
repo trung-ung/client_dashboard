@@ -5,7 +5,7 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Hidden, IconButton } from '@material-ui/core'
 
-import { Person } from '@material-ui/icons/'
+import PersonIcon from '@material-ui/icons/Person'
 
 import React, { useState } from 'react'
 
@@ -34,7 +34,7 @@ const SomeMenu = props => {
 
   return (
     <>
-      <Person></Person>
+      {/* <PersonIcon color="primary"></PersonIcon> */}
       <Button onClick={recordButtonPosition}>
         <Hidden xsDown>
           <Typography variant="h4" className={classes.typography}>
