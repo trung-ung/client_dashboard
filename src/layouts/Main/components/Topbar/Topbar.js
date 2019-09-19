@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React, { useState, useEffect } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, withRouter } from 'react-router-dom'
 import Logo from '../../../../images/logos/logo-mp.png'
 import { ReactComponent as LogoComponent } from '../../../../images/logos/logo-mp.svg'
 import Menu from './components/Menu'
@@ -27,7 +27,7 @@ import formatCountryToLanguage from '../../../../helpers/formatCountryToLanguage
 import formatLanguageToCountry from '../../../../helpers/formatLanguageToCountry'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { useSelector } from 'react-redux'
-import { browserHistory } from '../../../../App'
+
 import formatLangUrl from '../../../../helpers/formatLangUrl'
 import getLangcodeFromUrl from '../../../../helpers/getLangcodeFromUrl'
 
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Topbar = props => {
+const Topbar = withRouter(props => {
   const { className, onSidebarOpen, ...rest } = props
 
   const classes = useStyles()
@@ -79,7 +79,7 @@ const Topbar = props => {
           ) : (
             <ReactFlagsSelect
               defaultCountry={formatLanguageToCountry(
-                getLangcodeFromUrl(browserHistory.location.pathname)
+                getLangcodeFromUrl(props.history.location.pathname)
               )}
               showSelectedLabel={false}
               showOptionLabel={false}
@@ -89,14 +89,14 @@ const Topbar = props => {
                 //   formatCountryToLanguage(countryCode)
                 // )
 
-                browserHistory.push(
+                props.history.push(
                   formatLangUrl(
-                    browserHistory.location.pathname,
+                    props.history.location.pathname,
                     formatCountryToLanguage(countryCode)
                   )
                 )
 
-                languageActions.fetchLanguage()
+                //languageActions.fetchLanguage()
                 //set current language here
               }}
               countries={[
@@ -159,7 +159,7 @@ const Topbar = props => {
       </AppBar>
     </>
   )
-}
+})
 
 Topbar.propTypes = {
   className: PropTypes.string,

@@ -19,11 +19,15 @@ import {
 import { useSelector } from 'react-redux'
 
 const Routes = () => {
-  const languageFilter = useSelector(state => state.filter.language)
+  const currentLangcode = useSelector(state => state.language.langcode)
 
   return (
     <Switch>
-      <Redirect exact from="/" to={`/${languageFilter}/dashboard`} />
+      <Redirect
+        exact
+        from="/"
+        to={currentLangcode ? `/${currentLangcode}/dashboard` : '/en/dashboard'}
+      />
       <RouteWithLayout
         component={DashboardView}
         exact

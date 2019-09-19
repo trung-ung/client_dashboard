@@ -25,6 +25,10 @@ export const DayRangeFilter = props => {
   const filterActions = useActions(FilterActions)
   const bookingActions = useActions(BookingActions)
 
+  const toText = useSelector(state => state.language.text.to)
+  const fromText = useSelector(state => state.language.text.from)
+  const todayText = useSelector(state => state.language.text.today)
+
   const toInputEl = useRef(null)
   const fromInputEl = useRef(null)
 
@@ -75,10 +79,10 @@ export const DayRangeFilter = props => {
           <DayPickerInput
             style={{ width: '100%' }}
             component={DayRangeFilterInput}
-            inputProps={{ label: 'From' }}
+            inputProps={{ label: fromText }}
             ref={el => (fromInputEl.current = el)}
             value={from}
-            placeholder="From"
+            placeholder={fromText}
             format="LL"
             formatDate={formatDate}
             parseDate={parseDate}
@@ -122,12 +126,12 @@ export const DayRangeFilter = props => {
               style={{ width: '100%' }}
               component={DayRangeFilterInput}
               inputProps={{
-                label: 'To',
-                helperText: isToday(to) ? 'Today' : ''
+                label: toText,
+                helperText: isToday(to) ? todayText : ''
               }}
               ref={el => (toInputEl.current = el)}
               value={to}
-              placeholder="To"
+              placeholder={toText}
               format="LL"
               formatDate={formatDate}
               parseDate={parseDate}

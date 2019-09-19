@@ -66,7 +66,7 @@ const Dashboard = ({
   }, [fetchBookingInfo])
 
   useEffect(() => {
-    fetchLanguage()
+    fetchLanguage(match.params.langcode)
     // setLanguageFilter(match.params.langcode)
   }, [fetchLanguage, match])
 

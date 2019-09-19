@@ -53,6 +53,8 @@ export const VenuesDropdown = () => {
   const filterActions = useActions(FilterActions)
   const bookingActions = useActions(BookingActions)
 
+  const venueText = useSelector(state => state.language.text.venue)
+
   const classes = useStyles()
   return (
     <TextField
@@ -70,7 +72,7 @@ export const VenuesDropdown = () => {
           className: classes.menu
         }
       }}
-      label="Venue"
+      label={venueText}
       margin="normal"
       variant="outlined">
       {showedVenues.map(option => (
