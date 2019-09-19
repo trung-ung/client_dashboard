@@ -15,3 +15,7 @@ export function setSelectedVenue(venue: string): Action<string> {
 export function setDurationFilter(duration: string): Action<string> {
   return { type: ActionType.SET_DURATION_FILTER, payload: duration }
 }
+
+export function setLanguageFilter(langcode: string): Action<string> {
+  return { type: ActionType.SET_LANGUAGE_FILTER, payload: langcode }
+}

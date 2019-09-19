@@ -1,8 +1,8 @@
-import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import React from 'react'
+import { Switch, Redirect } from 'react-router-dom'
 
-import { RouteWithLayout } from './components';
-import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+import { RouteWithLayout } from './components'
+import { Main as MainLayout, Minimal as MinimalLayout } from './layouts'
 
 import {
   Dashboard as DashboardView,
@@ -15,69 +15,68 @@ import {
   SignUp as SignUpView,
   SignIn as SignInView,
   NotFound as NotFoundView
-} from './views';
+} from './views'
+import { useSelector } from 'react-redux'
 
 const Routes = () => {
+  const languageFilter = useSelector(state => state.filter.language)
+
   return (
     <Switch>
-      <Redirect
-        exact
-        from="/"
-        to="/dashboard"
-      />
+      <Redirect exact from="/" to={`/${languageFilter}/dashboard`} />
       <RouteWithLayout
         component={DashboardView}
         exact
         layout={MainLayout}
-        path="/dashboard"
+        path="/:langcode/dashboard"
       />
       <RouteWithLayout
         component={UserListView}
         exact
         layout={MainLayout}
-        path="/users"
+        path="/:langcode/users"
       />
       <RouteWithLayout
         component={ProductListView}
         exact
         layout={MainLayout}
-        path="/products"
+        path="/:langcode/products"
       />
       <RouteWithLayout
         component={TypographyView}
         exact
         layout={MainLayout}
-        path="/typography"
+        path="/:langcode/typography"
       />
       <RouteWithLayout
         component={IconsView}
         exact
         layout={MainLayout}
-        path="/icons"
+        path="/:langcode/icons"
       />
       <RouteWithLayout
         component={AccountView}
         exact
         layout={MainLayout}
-        path="/account"
+        path="/:langcode/account"
       />
       <RouteWithLayout
         component={SettingsView}
         exact
         layout={MainLayout}
-        path="/settings"
+        path="/:langcode/settings"
       />
       <RouteWithLayout
         component={SignUpView}
         exact
         layout={MinimalLayout}
-        path="/sign-up"
+        path="/:langcode/sign-up"
       />
       <RouteWithLayout
         component={SignInView}
         exact
         layout={MinimalLayout}
-        path="/sign-in"
+        path="/:langcode/sign-in"
       />
       <RouteWithLayout
         component={NotFoundView}
@@ -87,7 +86,7 @@ const Routes = () => {
       />
       <Redirect to="/not-found" />
     </Switch>
-  );
-};
+  )
+}
 
-export default Routes;
+export default Routes

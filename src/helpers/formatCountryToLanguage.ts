@@ -1,25 +1,3 @@
-const countries = [
-  'GB',
-  'DK',
-  'FI',
-  'FR',
-  'DE',
-  'IT',
-  'LV',
-  'RU',
-  'ES',
-  'SE',
-  'TR',
-  'CZ',
-  'NO',
-  'EE',
-  'NL',
-  'PL',
-  'US',
-  'SK',
-  'SI'
-]
-
 export default (countryCode: String) => {
   switch (countryCode) {
     case 'GB':

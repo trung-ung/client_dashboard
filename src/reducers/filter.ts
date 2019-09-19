@@ -8,7 +8,8 @@ const initialState = {
   from: moment(new Date())
     .subtract('1', 'month')
     .toDate(),
-  duration: '1 month'
+  duration: '1 month',
+  language: 'en'
 }
 
 export const filter = createReducer(initialState, {
@@ -23,5 +24,8 @@ export const filter = createReducer(initialState, {
   },
   [ActionType.SET_DURATION_FILTER](state: Filter, action: Action<String>) {
     return { ...state, duration: action.payload }
+  },
+  [ActionType.SET_LANGUAGE_FILTER](state: Filter, action: Action<String>) {
+    return { ...state, language: action.payload }
   }
 })

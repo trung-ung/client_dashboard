@@ -34,10 +34,10 @@ const initialState = {
     orderRef: 'Order Ref',
     customer: 'Customer',
     date: 'Date',
-    status: 'Status',
-    isLoading: false,
-    error: null
-  }
+    status: 'Status'
+  },
+  isLoading: false,
+  error: null
 }
 
 export const language = createReducer(initialState, {

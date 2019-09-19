@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Profile, SidebarNav } from './components'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -34,13 +35,13 @@ const useStyles = makeStyles(theme => ({
 
 const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props
-
+  const languageFilter = useSelector(state => state.filter.language)
   const classes = useStyles()
 
   const pages = [
     {
       title: 'Dashboard',
-      href: '/dashboard',
+      href: `/${languageFilter}/dashboard`,
       icon: <DashboardIcon />
     },
     // {
@@ -50,7 +51,7 @@ const Sidebar = props => {
     // },
     {
       title: 'Products',
-      href: '/products',
+      href: `/${languageFilter}/products`,
       icon: <ShoppingBasketIcon />
     },
     // {
@@ -70,12 +71,12 @@ const Sidebar = props => {
     // },
     {
       title: 'Account',
-      href: '/account',
+      href: `/${languageFilter}/account`,
       icon: <AccountBoxIcon />
     },
     {
       title: 'Settings',
-      href: '/settings',
+      href: `/${languageFilter}/settings`,
       icon: <SettingsIcon />
     }
   ]

@@ -13,8 +13,9 @@ import theme from './theme'
 import 'chartjs-plugin-datalabels'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import * as LanguageActions from './actions/language'
+import * as FilterActions from './actions/filter'
 import { useActions } from './actions'
-const browserHistory = createBrowserHistory()
+export const browserHistory = createBrowserHistory()
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
   draw: chartjs.draw
@@ -25,11 +26,14 @@ validate.validators = {
   ...validators
 }
 
-export const App = () => {
+export const App = props => {
   const languageActions = useActions(LanguageActions)
-  useEffect(() => {
-    languageActions.fetchLanguage()
-  }, [languageActions])
+  const filterActions = useActions(FilterActions)
+
+  // useEffect(() => {
+  //   languageActions.fetchLanguage()
+  //   // filterActions.setLanguageFilter()
+  // }, [languageActions])
 
   return (
     <ThemeProvider theme={theme}>

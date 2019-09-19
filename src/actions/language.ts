@@ -3,7 +3,7 @@ import bookingInfoApi from '../services/bookingInfoApi'
 
 export const fetchLanguage = () => async (dispatch: Function) => {
   dispatch({ type: ActionType.FETCHING_LANGUAGE })
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  // await new Promise(resolve => setTimeout(resolve, 2000))
   try {
     const { data } = await bookingInfoApi.get('/language')
     dispatch({ type: ActionType.FETCH_LANGUAGE_SUCCESS, payload: data })

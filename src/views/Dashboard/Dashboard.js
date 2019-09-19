@@ -28,7 +28,10 @@ import * as BookingInfoActions from '../../actions/bookingInfo'
 import { useActions } from '../../actions'
 import { useSelector, connect } from 'react-redux'
 import { fetchBookingInfo } from '../../actions/bookingInfo'
+//import { setLanguageFilter } from '../../actions/filter'
+import { fetchLanguage } from '../../actions/language'
 import Loader from 'react-loader-spinner'
+import formatLanguageToCountry from '../../helpers/formatLanguageToCountry'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,7 +47,10 @@ const Dashboard = ({
   fetchBookingInfo,
   isLoading,
   confirmedBookingAmount,
-  selectedDuration
+  selectedDuration,
+  match,
+  // setLanguageFilter
+  fetchLanguage
 }) => {
   const classes = useStyles()
   // const bookingInfoActions = useActions(BookingInfoActions)
@@ -58,6 +64,11 @@ const Dashboard = ({
   useEffect(() => {
     fetchBookingInfo()
   }, [fetchBookingInfo])
+
+  useEffect(() => {
+    fetchLanguage()
+    // setLanguageFilter(match.params.langcode)
+  }, [fetchLanguage, match])
 
   return (
     <Fade in>
@@ -137,12 +148,12 @@ const Dashboard = ({
               <Grid item xl={3} lg={4} sm={6} xs={12}>
                 <AverageCount></AverageCount>
               </Grid>
-              <Grid item xl={3} lg={4} md={4} sm={6} xs={12}>
+              <Grid item xl={3} lg={4} md={6} sm={6} xs={12}>
                 <Grid item xs={12}>
                   <BookingSources></BookingSources>
                 </Grid>
               </Grid>
-              <Grid item xl={9} lg={8} md={8} sm={6} xs={12}>
+              <Grid item xl={9} lg={8} md={12} sm={12} xs={12}>
                 <LatestOrders />
               </Grid>
 
@@ -164,7 +175,10 @@ Dashboard.propTypes = {
   fetchBookingInfo: PropTypes.func,
   isLoading: PropTypes.bool,
   confirmedBookingAmount: PropTypes.string,
-  selectedDuration: PropTypes.string
+  selectedDuration: PropTypes.string,
+  match: PropTypes.object,
+  //setLanguageFilter: PropTypes.func,
+  fetchLanguage: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -175,5 +189,9 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchBookingInfo }
+  {
+    fetchBookingInfo,
+    // setLanguageFilter,
+    fetchLanguage
+  }
 )(Dashboard)
