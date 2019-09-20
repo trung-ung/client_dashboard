@@ -108,6 +108,9 @@ const UsersByDevice = props => {
     },
     plugins: {
       datalabels: {
+        display: function(context) {
+          return context.dataset.data[context.dataIndex] !== 0 // or >= 1 or ...
+        },
         color: '#FFFFFF',
         font: {
           size: '25'
