@@ -21,6 +21,7 @@ const initialState = {
   orders: [],
   sourceOfWebsite: [],
   numberOfEvents: 0,
+  latestUpdatedOrders: [],
   isLoading: false,
   error: null
 }

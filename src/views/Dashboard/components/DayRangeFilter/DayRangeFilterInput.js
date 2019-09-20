@@ -23,6 +23,7 @@ const DayRangeFilterInput = (props, ref) => {
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         inputRef={inputRef}
+        inputProps={{ readOnly: true }}
         className={classes.textField}
         margin="normal"
         variant="outlined"

@@ -22,7 +22,7 @@ import React, { useState } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { StatusBullet } from '../../../../components'
 import mockData from './data'
-import { isBefore } from 'date-fns'
+import { isBefore, format } from 'date-fns'
 import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +58,7 @@ const LatestOrders = props => {
 
   const [isDesc, setIsDesc] = useState(true)
 
-  const [orders] = useState(mockData)
+  const orders = useSelector(state => state.bookingInfo.latestUpdatedOrders)
 
   const latestUpdatedOrdersText = useSelector(
     state => state.language.text.latestUpdatedOrders
@@ -107,25 +107,30 @@ const LatestOrders = props => {
                 {orders
                   .sort((a, b) => {
                     if (isDesc) {
-                      return isBefore(a.createdAt, b.createdAt) ? 1 : -1
+                      return isBefore(new Date(a.updated), new Date(b.updated))
+                        ? 1
+                        : -1
                     }
-                    return isBefore(a.createdAt, b.createdAt) ? -1 : 1
+                    return isBefore(new Date(a.updated), new Date(b.updated))
+                      ? -1
+                      : 1
                   })
                   .map(order => (
-                    <TableRow hover key={order.id}>
-                      <TableCell>{order.ref}</TableCell>
-                      <TableCell>{order.customer.name}</TableCell>
+                    <TableRow hover key={order.orderId}>
+                      <TableCell>{order.orderId}</TableCell>
+                      <TableCell>{order.customer}</TableCell>
                       <TableCell>
-                        {moment(order.createdAt).format('DD/MM/YYYY')}
+                        {/* {moment(order.updated).format('DD/MM/YYYY')} */}
+                        {format(new Date(order.updated), 'dd/MM/yyyy')}
                       </TableCell>
                       <TableCell>
                         <div className={classes.statusContainer}>
                           <StatusBullet
                             className={classes.status}
-                            color={statusColors[order.status]}
+                            color={statusColors[order.newStatus]}
                             size="sm"
                           />
-                          {order.status}
+                          {order.newStatus}
                         </div>
                       </TableCell>
                     </TableRow>

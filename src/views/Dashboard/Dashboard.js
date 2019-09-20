@@ -71,6 +71,7 @@ const Dashboard = ({
       format(from, 'yyyy-MM-dd'),
       format(to, 'yyyy-MM-dd')
     )
+    // eslint-disable-line react-hooks/exhaustive-deps
   }, [fetchBookingInfo])
 
   useEffect(() => {
