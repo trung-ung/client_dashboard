@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const LatestProducts = props => {
+const BookingSources = props => {
   const { className, ...rest } = props
   const [isDesc, setIsDesc] = useState(true)
   const classes = useStyles()
@@ -102,10 +102,10 @@ const LatestProducts = props => {
                 }
                 return a.number - b.number
               })
-              .map(reason => (
-                <TableRow hover key={reason.id}>
-                  <TableCell>{reason.name}</TableCell>
-                  <TableCell>{reason.number}</TableCell>
+              .map(source => (
+                <TableRow hover key={source.source}>
+                  <TableCell>{source.source}</TableCell>
+                  <TableCell>{source.totalSourceBookings}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
@@ -121,11 +121,11 @@ const LatestProducts = props => {
   )
 }
 
-LatestProducts.propTypes = {
+BookingSources.propTypes = {
   className: PropTypes.string
 }
 
-export default LatestProducts
+export default BookingSources
 
 /* //old list
 <List>
