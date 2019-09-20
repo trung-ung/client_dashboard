@@ -14,6 +14,7 @@ import {
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import PeopleIcon from '@material-ui/icons/PeopleOutlined'
 import { useSelector } from 'react-redux'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,7 +65,29 @@ const TotalUsers = props => {
     state => state.language.text.totalBookings
   )
 
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+
   const classes = useStyles()
+
+  if (isLoading)
+    return (
+      // <Card className={clsx(classes.root)}>
+      //   <CardContent>
+      //     {/* <Grid container justify="space-between">
+      //       <Grid item>
+      //       <Skeleton></Skeleton>
+      //       </Grid>
+      //     </Grid> */}
+      //   </CardContent>
+
+      //   <Skeleton></Skeleton>
+      // </Card>
+      <>
+        <Skeleton variant="rect" height="50%"></Skeleton>
+        <Skeleton />
+        <Skeleton width="60%" />
+      </>
+    )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>

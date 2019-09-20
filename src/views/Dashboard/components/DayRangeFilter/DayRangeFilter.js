@@ -12,7 +12,7 @@ import * as BookingActions from '../../../../actions/bookingInfo'
 import { useActions } from '../../../../actions'
 
 import subMonths from 'date-fns/subMonths'
-import { isToday } from 'date-fns'
+import { isToday, format } from 'date-fns'
 import YearMonthForm from './YearMonthForm'
 
 export const DayRangeFilter = props => {
@@ -53,7 +53,11 @@ export const DayRangeFilter = props => {
     // setFrom(from)
 
     if (step === 2) {
-      bookingActions.fetchBookingInfo()
+      bookingActions.fetchBookingInfo(
+        222595,
+        format(from, 'yyyy-MM-dd'),
+        format(to, 'yyyy-MM-dd')
+      )
       setStep(1)
     }
   }
@@ -63,7 +67,11 @@ export const DayRangeFilter = props => {
     filterActions.setDurationFilter('Custom')
 
     if (step === 2) {
-      bookingActions.fetchBookingInfo()
+      bookingActions.fetchBookingInfo(
+        222595,
+        format(from, 'yyyy-MM-dd'),
+        format(to, 'yyyy-MM-dd')
+      )
       setStep(1)
     }
 

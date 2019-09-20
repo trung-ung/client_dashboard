@@ -4,7 +4,7 @@ let baseURL
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3001'
+  baseURL = 'http://localhost/apiv2'
 } else {
   baseURL = 'https://mock-database.herokuapp.com'
 }

@@ -24,6 +24,10 @@ const useStyles = makeStyles(theme => ({
 const AverageLeadTime = () => {
   const classes = useStyles()
 
+  const averageLeadTime = useSelector(state =>
+    Number(state.bookingInfo.averageLeadTime)
+  )
+
   const averageLeadTimeText = useSelector(
     state => state.language.text.averageLeadTime
   )
@@ -31,7 +35,7 @@ const AverageLeadTime = () => {
   return (
     <AverageCard
       title={averageLeadTimeText}
-      number={32}
+      number={averageLeadTime}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>

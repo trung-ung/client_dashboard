@@ -9,14 +9,15 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Fade
+  Fade,
+  Box
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
 import ErrorIcon from '@material-ui/icons/Error'
 import { useSelector } from 'react-redux'
 import formatMoney from '../../../../helpers/formatMoney'
-
+import Container from '@material-ui/core/Container'
 import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
@@ -76,7 +77,15 @@ const UnconfirmedBookingValue = props => {
   )
 
   if (isLoading) {
-    return <Skeleton variant="rect" height={136}></Skeleton>
+    return (
+      <>
+        <Box width="100%" height="96px">
+          <Skeleton variant="rect" height="50%"></Skeleton>
+          <Skeleton height="10%" />
+          <Skeleton height="10%" width="60%" />
+        </Box>
+      </>
+    )
   }
 
   return (

@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core'
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined'
 import { useSelector } from 'react-redux'
+import toPercent from '../../../../helpers/toPercent'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,8 +46,8 @@ const useStyles = makeStyles(theme => ({
 
 const TasksProgress = props => {
   const { className, ...rest } = props
-  const successBookingRate = useSelector(
-    state => state.bookingInfo.successBookingRate
+  const successBookingRate = useSelector(state =>
+    Number(toPercent(state.bookingInfo.successBookingRate))
   )
   const classes = useStyles()
   const definiteBookingPercentText = useSelector(

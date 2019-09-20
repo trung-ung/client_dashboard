@@ -75,7 +75,13 @@ const Budget = props => {
   )
 
   if (isLoading) {
-    return <Skeleton variant="rect" height={136}></Skeleton>
+    return (
+      <>
+        <Skeleton variant="rect" height="50%"></Skeleton>
+        <Skeleton height="10%" />
+        <Skeleton height="10%" width="60%" />
+      </>
+    )
   }
 
   return (

@@ -25,13 +25,17 @@ const useStyles = makeStyles(theme => ({
 
 const AverageConfirmedBooking = () => {
   const classes = useStyles()
+
+  const averageDefiniteBookingValue = useSelector(
+    state => state.bookingInfo.averageOrderValue
+  )
   const averageDefiniteBookingValueText = useSelector(
     state => state.language.text.averageDefiniteBookingValue
   )
   return (
     <AverageCard
       title={averageDefiniteBookingValueText}
-      number={`€${formatMoney(2239)}`}
+      number={`€${formatMoney(averageDefiniteBookingValue)}`}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>

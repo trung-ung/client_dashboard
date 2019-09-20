@@ -22,7 +22,9 @@ const useStyles = makeStyles(theme => ({
 
 const AverageDelegateCount = () => {
   const classes = useStyles()
-
+  const averageDelegateCount = useSelector(state =>
+    Number(state.bookingInfo.averageDelegateValue)
+  )
   const averageDelegateCountText = useSelector(
     state => state.language.text.averageDelegateCount
   )
@@ -30,7 +32,7 @@ const AverageDelegateCount = () => {
   return (
     <AverageCard
       title={averageDelegateCountText}
-      number={7}
+      number={averageDelegateCount}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>

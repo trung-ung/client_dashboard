@@ -47,11 +47,13 @@ const useStyles = makeStyles(theme => ({
 const UsersByDevice = props => {
   const { className, ...rest } = props
 
-  const confirms = useSelector(state => state.bookingInfo.confirms)
-  const customerPending = useSelector(
-    state => state.bookingInfo.customerPending
+  const confirms = useSelector(state => Number(state.bookingInfo.confirms))
+  const customerPending = useSelector(state =>
+    Number(state.bookingInfo.customerPending)
   )
-  const hotelPending = useSelector(state => state.bookingInfo.hotelPending)
+  const hotelPending = useSelector(state =>
+    Number(state.bookingInfo.hotelPending)
+  )
   const total = confirms + customerPending + hotelPending
 
   const classes = useStyles()
