@@ -34,7 +34,9 @@ const initialState = {
     orderRef: 'Order Ref',
     customer: 'Customer',
     date: 'Date',
-    status: 'Status'
+    status: 'Status',
+    confirmedBookingAmount: 'Confirmed Booking Amount',
+    selectedDuration: 'Selected Duration'
   },
   isLoading: false,
   error: null

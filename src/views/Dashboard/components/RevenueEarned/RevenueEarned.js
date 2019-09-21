@@ -9,11 +9,14 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Zoom
+  Zoom,
+  Box
 } from '@material-ui/core'
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
 import formatMoney from '../../../../helpers/formatMoney'
 import { useSelector } from 'react-redux'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,6 +52,18 @@ const TotalProfit = props => {
   const revenueEarnedText = useSelector(
     state => state.language.text.revenueEarned
   )
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  const matches = useMediaQuery(theme => theme.breakpoints.down('xs'))
+
+  if (isLoading)
+    return (
+      <Box height={matches ? 96 : 124}>
+        <Skeleton variant="rect" height="50%"></Skeleton>
+        <Skeleton height={matches && '10%'} />
+        <Skeleton height={matches && '10%'} width="60%" />
+      </Box>
+    )
 
   return (
     <Zoom in style={{ transitionDelay: '300ms' }}>

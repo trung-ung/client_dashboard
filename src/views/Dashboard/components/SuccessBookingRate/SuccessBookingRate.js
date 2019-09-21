@@ -9,11 +9,14 @@ import {
   Typography,
   Avatar,
   LinearProgress,
-  IconButton
+  IconButton,
+  Box
 } from '@material-ui/core'
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined'
 import { useSelector } from 'react-redux'
 import toPercent from '../../../../helpers/toPercent'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,7 +56,17 @@ const TasksProgress = props => {
   const definiteBookingPercentText = useSelector(
     state => state.language.text.definiteBookingPercent
   )
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  //const matches = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
+  if (isLoading)
+    return (
+      <Box height={124}>
+        <Skeleton variant="rect" height="50%"></Skeleton>
+        <Skeleton />
+        <Skeleton width="60%" />
+      </Box>
+    )
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardContent>

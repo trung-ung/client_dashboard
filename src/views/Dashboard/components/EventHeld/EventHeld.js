@@ -8,13 +8,15 @@ import {
   Grid,
   Typography,
   Avatar,
-  IconButton
+  IconButton,
+  Box
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 import { useSelector } from 'react-redux'
 import formatMoney from '../../../../helpers/formatMoney'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 
@@ -68,15 +70,22 @@ const Budget = props => {
   )
 
   const numberOfEvents = useSelector(state => state.bookingInfo.numberOfEvents)
-  const isLoading = useSelector(state => state.bookingInfo.isLoading)
 
   const duration = useSelector(state => state.filter.duration)
 
   const eventHeldText = useSelector(state => state.language.text.eventHeld)
 
-  if (isLoading) {
-    return <Skeleton variant="rect" height={136}></Skeleton>
-  }
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  const matches = useMediaQuery(theme => theme.breakpoints.down('md'))
+
+  if (isLoading)
+    return (
+      <Box height={matches ? 96 : 124}>
+        <Skeleton variant="rect" height="50%"></Skeleton>
+        <Skeleton height={matches && '10%'} />
+        <Skeleton height={matches && '10%'} width="60%" />
+      </Box>
+    )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>

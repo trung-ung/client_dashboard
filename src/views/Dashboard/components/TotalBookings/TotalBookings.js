@@ -9,12 +9,14 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Zoom
+  Zoom,
+  Box
 } from '@material-ui/core'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import PeopleIcon from '@material-ui/icons/PeopleOutlined'
 import { useSelector } from 'react-redux'
 import Skeleton from '@material-ui/lab/Skeleton'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,28 +67,20 @@ const TotalUsers = props => {
     state => state.language.text.totalBookings
   )
 
-  const isLoading = useSelector(state => state.bookingInfo.isLoading)
-
   const classes = useStyles()
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  const matches = useMediaQuery(theme => theme.breakpoints.down('md'))
+
+  console.log('fucking watch me', matches)
 
   if (isLoading)
     return (
-      // <Card className={clsx(classes.root)}>
-      //   <CardContent>
-      //     {/* <Grid container justify="space-between">
-      //       <Grid item>
-      //       <Skeleton></Skeleton>
-      //       </Grid>
-      //     </Grid> */}
-      //   </CardContent>
-
-      //   <Skeleton></Skeleton>
-      // </Card>
-      <>
+      <Box height={matches ? 96 : 124}>
         <Skeleton variant="rect" height="50%"></Skeleton>
-        <Skeleton />
-        <Skeleton width="60%" />
-      </>
+        <Skeleton height={matches && '10%'} />
+        <Skeleton height={matches && '10%'} width="60%" />
+      </Box>
     )
 
   return (

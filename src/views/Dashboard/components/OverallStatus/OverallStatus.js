@@ -9,7 +9,8 @@ import {
   CardContent,
   IconButton,
   Divider,
-  Typography
+  Typography,
+  Box
 } from '@material-ui/core'
 import Business from '@material-ui/icons/Business'
 import DoneIcon from '@material-ui/icons/Done'
@@ -20,6 +21,7 @@ import RefreshIcon from '@material-ui/icons/Refresh'
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
 import { useSelector } from 'react-redux'
 import toPercent from '../../../../helpers/toPercent'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -147,6 +149,16 @@ const UsersByDevice = props => {
       color: theme.palette.success.main
     }
   ]
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  if (isLoading)
+    return (
+      <Box height={529}>
+        <Skeleton variant="rect" height={54}></Skeleton>
+        <Skeleton height={330} />
+        <Skeleton height={112} />
+      </Box>
+    )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>

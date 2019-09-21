@@ -1,8 +1,10 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Box } from '@material-ui/core'
 import CancelBookingNumber from './components/CancelBookingNumber'
 import CancelBookingReasons from './components/CancelBookingReasons'
 import { makeStyles } from '@material-ui/styles'
+import { useSelector } from 'react-redux'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,6 +14,20 @@ const useStyles = makeStyles(theme => ({
 
 const CancelBooking = () => {
   const classes = useStyles()
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  if (isLoading) {
+    return (
+      <>
+        <Box width="100%" height={202}>
+          <Skeleton variant="rect" height="65%"></Skeleton>
+          <Skeleton height="10%" />
+          <Skeleton height="10%" width="60%" />
+        </Box>
+      </>
+    )
+  }
+
   return (
     <div className={classes.root}>
       <Grid container spacing={4} justify="flex-start">

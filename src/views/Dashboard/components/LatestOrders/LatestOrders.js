@@ -11,7 +11,8 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Tooltip
+  Tooltip,
+  Box
 } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import { makeStyles } from '@material-ui/styles'
@@ -24,6 +25,8 @@ import { StatusBullet } from '../../../../components'
 import mockData from './data'
 import { isBefore, format } from 'date-fns'
 import { useSelector } from 'react-redux'
+import Skeleton from '@material-ui/lab/Skeleton'
+import { startOfDecade } from 'date-fns/esm'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -68,6 +71,18 @@ const LatestOrders = props => {
   const dateText = useSelector(state => state.language.text.date)
   const statusText = useSelector(state => state.language.text.status)
   const viewAllText = useSelector(state => state.language.text.viewAll)
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+  if (isLoading)
+    return (
+      <Box height={652}>
+        <Skeleton variant="rect" height={52}></Skeleton>
+
+        <Skeleton height={524} />
+
+        <Skeleton height={48} />
+      </Box>
+    )
 
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
