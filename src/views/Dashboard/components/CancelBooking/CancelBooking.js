@@ -15,19 +15,6 @@ const useStyles = makeStyles(theme => ({
 const CancelBooking = () => {
   const classes = useStyles()
 
-  const isLoading = useSelector(state => state.bookingInfo.isLoading)
-  if (isLoading) {
-    return (
-      <>
-        <Box width="100%" height={202}>
-          <Skeleton variant="rect" height="65%"></Skeleton>
-          <Skeleton height="10%" />
-          <Skeleton height="10%" width="60%" />
-        </Box>
-      </>
-    )
-  }
-
   return (
     <div className={classes.root}>
       <Grid container spacing={4} justify="flex-start">

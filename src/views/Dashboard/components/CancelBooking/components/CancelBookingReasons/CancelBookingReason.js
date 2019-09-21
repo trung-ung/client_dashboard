@@ -21,13 +21,15 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Tooltip
+  Tooltip,
+  Box
 } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import mockData from './data'
 import { useSelector } from 'react-redux'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,6 +65,21 @@ const LatestProducts = props => {
   const reasonsText = useSelector(state => state.language.text.reasons)
   const timesText = useSelector(state => state.language.text.times)
   const viewAllText = useSelector(state => state.language.text.viewAll)
+
+  const isLoading = useSelector(state => state.bookingInfo.isLoading)
+
+  if (isLoading) {
+    return (
+      <>
+        <Box width="100%" height={202}>
+          <Skeleton variant="rect" height="65%"></Skeleton>
+          <Skeleton height="10%" />
+          <Skeleton height="10%" width="60%" />
+        </Box>
+      </>
+    )
+  }
+
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader

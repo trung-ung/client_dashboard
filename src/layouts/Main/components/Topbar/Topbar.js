@@ -44,7 +44,124 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Topbar = withRouter(props => {
+// const Topbar = withRouter(({ match, location, history, ...props }) => {
+//   const { className, onSidebarOpen, ...rest } = props
+
+//   const classes = useStyles()
+
+//   const languageActions = useActions(LanguageActions)
+//   const filterActions = useActions(FilterActions)
+
+//   const isLoading = useSelector(state => state.language.isLoading)
+
+//   // const [notifications] = useState([])
+
+//   const languageFilter = useSelector(state => state.filter.language)
+
+//   return (
+//     <>
+//       <AppBar {...rest} className={clsx(classes.root, className)}>
+//         <Toolbar>
+//           <RouterLink to="/">
+//             {/* <Hidden xsDown>
+//               <img alt="Logo" src={Logo} height="46" width="240.2" />
+//             </Hidden>
+//             <Hidden smUp>
+//               <img alt="Logo" src={Logo} height="30" width="156.65" />
+//             </Hidden> */}
+
+//             <LogoComponent />
+//           </RouterLink>
+
+//           <div className={classes.flexGrow} />
+//           {isLoading ? (
+//             <CircularProgress></CircularProgress>
+//           ) : (
+//             <ReactFlagsSelect
+//               defaultCountry={formatLanguageToCountry(
+//                 getLangcodeFromUrl(location.pathname)
+//               )}
+//               showSelectedLabel={false}
+//               showOptionLabel={false}
+//               onSelect={countryCode => {
+//                 // eslint-disable-next-line no-console
+//                 // filterActions.setLanguageFilter(
+//                 //   formatCountryToLanguage(countryCode)
+//                 // )
+
+//                 history.push(
+//                   formatLangUrl(
+//                     location.pathname,
+//                     formatCountryToLanguage(countryCode)
+//                   )
+//                 )
+
+//                 //languageActions.fetchLanguage()
+//                 //set current language here
+//               }}
+//               countries={[
+//                 'GB',
+//                 'DK',
+//                 'FI',
+//                 'FR',
+//                 'DE',
+//                 'IT',
+//                 'LV',
+//                 'RU',
+//                 'ES',
+//                 'SE',
+//                 'TR',
+//                 'CZ',
+//                 'NO',
+//                 'EE',
+//                 'NL',
+//                 'PL',
+//                 'US',
+//                 'SK',
+//                 'SI'
+//               ]}
+//             />
+//           )}
+
+//           <Menu />
+//           {/* <Hidden xsDown>
+//           <Typography variant="h4" color="inherit">
+//             Trung Ung
+//           </Typography>
+//         </Hidden>
+
+//         <Hidden smUp>
+//           <Typography variant="h5" color="inherit">
+//             Trung Ung
+//           </Typography>
+//         </Hidden> */}
+
+//           {/* <Hidden mdDown>
+//           <IconButton color="inherit">
+//             <Badge
+//               badgeContent={notifications.length}
+//               color="primary"
+//               variant="dot">
+//               <NotificationsIcon />
+//             </Badge>
+//           </IconButton>
+//           <IconButton className={classes.signOutButton} color="inherit">
+//             <InputIcon />
+//           </IconButton>
+//         </Hidden> */}
+//           <Hidden lgUp>
+//             <IconButton color="primary" onClick={onSidebarOpen}>
+//               <MenuIcon />
+//             </IconButton>
+//           </Hidden>
+//         </Toolbar>
+//         <Divider></Divider>
+//       </AppBar>
+//     </>
+//   )
+// })
+
+const Topbar = props => {
   const { className, onSidebarOpen, ...rest } = props
 
   const classes = useStyles()
@@ -74,12 +191,12 @@ const Topbar = withRouter(props => {
           </RouterLink>
 
           <div className={classes.flexGrow} />
-          {isLoading ? (
+          {/* {isLoading ? (
             <CircularProgress></CircularProgress>
           ) : (
             <ReactFlagsSelect
               defaultCountry={formatLanguageToCountry(
-                getLangcodeFromUrl(props.history.location.pathname)
+                getLangcodeFromUrl(location.pathname)
               )}
               showSelectedLabel={false}
               showOptionLabel={false}
@@ -89,9 +206,9 @@ const Topbar = withRouter(props => {
                 //   formatCountryToLanguage(countryCode)
                 // )
 
-                props.history.push(
+                history.push(
                   formatLangUrl(
-                    props.history.location.pathname,
+                    location.pathname,
                     formatCountryToLanguage(countryCode)
                   )
                 )
@@ -121,7 +238,7 @@ const Topbar = withRouter(props => {
                 'SI'
               ]}
             />
-          )}
+          )} */}
 
           <Menu />
           {/* <Hidden xsDown>
@@ -159,8 +276,7 @@ const Topbar = withRouter(props => {
       </AppBar>
     </>
   )
-})
-
+}
 Topbar.propTypes = {
   className: PropTypes.string,
   onSidebarOpen: PropTypes.func

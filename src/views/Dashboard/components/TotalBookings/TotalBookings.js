@@ -72,14 +72,12 @@ const TotalUsers = props => {
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   const matches = useMediaQuery(theme => theme.breakpoints.down('md'))
 
-  console.log('fucking watch me', matches)
-
   if (isLoading)
     return (
       <Box height={matches ? 96 : 124}>
         <Skeleton variant="rect" height="50%"></Skeleton>
-        <Skeleton height={matches && '10%'} />
-        <Skeleton height={matches && '10%'} width="60%" />
+        <Skeleton height={matches ? '10%' : '19.19 px'} />
+        <Skeleton height={matches ? '10%' : '19.19 px'} width="60%" />
       </Box>
     )
 

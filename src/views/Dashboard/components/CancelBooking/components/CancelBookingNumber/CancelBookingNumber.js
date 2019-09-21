@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Budget = props => {
+const CancelBookingNumber = props => {
   const { className, ...rest } = props
   const canceledBookings = useSelector(
     state => state.bookingInfo.canceledBookings
@@ -72,10 +72,11 @@ const Budget = props => {
   const classes = useStyles()
 
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
+
   if (isLoading) {
     return (
       <>
-        <Box width="100%" height="96px">
+        <Box width="100%" height={96}>
           <Skeleton variant="rect" height="50%"></Skeleton>
           <Skeleton height="10%" />
           <Skeleton height="10%" width="60%" />
@@ -145,8 +146,8 @@ const Budget = props => {
   )
 }
 
-Budget.propTypes = {
+CancelBookingNumber.propTypes = {
   className: PropTypes.string
 }
 
-export default Budget
+export default CancelBookingNumber

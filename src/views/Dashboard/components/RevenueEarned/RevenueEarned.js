@@ -60,8 +60,8 @@ const TotalProfit = props => {
     return (
       <Box height={matches ? 96 : 124}>
         <Skeleton variant="rect" height="50%"></Skeleton>
-        <Skeleton height={matches && '10%'} />
-        <Skeleton height={matches && '10%'} width="60%" />
+        <Skeleton height={matches ? '10%' : '19.19 px'} />
+        <Skeleton height={matches ? '10%' : '19.19 px'} width="60%" />
       </Box>
     )
 
