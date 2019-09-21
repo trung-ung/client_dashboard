@@ -49,7 +49,7 @@ const AverageLeadTime = () => {
   return (
     <AverageCard
       title={averageLeadTimeText}
-      number={!isNaN(averageLeadTime) ? averageLeadTime : 0}
+      number={!isNaN(averageLeadTime) ? averageLeadTime.toFixed(1) : 0}
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>

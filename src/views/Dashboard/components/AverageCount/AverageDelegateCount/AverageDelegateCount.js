@@ -46,7 +46,9 @@ const AverageDelegateCount = () => {
   return (
     <AverageCard
       title={averageDelegateCountText}
-      number={!isNaN(averageDelegateCount) ? averageDelegateCount : 0}
+      number={
+        !isNaN(averageDelegateCount) ? averageDelegateCount.toFixed(1) : 0
+      }
       icon={
         <Avatar className={classes.avatar}>
           <IconButton className={classes.iconButton}>
