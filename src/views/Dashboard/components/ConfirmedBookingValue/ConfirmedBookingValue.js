@@ -9,7 +9,8 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Fade
+  Fade,
+  Box
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Budget = props => {
+const ConfirmedBookingValue = props => {
   const { className, ...rest } = props
 
   const classes = useStyles()
@@ -77,9 +78,11 @@ const Budget = props => {
   if (isLoading) {
     return (
       <>
-        <Skeleton variant="rect" height="50%"></Skeleton>
-        <Skeleton height="10%" />
-        <Skeleton height="10%" width="60%" />
+        <Box width="100%" height="96px">
+          <Skeleton variant="rect" height="50%"></Skeleton>
+          <Skeleton height="10%" />
+          <Skeleton height="10%" width="60%" />
+        </Box>
       </>
     )
   }
@@ -136,8 +139,8 @@ const Budget = props => {
   )
 }
 
-Budget.propTypes = {
+ConfirmedBookingValue.propTypes = {
   className: PropTypes.string
 }
 
-export default Budget
+export default ConfirmedBookingValue

@@ -36,7 +36,11 @@ const initialState = {
     date: 'Date',
     status: 'Status',
     confirmedBookingAmount: 'Confirmed Booking Amount',
-    selectedDuration: 'Selected Duration'
+    selectedDuration: 'Selected Duration',
+    noDataToDisplay: 'No data to display.',
+    definiteBookings: 'DEFINITE BOOKINGS',
+    futureBookings: 'Future Bookings',
+    bookingStatus: 'Booking Status'
   },
   isLoading: false,
   error: null

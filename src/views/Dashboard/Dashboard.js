@@ -18,7 +18,8 @@ import {
   AverageCount,
   UnconfirmedBookingValue,
   BookingSources,
-  DayRangeFilterMobile
+  DayRangeFilterMobile,
+  FutureOverallStatus
 } from './components'
 import PropTypes from 'prop-types'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -48,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 const Dashboard = ({
   fetchBookingInfo,
   isLoading,
-  confirmedBookingAmount,
+  futureBookings,
   selectedDuration,
   match,
   // setLanguageFilter
@@ -67,7 +68,7 @@ const Dashboard = ({
 
   useEffect(() => {
     fetchBookingInfo(
-      222595,
+      25465,
       format(from, 'yyyy-MM-dd'),
       format(to, 'yyyy-MM-dd')
     )
@@ -103,9 +104,9 @@ const Dashboard = ({
         </Grid>
 
         <>
-          {confirmedBookingAmount ? (
+          {futureBookings ? (
             <Typography variant="h4" className={classes.title}>
-              {confirmedBookingAmount}
+              {futureBookings}
             </Typography>
           ) : (
             <>
@@ -114,11 +115,25 @@ const Dashboard = ({
           )}
 
           <Grid container spacing={4} justify="flex-start">
-            <Grid item xl={6} lg={6} sm={6} xs={12}>
-              <ConfirmedBookingValue></ConfirmedBookingValue>
+            <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+              <FutureOverallStatus />
             </Grid>
-            <Grid item xl={6} lg={6} sm={6} xs={12}>
-              <UnconfirmedBookingValue></UnconfirmedBookingValue>
+
+            <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
+              <Grid container spacing={4} justify="flex-start">
+                <Grid
+                  item
+                  // xl={6} lg={6} sm={6}
+                  xs={12}>
+                  <ConfirmedBookingValue></ConfirmedBookingValue>
+                </Grid>
+                <Grid
+                  item
+                  // xl={6} lg={6} sm={6}
+                  xs={12}>
+                  <UnconfirmedBookingValue></UnconfirmedBookingValue>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
           {selectedDuration ? (
@@ -252,7 +267,7 @@ const Dashboard = ({
 Dashboard.propTypes = {
   fetchBookingInfo: PropTypes.func,
   isLoading: PropTypes.bool,
-  confirmedBookingAmount: PropTypes.string,
+  futureBookings: PropTypes.string,
   selectedDuration: PropTypes.string,
   match: PropTypes.object,
   //setLanguageFilter: PropTypes.func,
@@ -264,7 +279,7 @@ Dashboard.propTypes = {
 const mapStateToProps = state => ({
   isLoading: state.bookingInfo.isLoading,
   selectedDuration: state.language.text.selectedDuration,
-  confirmedBookingAmount: state.language.text.confirmedBookingAmount,
+  futureBookings: state.language.text.futureBookings,
   from: state.filter.from,
   to: state.filter.to
 })

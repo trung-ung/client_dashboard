@@ -52,16 +52,26 @@ const TasksProgress = props => {
   const successBookingRate = useSelector(state =>
     Number(toPercent(state.bookingInfo.successBookingRate))
   )
+
+  const definiteBookings = useSelector(state =>
+    Number(state.bookingInfo.confirms)
+  )
+
   const classes = useStyles()
   const definiteBookingPercentText = useSelector(
     state => state.language.text.definiteBookingPercent
   )
+
+  const definiteBookingsText = useSelector(
+    state => state.language.text.definiteBookings
+  )
+
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   //const matches = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
   if (isLoading)
     return (
-      <Box height={124}>
+      <Box height={96}>
         <Skeleton variant="rect" height="50%"></Skeleton>
         <Skeleton />
         <Skeleton width="60%" />
@@ -77,24 +87,23 @@ const TasksProgress = props => {
               color="textSecondary"
               gutterBottom
               variant="body2">
-              {definiteBookingPercentText}
+              {definiteBookingsText}
             </Typography>
-            <Typography variant="h3">{successBookingRate}%</Typography>
+            <Typography variant="h3">{definiteBookings}</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                {/* <InsertChartIcon className={classes.icon} /> */}
-                <sup>31</sup>&frasl;<sup>47</sup>
+                <InsertChartIcon className={classes.icon} />
               </IconButton>
             </Avatar>
           </Grid>
         </Grid>
-        <LinearProgress
+        {/* <LinearProgress
           className={classes.progress}
           value={successBookingRate}
           variant="determinate"
-        />
+        /> */}
       </CardContent>
     </Card>
   )

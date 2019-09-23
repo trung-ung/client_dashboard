@@ -54,7 +54,7 @@ export const DayRangeFilter = props => {
 
     if (step === 2) {
       bookingActions.fetchBookingInfo(
-        222595,
+        25465,
         format(from, 'yyyy-MM-dd'),
         format(to, 'yyyy-MM-dd')
       )
@@ -68,7 +68,7 @@ export const DayRangeFilter = props => {
 
     if (step === 2) {
       bookingActions.fetchBookingInfo(
-        222595,
+        25465,
         format(from, 'yyyy-MM-dd'),
         format(to, 'yyyy-MM-dd')
       )
