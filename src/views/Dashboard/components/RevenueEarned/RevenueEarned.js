@@ -10,7 +10,8 @@ import {
   Avatar,
   IconButton,
   Zoom,
-  Box
+  Box,
+  Tooltip
 } from '@material-ui/core'
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol'
 import formatMoney from '../../../../helpers/formatMoney'
@@ -53,6 +54,10 @@ const TotalProfit = props => {
     state => state.language.text.revenueEarned
   )
 
+  const revenueEarnedTooltip = useSelector(
+    state => state.language.text.revenueEarnedTooltip
+  )
+
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   //const matches = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
@@ -71,17 +76,20 @@ const TotalProfit = props => {
         <CardContent>
           <Grid container justify="space-between">
             <Grid item>
-              <Typography
-                className={classes.title}
-                color="inherit"
-                gutterBottom
-                variant="body2">
-                {revenueEarnedText}
-              </Typography>
+              <Tooltip title={revenueEarnedTooltip}>
+                <Typography
+                  className={classes.title}
+                  color="inherit"
+                  gutterBottom
+                  variant="body2">
+                  {revenueEarnedText}
+                </Typography>
+              </Tooltip>
               <Typography color="inherit" variant="h3">
                 €{formatMoney(revenueEarned)}
               </Typography>
             </Grid>
+
             <Grid item>
               <Avatar className={classes.avatar}>
                 <IconButton className={classes.iconButton}>

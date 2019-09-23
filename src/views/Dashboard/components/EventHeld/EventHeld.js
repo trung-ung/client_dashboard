@@ -9,7 +9,8 @@ import {
   Typography,
   Avatar,
   IconButton,
-  Box
+  Box,
+  Tooltip
 } from '@material-ui/core'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import MoneyIcon from '@material-ui/icons/Money'
@@ -75,6 +76,10 @@ const Budget = props => {
 
   const eventHeldText = useSelector(state => state.language.text.eventHeld)
 
+  const eventHeldTooltip = useSelector(
+    state => state.language.text.eventHeldTooltip
+  )
+
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   //const matches = useMediaQuery(theme => theme.breakpoints.down('md'))
 
@@ -92,13 +97,16 @@ const Budget = props => {
       <CardContent>
         <Grid container justify="space-between">
           <Grid item>
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-              variant="body2">
-              {eventHeldText}
-            </Typography>
+            <Tooltip title={eventHeldTooltip}>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
+                variant="body2">
+                {eventHeldText}
+              </Typography>
+            </Tooltip>
+
             <Typography variant="h3">
               {/* ${formatMoney(confirmedBookingValue)} */}
               {numberOfEvents}

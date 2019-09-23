@@ -10,7 +10,8 @@ import {
   Avatar,
   IconButton,
   Zoom,
-  Box
+  Box,
+  Tooltip
 } from '@material-ui/core'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import PeopleIcon from '@material-ui/icons/PeopleOutlined'
@@ -67,6 +68,10 @@ const TotalUsers = props => {
     state => state.language.text.totalBookings
   )
 
+  const totalBookingsTooltip = useSelector(
+    state => state.language.text.totalBookingsTooltip
+  )
+
   const classes = useStyles()
 
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
@@ -86,13 +91,16 @@ const TotalUsers = props => {
       <CardContent>
         <Grid container justify="space-between">
           <Grid item>
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-              variant="body2">
-              {totalBookingsText}
-            </Typography>
+            <Tooltip title={totalBookingsTooltip}>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                gutterBottom
+                variant="body2">
+                {totalBookingsText}
+              </Typography>
+            </Tooltip>
+
             <Typography variant="h3">{totalBookings}</Typography>
           </Grid>
           <Grid item>

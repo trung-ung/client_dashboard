@@ -68,6 +68,11 @@ const AverageDelegateCount = props => {
     state => state.language.text.averageDelegateCount
   )
 
+  const averageDelegateCountTooltip = useSelector(
+    state => state.language.text.averageDelegateCountTooltip
+  )
+
+  const participants = useSelector(state => state.language.text.participants)
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   if (isLoading) {
     return (
@@ -86,7 +91,7 @@ const AverageDelegateCount = props => {
       <CardContent>
         <Grid container justify="space-between">
           <Grid item>
-            <Tooltip title="The average number of participants of an event in the time span.">
+            <Tooltip title={averageDelegateCountTooltip}>
               <Typography
                 className={classes.title}
                 color="textSecondary"
@@ -96,7 +101,9 @@ const AverageDelegateCount = props => {
               </Typography>
             </Tooltip>
 
-            <Typography variant="h3">{averageDelegateCount}</Typography>
+            <Typography variant="h3">
+              {Number(averageDelegateCount).toFixed(1)} {participants}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

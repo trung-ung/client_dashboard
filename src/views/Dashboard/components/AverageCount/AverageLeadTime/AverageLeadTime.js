@@ -68,6 +68,11 @@ const AverageLeadTime = props => {
   const averageLeadTimeText = useSelector(
     state => state.language.text.averageLeadTime
   )
+  const averageLeadTimeTooltip = useSelector(
+    state => state.language.text.averageLeadTimeTooltip
+  )
+
+  const days = useSelector(state => state.language.text.days)
 
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   if (isLoading) {
@@ -87,7 +92,7 @@ const AverageLeadTime = props => {
       <CardContent>
         <Grid container justify="space-between">
           <Grid item>
-            <Tooltip title="The average number of days from the Order date to the Event date - for orders received in the time span.">
+            <Tooltip title={averageLeadTimeTooltip}>
               <Typography
                 className={classes.title}
                 color="textSecondary"
@@ -97,7 +102,9 @@ const AverageLeadTime = props => {
               </Typography>
             </Tooltip>
 
-            <Typography variant="h3">{averageLeadTime}</Typography>
+            <Typography variant="h3">
+              {Number(averageLeadTime).toFixed(1)} {days}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

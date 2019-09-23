@@ -67,6 +67,9 @@ const AverageConfirmedBooking = props => {
   const averageDefiniteBookingValueText = useSelector(
     state => state.language.text.averageDefiniteBookingValue
   )
+  const averageDefiniteBookingValueTooltip = useSelector(
+    state => state.language.text.averageDefiniteBookingValueTooltip
+  )
 
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   if (isLoading) {
@@ -86,7 +89,7 @@ const AverageConfirmedBooking = props => {
       <CardContent>
         <Grid container justify="space-between">
           <Grid item>
-            <Tooltip title="The total value of confirmed orders that were received in the time span.">
+            <Tooltip title={averageDefiniteBookingValueTooltip}>
               <Typography
                 className={classes.title}
                 color="textSecondary"

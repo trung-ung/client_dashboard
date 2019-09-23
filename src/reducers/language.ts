@@ -40,7 +40,20 @@ const initialState = {
     noDataToDisplay: 'No data to display.',
     definiteBookings: 'DEFINITE BOOKINGS',
     futureBookings: 'Future Bookings',
-    bookingStatus: 'Booking Status'
+    bookingStatus: 'Booking Status',
+    eventHeldTooltip: 'The number of events that took place in the time span.',
+    totalBookingsTooltip:
+      'The total number of booking requests that were received in the time span.',
+    revenueEarnedTooltip:
+      'The total value of confirmed orders that were received in the time span.',
+    averageDefiniteBookingValueTooltip:
+      'he average value (incl. VAT) of confirmed orders that were booked in the time span.',
+    averageDelegateCountTooltip:
+      'The average number of participants of an event in the time span.',
+    averageLeadTimeTooltip:
+      'The average number of days from the Order date to the Event date - for orders received in the time span.',
+    days: 'days',
+    participants: 'participants'
   },
   isLoading: false,
   error: null

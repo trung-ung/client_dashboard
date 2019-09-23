@@ -6,7 +6,7 @@ const initialState = {
   selectedVenue: 'All venues',
   to: new Date(),
   from: moment(new Date())
-    .subtract('1', 'month')
+    .subtract('3', 'month')
     .toDate(),
   duration: '1 month',
   language: 'en',
