@@ -61,8 +61,8 @@ const AverageLeadTime = props => {
   const classes = useStyles()
   const { className, ...rest } = props
 
-  const averageLeadTime = useSelector(state =>
-    Number(state.bookingInfo.averageLeadTime)
+  const averageLeadTime = useSelector(
+    state => state.bookingInfo.averageLeadTime
   )
 
   const averageLeadTimeText = useSelector(

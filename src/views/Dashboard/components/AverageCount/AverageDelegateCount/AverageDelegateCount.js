@@ -61,8 +61,8 @@ const AverageDelegateCount = props => {
   const classes = useStyles()
   const { className, ...rest } = props
 
-  const averageDelegateCount = useSelector(state =>
-    Number(state.bookingInfo.averageDelegateValue)
+  const averageDelegateCount = useSelector(
+    state => state.bookingInfo.averageDelegateValue
   )
   const averageDelegateCountText = useSelector(
     state => state.language.text.averageDelegateCount
