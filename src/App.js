@@ -15,6 +15,8 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import * as LanguageActions from './actions/language'
 import * as FilterActions from './actions/filter'
 import { useActions } from './actions'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
 export const browserHistory = createBrowserHistory()
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
@@ -36,11 +38,13 @@ export const App = props => {
   // }, [languageActions])
 
   return (
-    <ThemeProvider theme={theme}>
-      <Router history={browserHistory}>
-        <Routes />
-      </Router>
-    </ThemeProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <ThemeProvider theme={theme}>
+        <Router history={browserHistory}>
+          <Routes />
+        </Router>
+      </ThemeProvider>
+    </MuiPickersUtilsProvider>
   )
 }
 

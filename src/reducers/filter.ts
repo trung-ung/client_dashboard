@@ -9,7 +9,8 @@ const initialState = {
     .subtract('1', 'month')
     .toDate(),
   duration: '1 month',
-  language: 'en'
+  language: 'en',
+  step: 2
 }
 
 export const filter = createReducer(initialState, {
@@ -27,5 +28,8 @@ export const filter = createReducer(initialState, {
   },
   [ActionType.SET_LANGUAGE_FILTER](state: Filter, action: Action<String>) {
     return { ...state, language: action.payload }
+  },
+  [ActionType.SET_STEP_FILTER](state: Filter, action: Action<String | Number>) {
+    return { ...state, step: action.payload }
   }
 })

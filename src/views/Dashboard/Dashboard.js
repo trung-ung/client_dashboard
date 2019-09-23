@@ -1,4 +1,4 @@
-import { Grid, Divider, Typography, Fade } from '@material-ui/core'
+import { Grid, Divider, Typography, Fade, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React, { useEffect } from 'react'
 import {
@@ -31,6 +31,7 @@ import { useSelector, connect } from 'react-redux'
 import { fetchBookingInfo } from '../../actions/bookingInfo'
 //import { setLanguageFilter } from '../../actions/filter'
 import { fetchLanguage } from '../../actions/language'
+import { setStepFilter } from '../../actions/filter'
 import Loader from 'react-loader-spinner'
 import formatLanguageToCountry from '../../helpers/formatLanguageToCountry'
 import moment from 'moment'
@@ -55,7 +56,9 @@ const Dashboard = ({
   // setLanguageFilter
   fetchLanguage,
   from,
-  to
+  to,
+  step,
+  setStepFilter
 }) => {
   const classes = useStyles()
   // const bookingInfoActions = useActions(BookingInfoActions)
@@ -67,13 +70,17 @@ const Dashboard = ({
   // }, [bookingInfoActions])
 
   useEffect(() => {
-    fetchBookingInfo(
-      25465,
-      format(from, 'yyyy-MM-dd'),
-      format(to, 'yyyy-MM-dd')
-    )
+    if (step === 2) {
+      fetchBookingInfo(
+        25465,
+        format(from, 'yyyy-MM-dd'),
+        format(to, 'yyyy-MM-dd')
+      )
+      setStepFilter(0)
+    }
+
     // eslint-disable-line react-hooks/exhaustive-deps
-  }, [fetchBookingInfo])
+  }, [fetchBookingInfo, setStepFilter, step, from, to])
 
   useEffect(() => {
     fetchLanguage(match.params.langcode)
@@ -90,8 +97,13 @@ const Dashboard = ({
           {/* <Hidden only={['xs', 'md', 'lg', 'xl']}>
           <Grid item sm={6}></Grid>
         </Hidden> */}
+          <Hidden smDown>
+            <DayRangeFilter></DayRangeFilter>
+          </Hidden>
+          <Hidden mdUp>
+            <DayRangeFilterMobile></DayRangeFilterMobile>
+          </Hidden>
 
-          <DayRangeFilter></DayRangeFilter>
           {/* <Grid item lg={3} sm={12} md={3} xl={3} xs={12}>
           <DurationDropdown></DurationDropdown>
         </Grid> */}
@@ -273,7 +285,9 @@ Dashboard.propTypes = {
   //setLanguageFilter: PropTypes.func,
   fetchLanguage: PropTypes.func,
   from: PropTypes.object,
-  to: PropTypes.object
+  to: PropTypes.object,
+  step: PropTypes.number,
+  setStepFilter: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -281,7 +295,8 @@ const mapStateToProps = state => ({
   selectedDuration: state.language.text.selectedDuration,
   futureBookings: state.language.text.futureBookings,
   from: state.filter.from,
-  to: state.filter.to
+  to: state.filter.to,
+  step: state.filter.step
 })
 
 export default connect(
@@ -289,6 +304,7 @@ export default connect(
   {
     fetchBookingInfo,
     // setLanguageFilter,
-    fetchLanguage
+    fetchLanguage,
+    setStepFilter
   }
 )(Dashboard)

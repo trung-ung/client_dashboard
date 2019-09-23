@@ -18,9 +18,11 @@ import YearMonthForm from './YearMonthForm'
 export const DayRangeFilter = props => {
   const from = useSelector(state => state.filter.from)
   const to = useSelector(state => state.filter.to)
-  const [step, setStep] = useState(1)
+  //const [step, setStep] = useState(1)
 
   const oneMonthBeforeTo = subMonths(to, 1)
+
+  const step = useSelector(store => store.filter.step)
 
   const filterActions = useActions(FilterActions)
   const bookingActions = useActions(BookingActions)
@@ -53,12 +55,13 @@ export const DayRangeFilter = props => {
     // setFrom(from)
 
     if (step === 2) {
-      bookingActions.fetchBookingInfo(
-        25465,
-        format(from, 'yyyy-MM-dd'),
-        format(to, 'yyyy-MM-dd')
-      )
-      setStep(1)
+      // // bookingActions.fetchBookingInfo(
+      // //   25465,
+      // //   format(from, 'yyyy-MM-dd'),
+      // //   format(to, 'yyyy-MM-dd')
+      // // )
+      // // setStep(1)
+      // filterActions.setStepFilter(1)
     }
   }
 
@@ -66,16 +69,17 @@ export const DayRangeFilter = props => {
     filterActions.setToFilter(to)
     filterActions.setDurationFilter('Custom')
 
-    if (step === 2) {
-      bookingActions.fetchBookingInfo(
-        25465,
-        format(from, 'yyyy-MM-dd'),
-        format(to, 'yyyy-MM-dd')
-      )
-      setStep(1)
-    }
+    // if (step === 2) {
+    //   // bookingActions.fetchBookingInfo(
+    //   //   25465,
+    //   //   format(from, 'yyyy-MM-dd'),
+    //   //   format(to, 'yyyy-MM-dd')
+    //   // )
+    //   // setStep(1)
+    //   filterActions.setStepFilter(1)
+    // }
 
-    // setTo(to)
+    // // setTo(to)
   }
 
   const modifiers = { start: from, end: to }
@@ -114,9 +118,13 @@ export const DayRangeFilter = props => {
               // ),
 
               onDayClick: () => {
-                if (step < 2) {
+                if (step === 0) {
                   toInputEl.current.getInput().focus()
-                  setStep(step => step + 1)
+                }
+
+                if (step < 2) {
+                  // setStep(step => step + 1)
+                  filterActions.setStepFilter(step + 1)
                 }
               }
             }}
@@ -161,9 +169,13 @@ export const DayRangeFilter = props => {
                 //   />
                 // ),
                 onDayClick: () => {
-                  if (step < 2) {
+                  if (step === 0) {
                     fromInputEl.current.getInput().focus()
-                    setStep(step => step + 1)
+                  }
+
+                  if (step < 2) {
+                    // setStep(step => step + 1)
+                    filterActions.setStepFilter(step + 1)
                   }
                 }
               }}
