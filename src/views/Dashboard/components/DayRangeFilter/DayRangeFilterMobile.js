@@ -55,7 +55,7 @@ export const DayRangeFilter = props => {
       <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
         <DatePicker
           autoOk
-          label="From"
+          label={fromText}
           format="dd/MM/yyyy"
           clearable
           inputVariant="outlined"
@@ -69,10 +69,11 @@ export const DayRangeFilter = props => {
       <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
         <DatePicker
           autoOk
-          label="To"
+          label={toText}
           format="dd/MM/yyyy"
           inputVariant="outlined"
           clearable
+          minDate={new Date(from)}
           disableFuture
           value={to}
           onChange={handleToChange}
