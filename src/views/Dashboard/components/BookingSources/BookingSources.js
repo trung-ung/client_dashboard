@@ -31,6 +31,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import mockData from './data'
 import { useSelector } from 'react-redux'
 import Skeleton from '@material-ui/lab/Skeleton'
+import capitalize from '../../../../helpers/capitalize'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,6 +70,16 @@ const BookingSources = props => {
   const viewAllText = useSelector(state => state.language.text.viewAll)
   const timesText = useSelector(state => state.language.text.times)
 
+  const bookingSourcesText = useSelector(
+    state => state.language.text.bookingSources
+  )
+  const valueText = useSelector(state => state.language.text.value)
+  const numberOfBookingsText = useSelector(
+    state => state.language.text.numberOfBookings
+  )
+
+  const bookingsText = useSelector(state => state.language.text.bookings)
+
   const isLoading = useSelector(state => state.bookingInfo.isLoading)
   if (isLoading) {
     return (
@@ -86,7 +97,7 @@ const BookingSources = props => {
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         subtitle={`${sources.length} in total`}
-        title="Booking Sources"
+        title={bookingSourcesText}
         // action={
         //   <IconButton size="small">
         //     <CancelIcon />
@@ -112,7 +123,7 @@ const BookingSources = props => {
                         setIsValueTurn(false)
                         setIsTimeTurn(true)
                       }}>
-                      {timesText}
+                      {numberOfBookingsText}
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
@@ -127,7 +138,7 @@ const BookingSources = props => {
                         setIsValueTurn(true)
                         setIsTimeTurn(false)
                       }}>
-                      Value
+                      {capitalize(valueText)}
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>

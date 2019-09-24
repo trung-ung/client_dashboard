@@ -85,7 +85,7 @@ const MajorMeasurement = props => {
   const viewAllText = useSelector(state => state.language.text.viewAll)
 
   const majorMeasurementText = useSelector(
-    state => state.language.text.majorMeasurementText
+    state => state.language.text.majorMeasurement
   )
   const indicatorsText = useSelector(state => state.language.text.indicators)
   const unitText = useSelector(state => state.language.text.unit)

@@ -58,7 +58,9 @@ const initialState = {
     indicators: 'Indicators',
     unit: 'Unit',
     bookings: 'bookings',
-    events: 'events'
+    events: 'events',
+    numberOfBookings: 'No. of Bookings',
+    value: 'value'
   },
   isLoading: false,
   error: null
