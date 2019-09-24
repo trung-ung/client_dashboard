@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Topbar = withRouter(({ match, location, history, ...props }) => {
-  const { className, onSidebarOpen, ...rest } = props
+  const { className, onSidebarOpen, staticContext, ...rest } = props
 
   const classes = useStyles()
 

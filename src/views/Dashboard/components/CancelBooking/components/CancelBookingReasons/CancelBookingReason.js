@@ -26,7 +26,7 @@ import {
 } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import mockData from './data'
 import { useSelector } from 'react-redux'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -94,41 +94,43 @@ const LatestProducts = props => {
       />
       <Divider />
       <CardContent className={classes.content}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>{reasonsText}</TableCell>
+        <PerfectScrollbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{reasonsText}</TableCell>
 
-              <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
-                <Tooltip enterDelay={300} title="Sort">
-                  <TableSortLabel
-                    active
-                    direction={isDesc ? 'desc' : 'asc'}
-                    onClick={() => {
-                      setIsDesc(!isDesc)
-                    }}>
-                    {timesText}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {reasons
-              .sort((a, b) => {
-                if (isDesc) {
-                  return b.number - a.number
-                }
-                return a.number - b.number
-              })
-              .map(reason => (
-                <TableRow hover key={reason.id}>
-                  <TableCell>{reason.name}</TableCell>
-                  <TableCell>{reason.number}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
+                <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
+                  <Tooltip enterDelay={300} title="Sort">
+                    <TableSortLabel
+                      active
+                      direction={isDesc ? 'desc' : 'asc'}
+                      onClick={() => {
+                        setIsDesc(!isDesc)
+                      }}>
+                      {timesText}
+                    </TableSortLabel>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {reasons
+                .sort((a, b) => {
+                  if (isDesc) {
+                    return b.number - a.number
+                  }
+                  return a.number - b.number
+                })
+                .map(reason => (
+                  <TableRow hover key={reason.id}>
+                    <TableCell>{reason.name}</TableCell>
+                    <TableCell>{reason.number}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </PerfectScrollbar>
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>

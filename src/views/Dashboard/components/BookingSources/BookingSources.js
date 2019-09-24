@@ -26,6 +26,7 @@ import {
 } from '@material-ui/core'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 import mockData from './data'
 import { useSelector } from 'react-redux'
@@ -90,41 +91,43 @@ const BookingSources = props => {
       />
       <Divider />
       <CardContent className={classes.content}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>{sourceText}</TableCell>
+        <PerfectScrollbar>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{sourceText}</TableCell>
 
-              <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
-                <Tooltip enterDelay={300} title="Sort">
-                  <TableSortLabel
-                    active
-                    direction={isDesc ? 'desc' : 'asc'}
-                    onClick={() => {
-                      setIsDesc(!isDesc)
-                    }}>
-                    {timesText}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sources
-              .sort((a, b) => {
-                if (isDesc) {
-                  return b.number - a.number
-                }
-                return a.number - b.number
-              })
-              .map(source => (
-                <TableRow hover key={source.source}>
-                  <TableCell>{source.source}</TableCell>
-                  <TableCell>{source.totalSourceBookings}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
+                <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
+                  <Tooltip enterDelay={300} title="Sort">
+                    <TableSortLabel
+                      active
+                      direction={isDesc ? 'desc' : 'asc'}
+                      onClick={() => {
+                        setIsDesc(!isDesc)
+                      }}>
+                      {timesText}
+                    </TableSortLabel>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sources
+                .sort((a, b) => {
+                  if (isDesc) {
+                    return b.number - a.number
+                  }
+                  return a.number - b.number
+                })
+                .map(source => (
+                  <TableRow hover key={source.source}>
+                    <TableCell>{source.source}</TableCell>
+                    <TableCell>{source.totalSourceBookings}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </PerfectScrollbar>
       </CardContent>
       <Divider />
       <CardActions className={classes.actions}>
