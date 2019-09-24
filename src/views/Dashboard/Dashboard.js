@@ -19,7 +19,11 @@ import {
   UnconfirmedBookingValue,
   BookingSources,
   DayRangeFilterMobile,
-  FutureOverallStatus
+  FutureOverallStatus,
+  AverageConfirmedBooking,
+  AverageLeadTime,
+  AverageDelegateCount,
+  NumberOfBookingsChart
 } from './components'
 import PropTypes from 'prop-types'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -157,7 +161,7 @@ const Dashboard = ({
           )}
 
           <Grid container spacing={4} justify="flex-start">
-            <Grid item xl={3} lg={3} sm={6} xs={12}>
+            {/* <Grid item xl={3} lg={3} sm={6} xs={12}>
               <EventHeld />
             </Grid>
             <Grid item xl={3} lg={3} sm={6} xs={12}>
@@ -165,7 +169,19 @@ const Dashboard = ({
             </Grid>
             <Grid item xl={3} lg={3} sm={6} xs={12}>
               <SuccessBookingRate />
+            </Grid> */}
+            <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <AverageConfirmedBooking></AverageConfirmedBooking>
             </Grid>
+
+            <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <AverageDelegateCount></AverageDelegateCount>
+            </Grid>
+
+            <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <AverageLeadTime></AverageLeadTime>
+            </Grid>
+
             <Grid item xl={3} lg={3} sm={6} xs={12}>
               <RevenueEarned />
             </Grid>
@@ -178,10 +194,13 @@ const Dashboard = ({
             <Grid item xl={3} lg={4} sm={6} xs={12}>
               <CancelBooking></CancelBooking>
             </Grid>
-            <Grid item xl={3} lg={4} sm={6} xs={12}>
+            {/* <Grid item xl={3} lg={4} sm={6} xs={12}>
               <AverageCount></AverageCount>
+            </Grid> */}
+            <Grid item xl={3} lg={4} sm={6} xs={12}>
+              <NumberOfBookingsChart></NumberOfBookingsChart>
             </Grid>
-            <Grid item xl={3} lg={4} md={6} sm={6} xs={12}>
+            <Grid item xl={3} lg={6} md={6} sm={6} xs={12}>
               <Grid item xs={12}>
                 <BookingSources></BookingSources>
               </Grid>

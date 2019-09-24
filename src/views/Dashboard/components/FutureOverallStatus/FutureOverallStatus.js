@@ -10,7 +10,10 @@ import {
   IconButton,
   Divider,
   Typography,
-  Box
+  Box,
+  Button,
+  Menu,
+  MenuItem
 } from '@material-ui/core'
 import Business from '@material-ui/icons/Business'
 import DoneIcon from '@material-ui/icons/Done'
@@ -84,14 +87,24 @@ const FutureOverallStatus = props => {
   )
 
   const [charts, setCharts] = useState([
-    'doughnut',
-    'pie',
-    'bar',
-    'horibar',
-    'polar'
+    'Doughnut',
+    'Pie',
+    'Bar',
+    'Horizontal Bar',
+    'Polar'
   ])
 
-  const [currentChart, setCurrentChart] = useState('horibar')
+  const [currentChart, setCurrentChart] = useState('Horizontal Bar')
+
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   const data = {
     datasets: [
@@ -194,13 +207,40 @@ const FutureOverallStatus = props => {
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         action={
-          <IconButton
-            size="small"
-            onClick={() => {
-              setCurrentChart(charts[getRandomInt(5)])
-            }}>
-            <RefreshIcon />
-          </IconButton>
+          futureCustomerPending == '0' &&
+          futureHotelPending == '0' &&
+          futureConfirms == '0' ? (
+            ''
+          ) : (
+            <>
+              <Button
+                //color="primary"
+                size="small"
+                variant="outlined"
+                onClick={handleClick}>
+                {currentChart} Chart
+              </Button>
+              <Menu
+                id="simple-menu"
+                value={currentChart}
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}>
+                {charts.map(chart => (
+                  <MenuItem
+                    key={chart}
+                    value={chart}
+                    onClick={() => {
+                      setCurrentChart(chart)
+                      handleClose()
+                    }}>
+                    {chart}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </>
+          )
         }
         title={bookingStatusText}
       />
@@ -218,15 +258,15 @@ const FutureOverallStatus = props => {
         ) : (
           <>
             <div className={classes.chartContainer}>
-              {currentChart === 'pie' && <Pie data={data} options={options} />}
-              {currentChart === 'doughnut' && (
+              {currentChart === 'Pie' && <Pie data={data} options={options} />}
+              {currentChart === 'Doughnut' && (
                 <Doughnut data={data} options={options} />
               )}
-              {currentChart === 'bar' && <Bar data={data} options={options} />}
-              {currentChart === 'horibar' && (
+              {currentChart === 'Bar' && <Bar data={data} options={options} />}
+              {currentChart === 'Horizontal Bar' && (
                 <HorizontalBar data={data} options={options} />
               )}
-              {currentChart === 'polar' && (
+              {currentChart === 'Polar' && (
                 <Polar data={data} options={options} />
               )}
             </div>

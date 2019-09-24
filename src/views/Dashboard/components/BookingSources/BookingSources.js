@@ -55,6 +55,11 @@ const useStyles = makeStyles(theme => ({
 const BookingSources = props => {
   const { className, ...rest } = props
   const [isDesc, setIsDesc] = useState(true)
+  const [isValueDesc, setIsValueDesc] = useState(true)
+
+  const [isTimeTurn, setIsTimeTurn] = useState(true)
+  const [isValueTurn, setIsValueTurn] = useState(false)
+
   const classes = useStyles()
 
   // const [products] = useState(mockData)
@@ -100,12 +105,29 @@ const BookingSources = props => {
                 <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                   <Tooltip enterDelay={300} title="Sort">
                     <TableSortLabel
-                      active
+                      // active
                       direction={isDesc ? 'desc' : 'asc'}
                       onClick={() => {
                         setIsDesc(!isDesc)
+                        setIsValueTurn(false)
+                        setIsTimeTurn(true)
                       }}>
                       {timesText}
+                    </TableSortLabel>
+                  </Tooltip>
+                </TableCell>
+
+                <TableCell sortDirection={isValueDesc ? 'desc' : 'asc'}>
+                  <Tooltip enterDelay={300} title="Sort">
+                    <TableSortLabel
+                      //active
+                      direction={isValueDesc ? 'desc' : 'asc'}
+                      onClick={() => {
+                        setIsValueDesc(!isValueDesc)
+                        setIsValueTurn(true)
+                        setIsTimeTurn(false)
+                      }}>
+                      Value
                     </TableSortLabel>
                   </Tooltip>
                 </TableCell>
@@ -114,15 +136,30 @@ const BookingSources = props => {
             <TableBody>
               {sources
                 .sort((a, b) => {
-                  if (isDesc) {
-                    return b.number - a.number
+                  if (isTimeTurn) {
+                    if (isDesc) {
+                      return b.totalSourceBookings - a.totalSourceBookings
+                    }
+                    return a.totalSourceBookings - b.totalSourceBookings
                   }
-                  return a.number - b.number
+                  return 0
+                })
+                .sort((a, b) => {
+                  if (isValueTurn) {
+                    if (isValueDesc) {
+                      return (
+                        b.totalBookingSourceValue - a.totalBookingSourceValue
+                      )
+                    }
+                    return a.totalBookingSourceValue - b.totalBookingSourceValue
+                  }
+                  return 0
                 })
                 .map(source => (
                   <TableRow hover key={source.source}>
                     <TableCell>{source.source}</TableCell>
                     <TableCell>{source.totalSourceBookings}</TableCell>
+                    <TableCell>€{source.totalBookingSourceValue}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>

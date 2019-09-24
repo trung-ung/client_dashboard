@@ -1,6 +1,6 @@
 import React from 'react'
 import AverageCard from '../AverageCard'
-import GroupIcon from '@material-ui/icons/Group'
+import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { makeStyles } from '@material-ui/styles'
 import {
   Avatar,
@@ -109,7 +109,7 @@ const AverageLeadTime = props => {
           <Grid item>
             <Avatar className={classes.avatar}>
               <IconButton className={classes.iconButton}>
-                <GroupIcon className={classes.icon}></GroupIcon>
+                <AccessTimeIcon className={classes.icon}></AccessTimeIcon>
               </IconButton>
             </Avatar>
           </Grid>

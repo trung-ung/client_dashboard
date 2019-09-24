@@ -54,27 +54,29 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const UsersByDevice = props => {
+const NumberOfBookingsChart = props => {
   const { className, ...rest } = props
 
-  const confirms = useSelector(state => Number(state.bookingInfo.confirms))
-  const customerPending = useSelector(state =>
-    Number(state.bookingInfo.customerPending)
+  const eventsHeld = useSelector(state =>
+    Number(state.bookingInfo.numberOfEvents)
   )
-  const hotelPending = useSelector(state =>
-    Number(state.bookingInfo.hotelPending)
+  const totalBookings = useSelector(state =>
+    Number(state.bookingInfo.totalBookings)
   )
-  const total = confirms + customerPending + hotelPending
+  const definiteBookings = useSelector(state =>
+    Number(state.bookingInfo.confirms)
+  )
+  const total = eventsHeld + totalBookings + definiteBookings
 
   const classes = useStyles()
   const theme = useTheme()
 
-  const confirmsText = useSelector(state => state.language.text.confirms)
-  const customerPendingText = useSelector(
-    state => state.language.text.customerPending
+  const evenstHeldText = useSelector(state => state.language.text.eventHeld)
+  const definiteBookingsText = useSelector(
+    state => state.language.text.definiteBookings
   )
-  const hotelPendingText = useSelector(
-    state => state.language.text.hotelPending
+  const totalBookingsText = useSelector(
+    state => state.language.text.totalBookings
   )
   const overallStatusText = useSelector(
     state => state.language.text.overallStatus
@@ -88,7 +90,7 @@ const UsersByDevice = props => {
     'Polar'
   ])
 
-  const [currentChart, setCurrentChart] = useState('Pie')
+  const [currentChart, setCurrentChart] = useState('Bar')
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -103,7 +105,7 @@ const UsersByDevice = props => {
   const data = {
     datasets: [
       {
-        data: [confirms, customerPending, hotelPending],
+        data: [eventsHeld, totalBookings, definiteBookings],
         backgroundColor: [
           theme.palette.success.main,
           theme.palette.warning.main,
@@ -114,7 +116,7 @@ const UsersByDevice = props => {
         hoverBorderColor: theme.palette.white
       }
     ],
-    labels: [confirmsText, customerPendingText, hotelPendingText]
+    labels: [evenstHeldText, totalBookingsText, definiteBookingsText]
   }
 
   const options = {
@@ -152,27 +154,27 @@ const UsersByDevice = props => {
 
   const status = [
     {
-      title: hotelPendingText,
-      value: isNaN(toPercent(hotelPending / total, 1))
+      title: definiteBookingsText,
+      value: isNaN(toPercent(definiteBookings / total, 1))
         ? 0
-        : toPercent(hotelPending / total, 1),
+        : toPercent(definiteBookings / total, 1),
       icon: <Business />,
       color: theme.palette.info.main
     },
 
     {
-      title: customerPendingText,
-      value: isNaN(toPercent(customerPending / total, 1))
+      title: totalBookingsText,
+      value: isNaN(toPercent(totalBookings / total, 1))
         ? 0
-        : toPercent(customerPending / total, 1),
+        : toPercent(totalBookings / total, 1),
       icon: <SupervisedUserCircle />,
       color: theme.palette.warning.main
     },
     {
-      title: confirmsText,
-      value: isNaN(toPercent(confirms / total, 1))
+      title: evenstHeldText,
+      value: isNaN(toPercent(eventsHeld / total, 1))
         ? 0
-        : toPercent(confirms / total, 1),
+        : toPercent(eventsHeld / total, 1),
       icon: <DoneIcon />,
       color: theme.palette.success.main
     }
@@ -220,13 +222,6 @@ const UsersByDevice = props => {
               ))}
             </Menu>
           </>
-          // <IconButton
-          //   size="small"
-          //   onClick={() => {
-          //     setCurrentChart(charts[getRandomInt(5)])
-          //   }}>
-          //   <RefreshIcon />
-          // </IconButton>
         }
         title={overallStatusText}
       />
@@ -260,8 +255,8 @@ const UsersByDevice = props => {
   )
 }
 
-UsersByDevice.propTypes = {
+NumberOfBookingsChart.propTypes = {
   className: PropTypes.string
 }
 
-export default UsersByDevice
+export default NumberOfBookingsChart
