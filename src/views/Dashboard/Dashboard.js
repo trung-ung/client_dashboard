@@ -137,7 +137,7 @@ const Dashboard = ({
               <FutureOverallStatus />
             </Grid>
 
-            <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
+            <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
               <Grid container spacing={4} justify="flex-start">
                 <Grid
                   item
@@ -218,7 +218,7 @@ const Dashboard = ({
                 <BookingSources></BookingSources>
               </Grid>
             </Grid>
-            <Grid item xl={9} lg={8} md={12} sm={12} xs={12}>
+            <Grid item xl={9} lg={12} md={12} sm={12} xs={12}>
               <LatestOrders />
             </Grid>
 
