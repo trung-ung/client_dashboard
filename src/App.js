@@ -24,6 +24,12 @@ Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
   draw: chartjs.draw
 })
 
+Chart.scaleService.updateScaleDefaults('linear', {
+  ticks: {
+    min: 0
+  }
+})
+
 validate.validators = {
   ...validate.validators,
   ...validators

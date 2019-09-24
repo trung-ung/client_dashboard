@@ -214,7 +214,7 @@ const Dashboard = ({
               <AverageCount></AverageCount>
             </Grid> */}
 
-            <Grid item xl={3} lg={6} md={6} sm={6} xs={12}>
+            <Grid item xl={3} lg={6} md={12} sm={12} xs={12}>
               <Grid item xs={12}>
                 <BookingSources></BookingSources>
               </Grid>

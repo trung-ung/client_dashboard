@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import * as FilterActions from '../../../../actions/filter'
 import * as BookingActions from '../../../../actions/bookingInfo'
 import { useActions } from '../../../../actions'
+import { format } from 'date-fns'
 
 // const venuesMock = [
 //   {
@@ -52,6 +53,8 @@ export const VenuesDropdown = () => {
   const venue = useSelector(state => state.filter.selectedVenue)
   const filterActions = useActions(FilterActions)
   const bookingActions = useActions(BookingActions)
+  const from = useSelector(state => state.filter.from)
+  const to = useSelector(state => state.filter.to)
 
   const venueText = useSelector(state => state.language.text.venue)
 
@@ -64,7 +67,11 @@ export const VenuesDropdown = () => {
       value={venue}
       onChange={e => {
         filterActions.setSelectedVenue(e.target.value)
-        bookingActions.fetchBookingInfo()
+        bookingActions.fetchBookingInfo(
+          25465,
+          format(from, 'yyyy-MM-dd'),
+          format(to, 'yyyy-MM-dd')
+        )
       }}
       SelectProps={{
         MenuProps: {
