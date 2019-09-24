@@ -16,6 +16,7 @@ export { default as EventHeld } from './EventHeld'
 export { default as UnconfirmedBookingValue } from './UnconfirmedBookingValue'
 export { default as BookingSources } from './BookingSources'
 export { default as FutureOverallStatus } from './FutureOverallStatus'
+export { default as MajorMeasurement } from './MajorMeasurement'
 export {
   default as AverageConfirmedBooking
 } from './AverageCount/AverageConfirmedBooking'
@@ -31,4 +32,4 @@ export {
   default as CancelBookingReasons
 } from './CancelBooking/components/CancelBookingReasons'
 
-export { default as NumberOfBookingsChart } from './NumberOfBookingsChart.js'
+export { default as NumberOfBookingsChart } from './NumberOfBookingsChart'

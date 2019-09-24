@@ -23,7 +23,9 @@ import {
   AverageConfirmedBooking,
   AverageLeadTime,
   AverageDelegateCount,
-  NumberOfBookingsChart
+  NumberOfBookingsChart,
+  MajorMeasurement,
+  CancelBookingReasons
 } from './components'
 import PropTypes from 'prop-types'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -170,19 +172,19 @@ const Dashboard = ({
             <Grid item xl={3} lg={3} sm={6} xs={12}>
               <SuccessBookingRate />
             </Grid> */}
-            <Grid item xl={3} lg={3} sm={6} xs={12}>
+            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <AverageConfirmedBooking></AverageConfirmedBooking>
             </Grid>
 
-            <Grid item xl={3} lg={3} sm={6} xs={12}>
+            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <AverageDelegateCount></AverageDelegateCount>
             </Grid>
 
-            <Grid item xl={3} lg={3} sm={6} xs={12}>
+            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <AverageLeadTime></AverageLeadTime>
             </Grid>
 
-            <Grid item xl={3} lg={3} sm={6} xs={12}>
+            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <RevenueEarned />
             </Grid>
             <Grid item xl={3} lg={4} md={6} xs={12}>
@@ -191,15 +193,26 @@ const Dashboard = ({
             {/* <Grid item lg={8} md={12} xl={9} xs={12}>
 <LatestSales />
 </Grid> */}
+
             <Grid item xl={3} lg={4} sm={6} xs={12}>
-              <CancelBooking></CancelBooking>
+              <Grid container spacing={4} justify="flex-start">
+                <Grid item xs={12}>
+                  <MajorMeasurement></MajorMeasurement>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid item xl={3} lg={4} sm={6} xs={12}>
+              <Grid container spacing={4} justify="flex-start">
+                <Grid item xs={12}>
+                  <CancelBookingReasons></CancelBookingReasons>
+                </Grid>
+              </Grid>
             </Grid>
             {/* <Grid item xl={3} lg={4} sm={6} xs={12}>
               <AverageCount></AverageCount>
             </Grid> */}
-            <Grid item xl={3} lg={4} sm={6} xs={12}>
-              <NumberOfBookingsChart></NumberOfBookingsChart>
-            </Grid>
+
             <Grid item xl={3} lg={6} md={6} sm={6} xs={12}>
               <Grid item xs={12}>
                 <BookingSources></BookingSources>
@@ -217,79 +230,6 @@ const Dashboard = ({
 </Grid> */}
           </Grid>
         </>
-
-        {
-          //           isLoading ? (
-          //           <Grid container spacing={4} justify="center">
-          //             <Grid item>
-          //               <Loader
-          //                 type="Puff"
-          //                 color={palette.primary.main}
-          //                 height={370}
-          //                 width={370}
-          //                 //timeout={3000} //3 secs
-          //               />
-          //             </Grid>
-          //           </Grid>
-          //         ) : (
-          //           <>
-          //             <Typography variant="h4" className={classes.title}>
-          //               {confirmedBookingAmount}
-          //             </Typography>
-          //             <Grid container spacing={4} justify="flex-start">
-          //               <Grid item xl={6} lg={6} sm={6} xs={12}>
-          //                 <ConfirmedBookingValue></ConfirmedBookingValue>
-          //               </Grid>
-          //               <Grid item xl={6} lg={6} sm={6} xs={12}>
-          //                 <UnconfirmedBookingValue></UnconfirmedBookingValue>
-          //               </Grid>
-          //             </Grid>
-          //             <Typography variant="h4" className={classes.title}>
-          //               {selectedDuration}
-          //             </Typography>
-          //             <Grid container spacing={4} justify="flex-start">
-          //               <Grid item xl={3} lg={3} sm={6} xs={12}>
-          //                 <EventHeld />
-          //               </Grid>
-          //               <Grid item xl={3} lg={3} sm={6} xs={12}>
-          //                 <TotalBookings />
-          //               </Grid>
-          //               <Grid item xl={3} lg={3} sm={6} xs={12}>
-          //                 <SuccessBookingRate />
-          //               </Grid>
-          //               <Grid item xl={3} lg={3} sm={6} xs={12}>
-          //                 <RevenueEarned />
-          //               </Grid>
-          //               <Grid item xl={3} lg={4} md={6} xs={12}>
-          //                 <OverallStatus />
-          //               </Grid>
-          //               {/* <Grid item lg={8} md={12} xl={9} xs={12}>
-          // <LatestSales />
-          // </Grid> */}
-          //               <Grid item xl={3} lg={4} sm={6} xs={12}>
-          //                 <CancelBooking></CancelBooking>
-          //               </Grid>
-          //               <Grid item xl={3} lg={4} sm={6} xs={12}>
-          //                 <AverageCount></AverageCount>
-          //               </Grid>
-          //               <Grid item xl={3} lg={4} md={6} sm={6} xs={12}>
-          //                 <Grid item xs={12}>
-          //                   <BookingSources></BookingSources>
-          //                 </Grid>
-          //               </Grid>
-          //               <Grid item xl={9} lg={8} md={12} sm={12} xs={12}>
-          //                 <LatestOrders />
-          //               </Grid>
-          //               {/* <Grid item lg={4} md={6} xl={3} xs={12}>
-          // <LatestProducts />
-          // </Grid> */}
-          //               {/* <Grid item lg={8} md={12} xl={9} xs={12}>
-          // <LatestOrders />
-          // </Grid> */}
-          //             </Grid>
-          //           </>
-          //)
-        }
       </div>
     </Fade>
   )
