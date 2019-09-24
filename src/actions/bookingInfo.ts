@@ -8,18 +8,19 @@ export const fetchBookingInfo = (
   to_date: String
 ) => async (dispatch: Function) => {
   dispatch({ type: ActionType.FETCHING_BOOKINGINFO })
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  //await new Promise(resolve => setTimeout(resolve, 2000))
   try {
     let data
     if (process.env.NODE_ENV === 'development') {
       const res = await bookingInfoApi.get(
-        `/supplier/12345/statistics?venue_id=${venue_id}&from_date=${from_date}&to_date=${to_date}`
+        `/supplier/statistics?venue_id=${venue_id}&from_date=${from_date}&to_date=${to_date}`
       )
       data = res.data
     } else {
       const res = await bookingInfoApi.get('/bookingInfo')
       data = res.data
     }
+
     data = keysToCamel(data)
 
     //const { data } = await bookingInfoApi.get('/bookingInfo')

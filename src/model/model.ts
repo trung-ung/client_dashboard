@@ -10,6 +10,20 @@ export interface Filter {
   selectedVenue: String
 }
 
+export interface Auth {
+  userId: String
+  username: String
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  company: String
+  role: [Number]
+  is_accepted_gdpr: String
+  isLoading: Boolean
+  error: Object
+}
+
 export interface BookingInfo {
   confirms: Number | String
   customerPending: Number | String
@@ -54,7 +68,11 @@ export enum ActionType {
 
   FETCH_LANGUAGE_SUCCESS,
   FETCH_LANGUAGE_FAIL,
-  FETCHING_LANGUAGE
+  FETCHING_LANGUAGE,
+
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  AUTH_ING
 }
 
 export interface Action<T> {

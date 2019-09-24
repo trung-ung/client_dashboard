@@ -14,6 +14,7 @@ import 'chartjs-plugin-datalabels'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import * as LanguageActions from './actions/language'
 import * as FilterActions from './actions/filter'
+import * as AuthActions from './actions/auth'
 import { useActions } from './actions'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
@@ -31,11 +32,15 @@ validate.validators = {
 export const App = props => {
   const languageActions = useActions(LanguageActions)
   const filterActions = useActions(FilterActions)
-
+  const authActions = useActions(AuthActions)
   // useEffect(() => {
   //   languageActions.fetchLanguage()
   //   // filterActions.setLanguageFilter()
   // }, [languageActions])
+
+  useEffect(() => {
+    authActions.loadUser()
+  }, [authActions])
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>

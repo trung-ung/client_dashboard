@@ -5,6 +5,7 @@ import * as bookingInfoReducer from './bookingInfo'
 import * as filterReducer from './filter'
 import * as todoReducer from './todo'
 import * as language from './language'
+import * as auth from './auth'
 
 export interface RootState {
   todoList: Todo[]
@@ -15,5 +16,6 @@ export default (history: History) =>
     ...todoReducer,
     ...bookingInfoReducer,
     ...filterReducer,
-    ...language
+    ...language,
+    ...auth
   })
