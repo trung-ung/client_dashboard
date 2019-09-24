@@ -124,15 +124,6 @@ const FutureOverallStatus = props => {
   }
 
   const options = {
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            beginAtZero: true
-          }
-        }
-      ]
-    },
     legend: {
       display: false
     },
