@@ -25,6 +25,7 @@ import { useActions } from '../../../../actions'
 import ReactFlagsSelect from 'react-flags-select'
 import formatCountryToLanguage from '../../../../helpers/formatCountryToLanguage'
 import formatLanguageToCountry from '../../../../helpers/formatLanguageToCountry'
+import useDebouce from '../../../../helpers/useDebouce'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { useSelector } from 'react-redux'
 
@@ -53,6 +54,7 @@ const Topbar = withRouter(({ match, location, history, ...props }) => {
   const filterActions = useActions(FilterActions)
 
   const isLoading = useSelector(state => state.language.isLoading)
+  const isLoadingDebouce = useDebouce(isLoading, 300)
 
   // const [notifications] = useState([])
 
@@ -74,7 +76,7 @@ const Topbar = withRouter(({ match, location, history, ...props }) => {
           </RouterLink>
 
           <div className={classes.flexGrow} />
-          {isLoading ? (
+          {isLoadingDebouce ? (
             <CircularProgress></CircularProgress>
           ) : (
             <ReactFlagsSelect
