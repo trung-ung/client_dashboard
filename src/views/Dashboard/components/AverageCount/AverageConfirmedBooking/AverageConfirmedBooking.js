@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
   avatar: {
-    backgroundColor: theme.palette.warning.main,
+    backgroundColor: theme.palette.primary.main,
     height: 56,
     width: 56
   },

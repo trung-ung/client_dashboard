@@ -172,9 +172,6 @@ const Dashboard = ({
             <Grid item xl={3} lg={3} sm={6} xs={12}>
               <SuccessBookingRate />
             </Grid> */}
-            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
-              <AverageConfirmedBooking></AverageConfirmedBooking>
-            </Grid>
 
             <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <AverageDelegateCount></AverageDelegateCount>
@@ -182,6 +179,10 @@ const Dashboard = ({
 
             <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
               <AverageLeadTime></AverageLeadTime>
+            </Grid>
+
+            <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>
+              <AverageConfirmedBooking></AverageConfirmedBooking>
             </Grid>
 
             <Grid item xl={3} lg={3} md={6} sm={6} xs={12}>

@@ -166,11 +166,11 @@ const MajorMeasurement = props => {
         </PerfectScrollbar>
       </CardContent>
       <Divider />
-      <CardActions className={classes.actions}>
+      {/* <CardActions className={classes.actions}>
         <Button color="primary" size="small" variant="text">
           {viewAllText} <ArrowRightIcon />
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   )
 }
