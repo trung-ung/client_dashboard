@@ -1,5 +1,5 @@
-import React from 'react'
-import { Doughnut, Pie, Bar, HorizontalBar } from 'react-chartjs-2'
+import React, { useState } from 'react'
+import { Doughnut, Pie, Bar, HorizontalBar, Polar } from 'react-chartjs-2'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/styles'
@@ -10,7 +10,10 @@ import {
   IconButton,
   Divider,
   Typography,
-  Box
+  Box,
+  Button,
+  TextField,
+  MenuItem
 } from '@material-ui/core'
 import Business from '@material-ui/icons/Business'
 import DoneIcon from '@material-ui/icons/Done'
@@ -21,6 +24,7 @@ import RefreshIcon from '@material-ui/icons/Refresh'
 import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
 import { useSelector } from 'react-redux'
 import toPercent from '../../../../helpers/toPercent'
+import getRandomInt from '../../../../helpers/getRandomtInt'
 import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
@@ -43,6 +47,9 @@ const useStyles = makeStyles(theme => ({
   },
   deviceIcon: {
     color: theme.palette.icon
+  },
+  menu: {
+    width: 200
   }
 }))
 
@@ -71,6 +78,16 @@ const UsersByDevice = props => {
   const overallStatusText = useSelector(
     state => state.language.text.overallStatus
   )
+
+  const [charts, setCharts] = useState([
+    'doughnut',
+    'pie',
+    'bar',
+    'horibar',
+    'polar'
+  ])
+
+  const [currentChart, setCurrentChart] = useState('pie')
 
   const data = {
     datasets: [
@@ -164,7 +181,11 @@ const UsersByDevice = props => {
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         action={
-          <IconButton size="small">
+          <IconButton
+            size="small"
+            onClick={() => {
+              setCurrentChart(charts[getRandomInt(5)])
+            }}>
             <RefreshIcon />
           </IconButton>
         }
@@ -174,7 +195,15 @@ const UsersByDevice = props => {
 
       <CardContent>
         <div className={classes.chartContainer}>
-          <Pie data={data} options={options} />
+          {currentChart === 'pie' && <Pie data={data} options={options} />}
+          {currentChart === 'doughnut' && (
+            <Doughnut data={data} options={options} />
+          )}
+          {currentChart === 'bar' && <Bar data={data} options={options} />}
+          {currentChart === 'horibar' && (
+            <HorizontalBar data={data} options={options} />
+          )}
+          {currentChart === 'polar' && <Polar data={data} options={options} />}
         </div>
         <div className={classes.stats}>
           {status.map(device => (

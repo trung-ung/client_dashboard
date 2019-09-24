@@ -1,5 +1,5 @@
-import React from 'react'
-import { Doughnut, Pie, Bar, HorizontalBar } from 'react-chartjs-2'
+import React, { useState } from 'react'
+import { Doughnut, Pie, Bar, HorizontalBar, Polar } from 'react-chartjs-2'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/styles'
@@ -22,6 +22,7 @@ import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle'
 import { useSelector } from 'react-redux'
 import toPercent from '../../../../helpers/toPercent'
 import Skeleton from '@material-ui/lab/Skeleton'
+import getRandomInt from '../../../../helpers/getRandomtInt'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -81,6 +82,16 @@ const FutureOverallStatus = props => {
   const noDataToDisplayText = useSelector(
     state => state.language.text.noDataToDisplay
   )
+
+  const [charts, setCharts] = useState([
+    'doughnut',
+    'pie',
+    'bar',
+    'horibar',
+    'polar'
+  ])
+
+  const [currentChart, setCurrentChart] = useState('horibar')
 
   const data = {
     datasets: [
@@ -183,7 +194,11 @@ const FutureOverallStatus = props => {
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
         action={
-          <IconButton size="small">
+          <IconButton
+            size="small"
+            onClick={() => {
+              setCurrentChart(charts[getRandomInt(5)])
+            }}>
             <RefreshIcon />
           </IconButton>
         }
@@ -203,7 +218,17 @@ const FutureOverallStatus = props => {
         ) : (
           <>
             <div className={classes.chartContainer}>
-              <HorizontalBar data={data} options={options} />
+              {currentChart === 'pie' && <Pie data={data} options={options} />}
+              {currentChart === 'doughnut' && (
+                <Doughnut data={data} options={options} />
+              )}
+              {currentChart === 'bar' && <Bar data={data} options={options} />}
+              {currentChart === 'horibar' && (
+                <HorizontalBar data={data} options={options} />
+              )}
+              {currentChart === 'polar' && (
+                <Polar data={data} options={options} />
+              )}
             </div>
             <div className={classes.stats}>
               {status.map(device => (

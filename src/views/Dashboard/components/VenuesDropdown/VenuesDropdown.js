@@ -59,7 +59,6 @@ export const VenuesDropdown = () => {
   return (
     <TextField
       style={{ width: '100%' }}
-      id="outlined-select"
       select
       className={classes.textField}
       value={venue}
