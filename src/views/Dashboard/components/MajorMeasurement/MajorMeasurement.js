@@ -84,6 +84,14 @@ const MajorMeasurement = props => {
   const timesText = useSelector(state => state.language.text.times)
   const viewAllText = useSelector(state => state.language.text.viewAll)
 
+  const majorMeasurementText = useSelector(
+    state => state.language.text.majorMeasurementText
+  )
+  const indicatorsText = useSelector(state => state.language.text.indicators)
+  const unitText = useSelector(state => state.language.text.unit)
+  const bookingsText = useSelector(state => state.language.text.bookings)
+  const eventsText = useSelector(state => state.language.text.events)
+
   const evenstHeldText = useSelector(state => state.language.text.eventHeld)
   const definiteBookingsText = useSelector(
     state => state.language.text.definiteBookings
@@ -109,7 +117,7 @@ const MajorMeasurement = props => {
   return (
     <Card {...rest} className={clsx(classes.root, className)}>
       <CardHeader
-        title="Major Measurement"
+        title={majorMeasurementText}
         // action={
         //   <IconButton size="small">
         //     <CancelIcon />
@@ -123,7 +131,7 @@ const MajorMeasurement = props => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Indicators</TableCell>
+                <TableCell>{indicatorsText}</TableCell>
 
                 <TableCell sortDirection={isDesc ? 'desc' : 'asc'}>
                   {/* <Tooltip enterDelay={300} title="Sort">
@@ -137,29 +145,37 @@ const MajorMeasurement = props => {
                     </TableSortLabel>
                     
                   </Tooltip> */}
-                  Units
+                  {unitText}
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow hover key={totalBookingsText}>
                 <TableCell>{totalBookingsText}</TableCell>
-                <TableCell>{totalBookings} bookings</TableCell>
+                <TableCell>
+                  {totalBookings} {bookingsText}
+                </TableCell>
               </TableRow>
 
               <TableRow hover key={definiteBookingsText}>
                 <TableCell>{definiteBookingsText}</TableCell>
-                <TableCell>{definiteBookings} bookings</TableCell>
+                <TableCell>
+                  {definiteBookings} {bookingsText}
+                </TableCell>
               </TableRow>
 
               <TableRow hover key={canceledBookingText}>
                 <TableCell>{canceledBookingText}</TableCell>
-                <TableCell>{canceledBookings} bookings</TableCell>
+                <TableCell>
+                  {canceledBookings} {bookingsText}
+                </TableCell>
               </TableRow>
 
               <TableRow hover key={evenstHeldText}>
                 <TableCell>{evenstHeldText}</TableCell>
-                <TableCell>{eventsHeld} events</TableCell>
+                <TableCell>
+                  {eventsHeld} {eventsText}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

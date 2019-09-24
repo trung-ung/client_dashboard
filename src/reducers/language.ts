@@ -53,7 +53,12 @@ const initialState = {
     averageLeadTimeTooltip:
       'The average number of days from the Order date to the Event date - for orders received in the time span.',
     days: 'days',
-    participants: 'participants'
+    participants: 'participants',
+    majorMeasurement: 'Major Measurement',
+    indicators: 'Indicators',
+    unit: 'Unit',
+    bookings: 'bookings',
+    events: 'events'
   },
   isLoading: false,
   error: null

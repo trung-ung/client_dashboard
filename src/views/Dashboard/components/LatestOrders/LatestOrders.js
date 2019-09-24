@@ -49,9 +49,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const statusColors = {
-  delivered: 'success',
-  pending: 'info',
-  refunded: 'danger'
+  Confirmed: 'success',
+  'Supplier should confirm': 'warning',
+  Canceled: 'danger'
 }
 
 const LatestOrders = props => {
