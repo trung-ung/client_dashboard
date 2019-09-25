@@ -28,6 +28,7 @@ const Routes = () => {
         from="/"
         to={currentLangcode ? `/${currentLangcode}/dashboard` : '/en/dashboard'}
       />
+
       <RouteWithLayout
         component={DashboardView}
         exact

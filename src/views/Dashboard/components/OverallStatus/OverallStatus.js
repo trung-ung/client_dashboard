@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Doughnut, Pie, Bar, HorizontalBar, Polar } from 'react-chartjs-2'
+import { Doughnut, Pie, Bar, HorizontalBar, Polar, Line } from 'react-chartjs-2'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/styles'
@@ -81,10 +81,10 @@ const UsersByDevice = props => {
   )
 
   const [charts, setCharts] = useState([
-    'Doughnut',
-    'Pie',
     'Bar',
+    'Doughnut',
     'Horizontal Bar',
+    'Pie',
     'Polar'
   ])
 
@@ -119,7 +119,13 @@ const UsersByDevice = props => {
 
   const options = {
     legend: {
-      display: false
+      display: false,
+      position: 'bottom',
+      fullWidth: true,
+      reverse: false,
+      labels: {
+        fontColor: 'rgb(255, 99, 132)'
+      }
     },
     responsive: true,
     maintainAspectRatio: false,

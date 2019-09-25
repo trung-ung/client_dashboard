@@ -87,10 +87,10 @@ const FutureOverallStatus = props => {
   )
 
   const [charts, setCharts] = useState([
-    'Doughnut',
-    'Pie',
     'Bar',
+    'Doughnut',
     'Horizontal Bar',
+    'Pie',
     'Polar'
   ])
 
