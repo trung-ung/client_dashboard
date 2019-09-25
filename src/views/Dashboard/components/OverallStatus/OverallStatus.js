@@ -98,7 +98,6 @@ const UsersByDevice = props => {
 
   const handleClose = () => {
     setAnchorEl(null)
-    console.log('')
   }
 
   const data = {
